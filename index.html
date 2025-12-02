@@ -1182,10 +1182,10 @@
   // Year in footer
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
-  <script type="module">
+<script type="module">
   // Import the Firebase SDKs from the CDN
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-  import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+  import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
@@ -1201,13 +1201,23 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 
-  // Initialize Analytics (only if supported – avoids errors in some environments)
-  isSupported().then((supported) => {
-    if (supported) {
-      const analytics = getAnalytics(app);
-      // Optionally: console.log('Firebase Analytics initialized', analytics);
-    }
-  });
+  let analytics;
+
+  try {
+    analytics = getAnalytics(app);
+    console.log('✅ Firebase Analytics initialized');
+  } catch (err) {
+    console.error('❌ Error initializing Firebase Analytics:', err);
+  }
+
+  // Send a test event on every page load
+  if (analytics) {
+    logEvent(analytics, 'page_view_enthalpy_test', {
+      page_location: window.location.href
+    });
+    // Expose analytics for manual testing in DevTools if you want
+    window._enthalpyAnalytics = analytics;
+  }
 </script>
 </body>
 </html>
