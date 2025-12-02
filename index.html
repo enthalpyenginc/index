@@ -1088,27 +1088,40 @@
               For new projects, proposals or collaborations across Canada and the United States.
             </p>
 
-            <form action="#" method="post">
-              <div>
-                <label for="name">Name</label>
-                <input id="name" name="name" type="text" placeholder="Your name" required />
-              </div>
-              <div>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="you@example.com" required />
-              </div>
-              <div>
-                <label for="org">Organization</label>
-                <input id="org" name="organization" type="text" placeholder="Company / organization" />
-              </div>
-              <div>
-                <label for="message">Project / inquiry</label>
-                <textarea id="message" name="message" placeholder="Briefly describe your project, goals or questions."></textarea>
-              </div>
-              <div>
-                <button type="submit" class="btn btn-primary">Submit inquiry</button>
-              </div>
-            </form>
+            <form action="https://formsubmit.co/info@enthalpyinc.com" method="POST">
+  <!-- send a copy to John -->
+  <input type="hidden" name="_cc" value="john@enthalpyinc.com">
+
+  <!-- optional: disable FormSubmit captcha -->
+  <input type="hidden" name="_captcha" value="false">
+
+  <!-- redirect back to the contact section after submit -->
+  <input type="hidden" name="_next" value="https://www.enthalpyinc.com/#contact">
+
+  <!-- honeypot field to reduce spam -->
+  <input type="text" name="_honey" style="display:none">
+
+  <div>
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" placeholder="Your name" required />
+  </div>
+  <div>
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" placeholder="you@example.com" required />
+  </div>
+  <div>
+    <label for="org">Organization</label>
+    <input id="org" name="organization" type="text" placeholder="Company / organization" />
+  </div>
+  <div>
+    <label for="message">Project / inquiry</label>
+    <textarea id="message" name="message" placeholder="Briefly describe your project, goals or questions."></textarea>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-primary">Submit inquiry</button>
+  </div>
+</form>
+              
           </div>
 
           <div>
