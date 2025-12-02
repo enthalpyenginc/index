@@ -1163,6 +1163,1171 @@
     </div>
   </footer>
 </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enthalpy Engineering Incorporated</title>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://www.enthalpyinc.com" />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #d4a53a;
+      --gold-dark: #b18a30;
+      --black: #050608;
+      --gray-100: #f7f7f9;
+      --gray-300: #d0d4dd;
+      --gray-600: #6b7280;
+      --white: #ffffff;
+      --accent: #0f766e;
+      --max-width: 1120px;
+      --radius-lg: 14px;
+      --shadow-soft: 0 18px 40px rgba(4, 4, 10, 0.25);
+      --transition: 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(circle at top left, #11131a 0, #050608 55%);
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header & Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(5, 6, 8, 0.96), rgba(5, 6, 8, 0.82));
+      border-bottom: 1px solid rgba(212, 165, 58, 0.15);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 0.85rem 0;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+      background: #000;
+    }
+
+    .logo-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .logo-text-main {
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    .logo-text-sub {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gray-600);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-links a {
+      color: var(--gray-300);
+      position: relative;
+      padding-bottom: 0.15rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.55rem 1.4rem;
+      border: 1px solid transparent;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      cursor: pointer;
+      background: none;
+      color: inherit;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #050608;
+      box-shadow: 0 10px 25px rgba(212, 165, 58, 0.55);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 32px rgba(212, 165, 58, 0.7);
+    }
+
+    .btn-ghost {
+      border-color: rgba(212, 165, 58, 0.4);
+      color: var(--gray-300);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(212, 165, 58, 0.04);
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      width: 20px;
+      height: 2px;
+      background: var(--gray-300);
+      border-radius: 999px;
+      transition: var(--transition);
+    }
+
+    .nav-mobile-open .nav-toggle span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .nav-mobile-open .nav-toggle span:nth-child(2) { opacity: 0; }
+    .nav-mobile-open .nav-toggle span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    @media (max-width: 880px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-toggle { display: flex; }
+
+      header.nav-mobile-open .nav-links,
+      header.nav-mobile-open .nav-cta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background: rgba(5, 6, 8, 0.98);
+        position: absolute;
+        left: 0; right: 0; top: 100%;
+        padding: 0.75rem 1.5rem 1rem;
+        gap: 0.85rem;
+        border-bottom: 1px solid rgba(212, 165, 58, 0.18);
+      }
+
+      header.nav-mobile-open .nav-links { order: 1; }
+      header.nav-mobile-open .nav-cta   { order: 2; }
+    }
+
+    /* Hero */
+    .hero { padding: 4rem 0 3rem; }
+
+    .hero-inner {
+      display: grid;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      }
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.76rem;
+      color: var(--gray-600);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 4vw, 3.3rem);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span.accent { color: var(--gold); }
+
+    .hero-lede {
+      max-width: 34rem;
+      color: #e5e7eb;
+      font-size: 0.98rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      font-size: 0.8rem;
+      color: var(--gray-600);
+    }
+
+    .hero-meta strong {
+      display: block;
+      color: var(--gray-300);
+      font-size: 1rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .hero-panel {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top, rgba(212, 165, 58, 0.18), rgba(8, 10, 20, 0.98));
+      padding: 1.8rem 1.6rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(212, 165, 58, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel h2 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--gray-300);
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .metric {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.35rem;
+      color: var(--gold);
+      margin-bottom: 0.1rem;
+    }
+
+    .hero-panel-note {
+      font-size: 0.75rem;
+      color: var(--gray-600);
+    }
+
+    /* Sections */
+    section { padding: 3.5rem 0; }
+    section:nth-of-type(even) { background: rgba(10, 12, 18, 0.9); }
+
+    .section-header {
+      margin-bottom: 2.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .section-header p {
+      max-width: 34rem;
+      font-size: 0.95rem;
+      color: var(--gray-300);
+    }
+
+    /* Services */
+    .card-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 720px) {
+      .card-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .card {
+      background: linear-gradient(145deg, #0c0f17, #151823);
+      border-radius: 16px;
+      padding: 1.4rem 1.35rem 1.5rem;
+      border: 1px solid rgba(212, 165, 58, 0.16);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .card p {
+      font-size: 0.86rem;
+      color: var(--gray-300);
+      margin-bottom: 0.75rem;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .pill {
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.12);
+      color: var(--gray-300);
+      font-size: 0.7rem;
+      padding: 0.18rem 0.6rem;
+      border: 1px solid rgba(15, 118, 110, 0.5);
+    }
+
+    /* Simple cards (markets, projects) */
+    .simple-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 720px) {
+      .simple-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .simple-card {
+      background: #0b0d14;
+      border-radius: 14px;
+      padding: 1.1rem 1.2rem 1.2rem;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .simple-card h3 {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 0.3rem;
+    }
+
+    .simple-card p {
+      font-size: 0.84rem;
+      color: var(--gray-300);
+      margin-bottom: 0.4rem;
+    }
+
+    .simple-card span {
+      font-size: 0.76rem;
+      color: var(--gray-600);
+    }
+
+    /* Team */
+    .team-grid {
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    @media (min-width: 780px) {
+      .team-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    .team-card {
+      background: #0b0d14;
+      border-radius: 14px;
+      padding: 1rem 1rem 1.1rem;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      font-size: 0.8rem;
+    }
+
+    .team-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      margin-bottom: 0.6rem;
+      overflow: hidden;
+    }
+
+    .team-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      object-fit: cover;
+    }
+
+    .team-card h3 {
+      font-size: 0.9rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .team-role {
+      font-size: 0.76rem;
+      color: var(--gray-600);
+      margin-bottom: 0.4rem;
+    }
+
+    .team-card p {
+      font-size: 0.76rem;
+      color: var(--gray-300);
+    }
+
+    /* Careers */
+    .careers {
+      background: linear-gradient(120deg, #050608, #101322);
+      border-top: 1px solid rgba(212, 165, 58, 0.18);
+      border-bottom: 1px solid rgba(212, 165, 58, 0.18);
+    }
+
+    .careers-inner {
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (min-width: 860px) {
+      .careers-inner {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      }
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--gray-600);
+      margin-bottom: 0.5rem;
+    }
+
+    .careers h2 {
+      font-size: 1.45rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 0.8rem;
+    }
+
+    .careers p {
+      font-size: 0.9rem;
+      color: var(--gray-300);
+      margin-bottom: 1.2rem;
+    }
+
+    .careers-list {
+      list-style: none;
+      font-size: 0.82rem;
+      color: var(--gray-300);
+    }
+
+    .careers-list li {
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+
+    .careers-list span.bullet {
+      width: 6px; height: 6px;
+      border-radius: 999px;
+      background: var(--gold);
+      margin-top: 4px;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 860px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      }
+    }
+
+    .contact-card {
+      background: #0b0d14;
+      border-radius: 16px;
+      padding: 1.5rem 1.4rem 1.6rem;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .contact-card h3 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 0.7rem;
+    }
+
+    .contact-card p {
+      font-size: 0.86rem;
+      color: var(--gray-300);
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-meta {
+      font-size: 0.84rem;
+      color: var(--gray-300);
+    }
+
+    .contact-meta a { color: var(--gold); }
+
+    form {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-600);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.55rem 0.7rem;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: #050608;
+      color: var(--white);
+      font-size: 0.86rem;
+      font-family: inherit;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 1px rgba(212, 165, 58, 0.5);
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      background: #050608;
+      padding: 1.4rem 0 1.6rem;
+      font-size: 0.76rem;
+      color: var(--gray-600);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.1rem;
+    }
+
+    .footer-links a { color: var(--gray-500); }
+
+    @media (max-width: 600px) {
+      .hero { padding-top: 3rem; }
+      .hero-panel { margin-top: -0.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+  <!-- Header -->
+  <header id="top">
+    <div class="container nav">
+      <div class="nav-left">
+        <div class="logo-mark">
+          <!-- Put enthalpy-logo.png in the same folder as this file -->
+          <img src="enthalpy-logo.png" alt="Enthalpy Engineering Incorporated logo" />
+        </div>
+        <div>
+          <div class="logo-text-main">ENTHALPY ENGINEERING</div>
+          <div class="logo-text-sub">INCORPORATED</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#markets">Markets</a>
+        <a href="#projects">Projects</a>
+        <a href="#team">Team</a>
+        <a href="#careers">Careers</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-cta">
+        <button class="btn btn-ghost" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+          Portfolio
+        </button>
+        <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+          Let’s Talk
+        </button>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <div class="eyebrow">Design • Contract Administration • Energy Management • Building Performance</div>
+          <h1>
+            High-performance <span class="accent">engineering</span> for the built environment.
+          </h1>
+          <p class="hero-lede">
+            Enthalpy Engineering Incorporated is a partner-led firm specializing in building performance,
+            energy services, and project delivery. We help owners, designers and builders
+            deliver resilient, efficient and comfortable buildings across Canada and the United States.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+              Start a project
+            </button>
+            <button class="btn btn-ghost" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+              View services
+            </button>
+          </div>
+
+          <div class="hero-meta">
+            <div>
+              <strong>Partner-delivered</strong>
+              Every major assignment is led by one of our founding partners.
+            </div>
+            <div>
+              <strong>Integrated approach</strong>
+              Design, performance and constructability considered from day one.
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Firm snapshot">
+          <h2>Enthalpy at a glance</h2>
+          <div class="hero-metric-grid">
+            <div class="metric">
+              <strong>4</strong>
+              Founding partners leading the practice.
+            </div>
+            <div class="metric">
+              <strong>2</strong>
+              Countries served – Canada &amp; the United States.
+            </div>
+            <div class="metric">
+              <strong>100%</strong>
+              Independent, partner-owned firm.
+            </div>
+            <div class="metric">
+              <strong>Scope</strong>
+              Design, energy, building performance &amp; delivery.
+            </div>
+          </div>
+          <p class="hero-panel-note">
+            Our scope spans design and contract administration, building performance, energy management,
+            LEED &amp; WELL consulting, project management, engineering procurement and design-build support.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <div class="container">
+        <header class="section-header">
+          <h2>Services</h2>
+          <p>
+            Enthalpy Engineering provides a focused scope of services that connects design, delivery and building
+            performance.
+          </p>
+        </header>
+
+        <div class="card-grid">
+          <article class="card">
+            <h3>Design + Contract Administration</h3>
+            <p>
+              Mechanical engineering design and contract administration services from concept through tender and
+              construction, with clear documentation and coordinated delivery.
+            </p>
+            <div class="pill-list">
+              <span class="pill">Mechanical design</span>
+              <span class="pill">Tender support</span>
+              <span class="pill">Shop drawing review</span>
+              <span class="pill">Site reviews</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Building performance</h3>
+            <p>
+              Building performance services to verify that systems operate as intended, support comfort and meet
+              owner and code requirements.
+            </p>
+            <div class="pill-list">
+              <span class="pill">Performance plans</span>
+              <span class="pill">Field verification</span>
+              <span class="pill">System oversight</span>
+              <span class="pill">Deficiency tracking</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Energy Management</h3>
+            <p>
+              Strategic energy management for existing buildings and new projects, aligning performance targets,
+              utility consumption and decarbonization goals.
+            </p>
+            <div class="pill-list">
+              <span class="pill">Energy audits</span>
+              <span class="pill">Utility analysis</span>
+              <span class="pill">Optimization plans</span>
+              <span class="pill">Decarbonization support</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>LEED + WELL</h3>
+            <p>
+              Support for green building certifications, focusing on energy, comfort and wellness performance
+              requirements in LEED and WELL frameworks.
+            </p>
+            <div class="pill-list">
+              <span class="pill">LEED energy modelling</span>
+              <span class="pill">WELL performance input</span>
+              <span class="pill">Documentation support</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Project Management</h3>
+            <p>
+              Technical project management with an engineering lens, balancing scope, schedule, cost and risk
+              for building and infrastructure projects.
+            </p>
+            <div class="pill-list">
+              <span class="pill">Owner’s representative</span>
+              <span class="pill">Schedule &amp; risk</span>
+              <span class="pill">Cost tracking</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Engineering Procurement</h3>
+            <p>
+              Support with procuring engineering and construction services, including RFP development, technical
+              evaluation and recommendation.
+            </p>
+            <div class="pill-list">
+              <span class="pill">Scope definition</span>
+              <span class="pill">RFP/RFQ input</span>
+              <span class="pill">Technical review</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Design + Build (discussion)</h3>
+            <p>
+              Collaborative design-build delivery for select projects, developed through further discussion with
+              our partners, contractors and clients.
+            </p>
+            <div class="pill-list">
+              <span class="pill">Integrated delivery</span>
+              <span class="pill">Contractor collaboration</span>
+              <span class="pill">Scope to be defined</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Markets -->
+    <section id="markets">
+      <div class="container">
+        <header class="section-header">
+          <h2>Markets</h2>
+          <p>
+            Enthalpy supports projects from early concept through operation, with a focus on high-performance
+            multi-family, public and mission-critical facilities.
+          </p>
+        </header>
+
+        <div class="simple-grid">
+          <article class="simple-card">
+            <h3>Multi-family &amp; mixed-use</h3>
+            <p>
+              Support for mid-rise and high-rise residential developments, including programs linked to energy
+              performance and incentives.
+            </p>
+            <span>Developers • Asset managers • Design-build teams</span>
+          </article>
+
+          <article class="simple-card">
+            <h3>Public &amp; institutional</h3>
+            <p>
+              Support for municipalities, universities, schools and healthcare providers seeking resilient,
+              low-carbon infrastructure.
+            </p>
+            <span>Municipalities • Universities • Health authorities</span>
+          </article>
+
+          <article class="simple-card">
+            <h3>Commercial &amp; workplace</h3>
+            <p>
+              High-performance offices, tenant improvements and workplace transformations aligned with ESG and
+              wellness goals.
+            </p>
+            <span>Owners • Tenants • Corporate real estate</span>
+          </article>
+
+          <article class="simple-card">
+            <h3>Industrial &amp; mission-critical</h3>
+            <p>
+              Performance-driven projects where uptime, reliability and energy use are critical to operations.
+            </p>
+            <span>Manufacturing • Logistics • Specialized facilities</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <header class="section-header">
+          <h2>Selected experience</h2>
+          <p>
+            Representative projects from the founding partners’ combined experience. Client names can be added
+            once public references are confirmed.
+          </p>
+        </header>
+
+        <div class="simple-grid">
+          <article class="simple-card">
+            <h3>High-performance multi-family</h3>
+            <p>
+              Energy models and incentive submission for a multi-building residential development targeting
+              enhanced envelope and mechanical performance.
+            </p>
+            <span>Scope: Energy modelling, design advisory, reporting</span>
+          </article>
+
+          <article class="simple-card">
+            <h3>Campus decarbonization roadmap</h3>
+            <p>
+              Phased electrification and retrofit strategy for an institutional portfolio, aligned with carbon
+              reduction and capital planning targets.
+            </p>
+            <span>Scope: Baseline analysis, scenario modelling, roadmap</span>
+          </article>
+
+          <article class="simple-card">
+            <h3>Building performance verification</h3>
+            <p>
+              Whole-building performance verification for a complex facility, from design reviews through
+              functional performance checks and turnover.
+            </p>
+            <span>Scope: Building performance plan, field verification, deficiency management</span>
+          </article>
+
+          <article class="simple-card">
+            <h3>Owner’s representative – major retrofit</h3>
+            <p>
+              Independent technical and cost oversight for a multi-phase building renewal, coordinating design,
+              construction and operations stakeholders.
+            </p>
+            <span>Scope: PM, quantity surveying, risk and schedule support</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team">
+      <div class="container">
+        <header class="section-header">
+          <h2>Founding team</h2>
+          <p>
+            A partner-led practice. Each assignment is supported directly by senior professionals who stay
+            engaged from proposal through post-occupancy review.
+          </p>
+        </header>
+
+        <div class="team-grid">
+          <article class="team-card">
+            <div class="team-avatar">
+              <img src="ace-glen-garcia.jpg" alt="Ace Glen Garcia headshot" />
+            </div>
+            <h3>Ace Glen Garcia, P.Eng, PMP, LEED AP, WELL AP, Fitwel Amb.</h3>
+            <div class="team-role">Partner – Building Energy Simulation &amp; Sustainability</div>
+            <p>
+              Specializes in energy modelling, green building certifications and decarbonization strategies for
+              complex buildings.
+            </p>
+          </article>
+
+          <article class="team-card">
+            <div class="team-avatar">
+              <img src="michael-de-guzman.jpg" alt="Michael De Guzman headshot" />
+            </div>
+            <h3>Michael De&nbsp;Guzman, P.Eng, LEED AP, CEM.</h3>
+            <div class="team-role">Partner – Building Performance</div>
+            <p>
+              Focused on building performance, mechanical systems and building operations, ensuring designs
+              perform as intended in the field.
+            </p>
+          </article>
+
+          <article class="team-card">
+            <div class="team-avatar">
+              <img src="marvin-dela-cruz.jpg" alt="Marvin dela Cruz headshot" />
+            </div>
+            <h3>Marvin dela&nbsp;Cruz, P.Eng, PE, IntPE, APEC Engineer.</h3>
+            <div class="team-role">Partner – Project Delivery</div>
+            <p>
+              Provides project management, quantity surveying and technical advisory services with an emphasis
+              on safety, quality and value.
+            </p>
+          </article>
+
+          <article class="team-card">
+            <div class="team-avatar">
+              <img src="john-raganit.jpg" alt="John Raganit headshot" />
+            </div>
+            <h3>John Raganit</h3>
+            <div class="team-role">Partner – Design &amp; Contract Administration</div>
+            <p>
+              Leads design and contract administration services, coordinating engineering deliverables from early
+              concept through construction and closeout.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Careers -->
+    <section id="careers" class="careers">
+      <div class="container careers-inner">
+        <div>
+          <div class="tag">Careers</div>
+          <h2>Grow with a partner-led engineering firm.</h2>
+          <p>
+            We’re building a practice where engineers, technologists and project professionals can work closely
+            with decision-makers, see the full project lifecycle and contribute to better performing buildings.
+          </p>
+          <ul class="careers-list">
+            <li><span class="bullet"></span>Hybrid, flexible work arrangements.</li>
+            <li><span class="bullet"></span>Exposure to design, construction and operations.</li>
+            <li><span class="bullet"></span>Opportunities to lead projects early in your career.</li>
+          </ul>
+        </div>
+
+        <div class="contact-card">
+          <h3>Current opportunities</h3>
+          <p>
+            We’re always interested in hearing from curious people who care about performance, detail and
+            collaboration.
+          </p>
+          <p class="contact-meta">
+            Send your CV and short note to
+            <a href="mailto:careers@enthalpyinc.com">careers@enthalpyinc.com</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <header class="section-header">
+          <h2>Contact</h2>
+          <p>
+            Tell us a bit about your project, portfolio or challenge. We’ll respond with the right partner and
+            a suggested next step.
+          </p>
+        </header>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Project inquiries</h3>
+            <p>
+              For new projects, proposals or collaborations across Canada and the United States.
+            </p>
+
+            <form action="https://formsubmit.co/info@enthalpyinc.com" method="POST">
+  <!-- send a copy to John -->
+  <input type="hidden" name="_cc" value="john@enthalpyinc.com">
+
+  <!-- optional: disable FormSubmit captcha -->
+  <input type="hidden" name="_captcha" value="false">
+
+  <!-- redirect back to the contact section after submit -->
+  <input type="hidden" name="_next" value="https://www.enthalpyinc.com/#contact">
+
+  <!-- honeypot field to reduce spam -->
+  <input type="text" name="_honey" style="display:none">
+
+  <div>
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" placeholder="Your name" required />
+  </div>
+  <div>
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" placeholder="you@example.com" required />
+  </div>
+  <div>
+    <label for="org">Organization</label>
+    <input id="org" name="organization" type="text" placeholder="Company / organization" />
+  </div>
+  <div>
+    <label for="message">Project / inquiry</label>
+    <textarea id="message" name="message" placeholder="Briefly describe your project, goals or questions."></textarea>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-primary">Submit inquiry</button>
+  </div>
+</form>
+              
+          </div>
+
+          <div>
+            <div class="contact-card" style="margin-bottom:1.5rem;">
+              <h3>Direct contact</h3>
+              <p class="contact-meta">
+                General inquiries:
+                <br />
+                <a href="mailto:info@enthalpyinc.com">info@enthalpyinc.com</a>
+                <br /><br />
+                Business development:
+                <br />
+                <a href="mailto:john@enthalpyinc.com">john@enthalpyinc.com</a>
+              </p>
+            </div>
+
+            <div class="contact-card">
+              <h3>Locations</h3>
+              <p class="contact-meta">
+                Based in British Columbia, serving clients across Canada and select U.S. markets. Update this
+                section with your registered office address once confirmed.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Enthalpy Engineering Incorporated. All rights reserved. &nbsp;|&nbsp; www.enthalpyinc.com</div>
+      <div class="footer-links">
+        <a href="#top">Back to top</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </footer>
+</div>
 
 <script>
   // Mobile nav toggle
@@ -1193,5 +2358,6 @@ const firebaseConfig = {
   appId: "1:179064554504:web:c06c7b31906acff907bdbd",
   measurementId: "G-M26KH850Y5"
 };
+<script>
 </body>
 </html>
