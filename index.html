@@ -8,10 +8,25 @@
   <!-- Canonical URL -->
   <link rel="canonical" href="https://www.enthalpyinc.com" />
 
+  <!-- Meta description -->
+  <meta
+    name="description"
+    content="Enthalpy Engineering Incorporated is a partner-led firm specializing in building performance, energy management, and project delivery across Canada and the United States."
+  />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Enthalpy Engineering Incorporated" />
+  <meta property="og:description" content="High-performance engineering for the built environment across Canada and the United States." />
+  <meta property="og:url" content="https://www.enthalpyinc.com" />
+  <meta property="og:type" content="website" />
+  <!-- Replace with your actual image URL -->
+  <meta property="og:image" content="https://www.enthalpyinc.com/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -20,6 +35,7 @@
       --black: #050608;
       --gray-100: #f7f7f9;
       --gray-300: #d0d4dd;
+      --gray-500: #6b7280;
       --gray-600: #6b7280;
       --white: #ffffff;
       --accent: #0f766e;
@@ -35,6 +51,10 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background-color: var(--black);
@@ -43,8 +63,14 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
     .page {
       min-height: 100vh;
@@ -58,6 +84,24 @@
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 0 1.5rem;
+    }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 0;
+      padding: 0.5rem 1rem;
+      background: var(--gold);
+      color: #050608;
+      z-index: 999;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
     }
 
     /* Header & Nav */
@@ -131,13 +175,17 @@
     .nav-links a::after {
       content: "";
       position: absolute;
-      left: 0; bottom: 0;
-      width: 0; height: 2px;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
       background: var(--gold);
       transition: var(--transition);
     }
 
-    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
 
     .nav-cta {
       display: flex;
@@ -202,14 +250,21 @@
     .nav-mobile-open .nav-toggle span:nth-child(1) {
       transform: translateY(6px) rotate(45deg);
     }
-    .nav-mobile-open .nav-toggle span:nth-child(2) { opacity: 0; }
+    .nav-mobile-open .nav-toggle span:nth-child(2) {
+      opacity: 0;
+    }
     .nav-mobile-open .nav-toggle span:nth-child(3) {
       transform: translateY(-6px) rotate(-45deg);
     }
 
     @media (max-width: 880px) {
-      .nav-links, .nav-cta { display: none; }
-      .nav-toggle { display: flex; }
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+      .nav-toggle {
+        display: flex;
+      }
 
       header.nav-mobile-open .nav-links,
       header.nav-mobile-open .nav-cta {
@@ -218,18 +273,26 @@
         align-items: flex-start;
         background: rgba(5, 6, 8, 0.98);
         position: absolute;
-        left: 0; right: 0; top: 100%;
+        left: 0;
+        right: 0;
+        top: 100%;
         padding: 0.75rem 1.5rem 1rem;
         gap: 0.85rem;
         border-bottom: 1px solid rgba(212, 165, 58, 0.18);
       }
 
-      header.nav-mobile-open .nav-links { order: 1; }
-      header.nav-mobile-open .nav-cta   { order: 2; }
+      header.nav-mobile-open .nav-links {
+        order: 1;
+      }
+      header.nav-mobile-open .nav-cta {
+        order: 2;
+      }
     }
 
     /* Hero */
-    .hero { padding: 4rem 0 3rem; }
+    .hero {
+      padding: 4rem 0 3rem;
+    }
 
     .hero-inner {
       display: grid;
@@ -259,7 +322,9 @@
       margin-bottom: 1rem;
     }
 
-    .hero h1 span.accent { color: var(--gold); }
+    .hero h1 span.accent {
+      color: var(--gold);
+    }
 
     .hero-lede {
       max-width: 34rem;
@@ -333,8 +398,12 @@
     }
 
     /* Sections */
-    section { padding: 3.5rem 0; }
-    section:nth-of-type(even) { background: rgba(10, 12, 18, 0.9); }
+    section {
+      padding: 3.5rem 0;
+    }
+    section:nth-of-type(even) {
+      background: rgba(10, 12, 18, 0.9);
+    }
 
     .section-header {
       margin-bottom: 2.4rem;
@@ -347,7 +416,7 @@
       font-size: 1.6rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
     }
 
     .section-header p {
@@ -547,7 +616,8 @@
     }
 
     .careers-list span.bullet {
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       border-radius: 999px;
       background: var(--gold);
       margin-top: 4px;
@@ -590,7 +660,9 @@
       color: var(--gray-300);
     }
 
-    .contact-meta a { color: var(--gold); }
+    .contact-meta a {
+      color: var(--gold);
+    }
 
     form {
       display: grid;
@@ -630,6 +702,10 @@
       resize: vertical;
     }
 
+    .mb-1_5 {
+      margin-bottom: 1.5rem;
+    }
+
     /* Footer */
     footer {
       border-top: 1px solid rgba(31, 41, 55, 0.9);
@@ -653,17 +729,25 @@
       gap: 1.1rem;
     }
 
-    .footer-links a { color: var(--gray-500); }
+    .footer-links a {
+      color: var(--gray-500);
+    }
 
     @media (max-width: 600px) {
-      .hero { padding-top: 3rem; }
-      .hero-panel { margin-top: -0.5rem; }
+      .hero {
+        padding-top: 3rem;
+      }
+      .hero-panel {
+        margin-top: -0.5rem;
+      }
     }
   </style>
 </head>
 
 <body>
 <div class="page">
+  <a href="#main" class="skip-link">Skip to main content</a>
+
   <!-- Header -->
   <header id="top">
     <div class="container nav">
@@ -678,7 +762,7 @@
         </div>
       </div>
 
-      <nav class="nav-links">
+      <nav class="nav-links" id="primary-nav" aria-label="Primary navigation">
         <a href="#services">Services</a>
         <a href="#markets">Markets</a>
         <a href="#projects">Projects</a>
@@ -696,13 +780,19 @@
         </button>
       </div>
 
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+      >
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <!-- Hero -->
     <section class="hero">
       <div class="container hero-inner">
@@ -990,7 +1080,7 @@
         <div class="team-grid">
           <article class="team-card">
             <div class="team-avatar">
-              <img src="ace-glen-garcia.jpg" alt="Ace Glen Garcia headshot" />
+              <img src="ace-glen-garcia.jpg" alt="Ace Glen Garcia headshot" loading="lazy" />
             </div>
             <h3>Ace Glen Garcia, P.Eng, PMP, LEED AP, WELL AP, Fitwel Amb.</h3>
             <div class="team-role">Partner – Building Energy Simulation &amp; Sustainability</div>
@@ -1002,7 +1092,7 @@
 
           <article class="team-card">
             <div class="team-avatar">
-              <img src="michael-de-guzman.jpg" alt="Michael De Guzman headshot" />
+              <img src="michael-de-guzman.jpg" alt="Michael De Guzman headshot" loading="lazy" />
             </div>
             <h3>Michael De&nbsp;Guzman, P.Eng, LEED AP, CEM.</h3>
             <div class="team-role">Partner – Building Performance</div>
@@ -1014,7 +1104,7 @@
 
           <article class="team-card">
             <div class="team-avatar">
-              <img src="marvin-dela-cruz.jpg" alt="Marvin dela Cruz headshot" />
+              <img src="marvin-dela-cruz.jpg" alt="Marvin dela Cruz headshot" loading="lazy" />
             </div>
             <h3>Marvin dela&nbsp;Cruz, P.Eng, PE, IntPE, APEC Engineer.</h3>
             <div class="team-role">Partner – Project Delivery</div>
@@ -1026,7 +1116,7 @@
 
           <article class="team-card">
             <div class="team-avatar">
-              <img src="john-raganit.jpg" alt="John Raganit headshot" />
+              <img src="john-raganit.jpg" alt="John Raganit headshot" loading="lazy" />
             </div>
             <h3>John Raganit</h3>
             <div class="team-role">Partner – Design &amp; Contract Administration</div>
@@ -1089,43 +1179,74 @@
             </p>
 
             <form action="https://formsubmit.co/info@enthalpyinc.com" method="POST">
-  <!-- send a copy to John -->
-  <input type="hidden" name="_cc" value="john@enthalpyinc.com">
+              <!-- send a copy to John -->
+              <input type="hidden" name="_cc" value="john@enthalpyinc.com" />
 
-  <!-- optional: disable FormSubmit captcha -->
-  <input type="hidden" name="_captcha" value="false">
+              <!-- optional: disable FormSubmit captcha -->
+              <input type="hidden" name="_captcha" value="false" />
 
-  <!-- redirect back to the contact section after submit -->
-  <input type="hidden" name="_next" value="https://www.enthalpyinc.com/#contact">
+              <!-- redirect back to the contact section after submit -->
+              <input type="hidden" name="_next" value="https://www.enthalpyinc.com/#contact" />
 
-  <!-- honeypot field to reduce spam -->
-  <input type="text" name="_honey" style="display:none">
+              <!-- honeypot field to reduce spam (visually hidden but still in DOM) -->
+              <input
+                type="text"
+                name="_honey"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+                style="position:absolute;left:-9999px;"
+              />
 
-  <div>
-    <label for="name">Name</label>
-    <input id="name" name="name" type="text" placeholder="Your name" required />
-  </div>
-  <div>
-    <label for="email">Email</label>
-    <input id="email" name="email" type="email" placeholder="you@example.com" required />
-  </div>
-  <div>
-    <label for="org">Organization</label>
-    <input id="org" name="organization" type="text" placeholder="Company / organization" />
-  </div>
-  <div>
-    <label for="message">Project / inquiry</label>
-    <textarea id="message" name="message" placeholder="Briefly describe your project, goals or questions."></textarea>
-  </div>
-  <div>
-    <button type="submit" class="btn btn-primary">Submit inquiry</button>
-  </div>
-</form>
-              
+              <div>
+                <label for="name">Name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Your name"
+                  required
+                  autocomplete="name"
+                />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  required
+                  autocomplete="email"
+                />
+              </div>
+              <div>
+                <label for="org">Organization</label>
+                <input
+                  id="org"
+                  name="organization"
+                  type="text"
+                  placeholder="Company / organization"
+                  autocomplete="organization"
+                />
+              </div>
+              <div>
+                <label for="message">Project / inquiry</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Briefly describe your project, goals or questions."
+                  required
+                ></textarea>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-primary">Submit inquiry</button>
+              </div>
+            </form>
           </div>
 
           <div>
-            <div class="contact-card" style="margin-bottom:1.5rem;">
+            <div class="contact-card mb-1_5">
               <h3>Direct contact</h3>
               <p class="contact-meta">
                 General inquiries:
@@ -1154,7 +1275,10 @@
   <!-- Footer -->
   <footer>
     <div class="container footer-inner">
-      <div>© <span id="year"></span> Enthalpy Engineering Incorporated. All rights reserved. &nbsp;|&nbsp; www.enthalpyinc.com</div>
+      <div>
+        © <span id="year"></span> Enthalpy Engineering Incorporated. All rights reserved. &nbsp;|&nbsp;
+        www.enthalpyinc.com
+      </div>
       <div class="footer-links">
         <a href="#top">Back to top</a>
         <a href="#">Privacy</a>
@@ -1163,25 +1287,29 @@
     </div>
   </footer>
 </div>
+
 <script>
-   // Mobile nav toggle
+  // Mobile nav toggle
   const navToggle = document.getElementById("navToggle");
   const header = document.querySelector("header");
 
   navToggle.addEventListener("click", () => {
-    header.classList.toggle("nav-mobile-open");
+    const isOpen = header.classList.toggle("nav-mobile-open");
+    navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
   });
 
   // Close mobile nav when clicking a link
   document.querySelectorAll(".nav-links a").forEach(link => {
     link.addEventListener("click", () => {
       header.classList.remove("nav-mobile-open");
+      navToggle.setAttribute("aria-expanded", "false");
     });
   });
 
   // Year in footer
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+
 <script type="module">
   // Import the Firebase SDKs from the CDN
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
@@ -1205,14 +1333,14 @@
 
   try {
     analytics = getAnalytics(app);
-    console.log('✅ Firebase Analytics initialized');
+    console.log("✅ Firebase Analytics initialized");
   } catch (err) {
-    console.error('❌ Error initializing Firebase Analytics:', err);
+    console.error("❌ Error initializing Firebase Analytics:", err);
   }
 
   // Send a test event on every page load
   if (analytics) {
-    logEvent(analytics, 'page_view_enthalpy_test', {
+    logEvent(analytics, "page_view_enthalpy_test", {
       page_location: window.location.href
     });
     // Expose analytics for manual testing in DevTools if you want
