@@ -1164,7 +1164,7 @@
   </footer>
 </div>
 <script>
-  // Mobile nav toggle
+   // Mobile nav toggle
   const navToggle = document.getElementById("navToggle");
   const header = document.querySelector("header");
 
@@ -1181,6 +1181,33 @@
 
   // Year in footer
   document.getElementById("year").textContent = new Date().getFullYear();
-<script>
+</script>
+  <script type="module">
+  // Import the Firebase SDKs from the CDN
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+  import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBSCtJy6rFTe9dEI5k79V4lvFhs84NhNCw",
+    authDomain: "enthalpyinc-e7320.firebaseapp.com",
+    projectId: "enthalpyinc-e7320",
+    storageBucket: "enthalpyinc-e7320.firebasestorage.app",
+    messagingSenderId: "179064554504",
+    appId: "1:179064554504:web:c06c7b31906acff907bdbd",
+    measurementId: "G-M26KH850Y5"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+  // Initialize Analytics (only if supported – avoids errors in some environments)
+  isSupported().then((supported) => {
+    if (supported) {
+      const analytics = getAnalytics(app);
+      // Optionally: console.log('Firebase Analytics initialized', analytics);
+    }
+  });
+</script>
 </body>
 </html>
