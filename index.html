@@ -13,7 +13,6 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <!-- Optional pinned tab icon for Safari (replace with your SVG if you add one) -->
   <!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#d4a53a"> -->
 
   <!-- Meta description -->
@@ -27,7 +26,6 @@
   <meta property="og:description" content="High-performance engineering for the built environment across Canada and the United States." />
   <meta property="og:url" content="https://enthalpyinc.com" />
   <meta property="og:type" content="website" />
-  <!-- Replace with your actual image URL -->
   <meta property="og:image" content="https://enthalpyinc.com/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -481,7 +479,7 @@
       border: 1px solid rgba(15, 118, 110, 0.5);
     }
 
-    /* Simple cards (markets, projects) */
+    /* Simple cards (markets, projects, company profile) */
     .simple-grid {
       display: grid;
       gap: 1.25rem;
@@ -516,6 +514,25 @@
     .simple-card span {
       font-size: 0.76rem;
       color: var(--gray-600);
+    }
+
+    /* Company profile and project images */
+    .company-profile {
+      margin-bottom: 2rem;
+    }
+
+    .company-profile h3 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 0.4rem;
+    }
+
+    .simple-card img.project-image {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 0.6rem;
+      object-fit: cover;
     }
 
     /* Team */
@@ -761,7 +778,6 @@
     <div class="container nav">
       <div class="nav-left">
         <div class="logo-mark">
-          <!-- Put enthalpy-logo.png in the same folder as this file -->
           <img src="enthalpy-logo.png" alt="Enthalpy Engineering Incorporated logo" />
         </div>
         <div>
@@ -1036,39 +1052,64 @@
 
         <div class="simple-grid">
           <article class="simple-card">
+            <img
+              src="project-multifamily.jpg"
+              alt="Rendering of a high-performance multi-family residential development"
+              class="project-image"
+              loading="lazy"
+            />
             <h3>High-performance multi-family</h3>
             <p>
               Energy models and incentive submission for a multi-building residential development targeting
-              enhanced envelope and mechanical performance.
+              enhanced envelope and mechanical performance, with a focus on occupant comfort and long-term
+              operating cost reduction.
             </p>
-            <span>Scope: Energy modelling, design advisory, reporting</span>
+            <span>Scope: Energy modelling, incentive submission, design advisory, reporting</span>
           </article>
 
           <article class="simple-card">
+            <img
+              src="project-campus-decarbonization.jpg"
+              alt="Campus buildings included in the decarbonization roadmap"
+              class="project-image"
+              loading="lazy"
+            />
             <h3>Campus decarbonization roadmap</h3>
             <p>
-              Phased electrification and retrofit strategy for an institutional portfolio, aligned with carbon
-              reduction and capital planning targets.
+              Phased electrification and retrofit strategy for an institutional portfolio, aligning carbon
+              reduction goals with capital planning, resilience requirements and funding opportunities.
             </p>
-            <span>Scope: Baseline analysis, scenario modelling, roadmap</span>
+            <span>Scope: Baseline analysis, scenario modelling, decarbonization roadmap</span>
           </article>
 
           <article class="simple-card">
+            <img
+              src="project-building-performance.jpg"
+              alt="Mechanical systems and plant serving a complex facility"
+              class="project-image"
+              loading="lazy"
+            />
             <h3>Building performance verification</h3>
             <p>
               Whole-building performance verification for a complex facility, from design reviews through
-              functional performance checks and turnover.
+              functional performance checks, issues tracking and turnover support.
             </p>
             <span>Scope: Building performance plan, field verification, deficiency management</span>
           </article>
 
           <article class="simple-card">
+            <img
+              src="project-retrofit-owners-rep.jpg"
+              alt="Major building undergoing phased retrofit"
+              class="project-image"
+              loading="lazy"
+            />
             <h3>Owner’s representative – major retrofit</h3>
             <p>
               Independent technical and cost oversight for a multi-phase building renewal, coordinating design,
-              construction and operations stakeholders.
+              construction and operations stakeholders to manage risk and maintain operations.
             </p>
-            <span>Scope: PM, quantity surveying, risk and schedule support</span>
+            <span>Scope: Project management, quantity surveying, risk and schedule support</span>
           </article>
         </div>
       </div>
@@ -1084,6 +1125,54 @@
             engaged from proposal through post-occupancy review.
           </p>
         </header>
+
+        <!-- Updated story-style company profile -->
+        <article class="simple-card company-profile">
+          <h3>Enthalpy Engineering Incorporated</h3>
+
+          <p>
+            <strong>The Start</strong><br />
+            Enthalpy was founded after a pattern the partners saw too often on projects:
+            performance was treated as a checkbox at the end, instead of a thread that runs
+            from concept through operations. They had each spent years in larger organizations,
+            leading work where they could see how much better buildings could be when engineers
+            were close to owners, contractors and operators the whole way through. Eventually,
+            the question became simple: what if we built a firm that worked that way by design?
+          </p>
+
+          <p>
+            Enthalpy was established as an independent, partner-led practice so decisions could
+            be made with long-term building performance in mind, not just short-term project
+            milestones. The partners brought different strengths — energy and sustainability,
+            building performance, project delivery, design and contract administration — but
+            shared one belief: mechanical engineering should help create resilient, efficient
+            and comfortable buildings that people actually enjoy using.
+          </p>
+
+          <p>
+            <strong>A team with lived experience</strong><br />
+            Our team has worked as consultants, owner’s representatives, operators and builders
+            across projects in Canada and the United States. Those perspectives shape how we
+            approach every assignment — balancing what owners value, what contractors can build,
+            and what operators need long after turnover.
+          </p>
+
+          <p>
+            <strong>Why “Enthalpy”</strong><br />
+            In thermodynamics, enthalpy is a measure of total energy — a reminder that comfort,
+            efficiency and performance are all connected, not separate goals. The name Enthalpy
+            reflects how we think about buildings: as systems where design decisions, energy use
+            and occupant experience are tightly linked. It’s a small technical word that keeps us
+            focused on what our work ultimately impacts: how a building feels, performs and endures
+            over time.
+          </p>
+
+          <p>
+            Enthalpy exists in the space where design intent, performance and delivery meet.
+            We bring a partner-led, hands-on approach to help our clients move projects from
+            concept to comfortable, high-performing buildings.
+          </p>
+        </article>
 
         <div class="team-grid">
           <article class="team-card">
@@ -1319,11 +1408,9 @@
 </script>
 
 <script type="module">
-  // Import the Firebase SDKs from the CDN
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
   import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
 
-  // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyBSCtJy6rFTe9dEI5k79V4lvFhs84NhNCw",
     authDomain: "enthalpyinc-e7320.firebaseapp.com",
@@ -1334,7 +1421,6 @@
     measurementId: "G-M26KH850Y5"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 
   let analytics;
@@ -1346,12 +1432,10 @@
     console.error("❌ Error initializing Firebase Analytics:", err);
   }
 
-  // Send a test event on every page load
   if (analytics) {
     logEvent(analytics, "page_view_enthalpy_test", {
       page_location: window.location.href
     });
-    // Expose analytics for manual testing in DevTools if you want
     window._enthalpyAnalytics = analytics;
   }
 </script>
