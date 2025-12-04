@@ -766,6 +766,57 @@
         margin-top: -0.5rem;
       }
     }
+
+    /* Cookie banner */
+    .cookie-banner {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 50;
+      background: rgba(5, 6, 8, 0.98);
+      border-top: 1px solid rgba(212, 165, 58, 0.3);
+      padding: 0.85rem 1.25rem;
+      display: none; /* shown via JS */
+    }
+
+    .cookie-banner-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      justify-content: space-between;
+    }
+
+    .cookie-text {
+      font-size: 0.78rem;
+      color: var(--gray-300);
+      flex: 1 1 220px;
+    }
+
+    .cookie-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    @media (max-width: 600px) {
+      .cookie-banner {
+        padding: 0.9rem 1rem 1rem;
+      }
+
+      .cookie-banner-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cookie-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
   </style>
 </head>
 
@@ -1380,9 +1431,28 @@
         <a href="#top">Back to top</a>
         <a href="#">Privacy</a>
         <a href="#">Terms</a>
+        <a href="#" id="cookieSettingsLink">Cookie settings</a>
       </div>
     </div>
   </footer>
+</div>
+
+<!-- Cookie banner -->
+<div class="cookie-banner" id="cookieBanner" aria-live="polite">
+  <div class="cookie-banner-inner">
+    <p class="cookie-text">
+      We use cookies and similar technologies to understand how our website is used and to improve it.
+      You can accept or reject optional analytics.
+    </p>
+    <div class="cookie-actions">
+      <button type="button" class="btn btn-primary" id="cookieAccept">
+        Accept analytics
+      </button>
+      <button type="button" class="btn btn-ghost" id="cookieReject">
+        Reject
+      </button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -1390,18 +1460,20 @@
   const navToggle = document.getElementById("navToggle");
   const header = document.querySelector("header");
 
-  navToggle.addEventListener("click", () => {
-    const isOpen = header.classList.toggle("nav-mobile-open");
-    navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-  });
-
-  // Close mobile nav when clicking a link
-  document.querySelectorAll(".nav-links a").forEach(link => {
-    link.addEventListener("click", () => {
-      header.classList.remove("nav-mobile-open");
-      navToggle.setAttribute("aria-expanded", "false");
+  if (navToggle && header) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = header.classList.toggle("nav-mobile-open");
+      navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
-  });
+
+    // Close mobile nav when clicking a link
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        header.classList.remove("nav-mobile-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
 
   // Year in footer
   document.getElementById("year").textContent = new Date().getFullYear();
@@ -1421,23 +1493,75 @@
     measurementId: "G-M26KH850Y5"
   };
 
-  const app = initializeApp(firebaseConfig);
+  const CONSENT_KEY = "enthalpy_cookie_consent";
 
-  let analytics;
+  function initAnalytics() {
+    const app = initializeApp(firebaseConfig);
 
-  try {
-    analytics = getAnalytics(app);
-    console.log("✅ Firebase Analytics initialized");
-  } catch (err) {
-    console.error("❌ Error initializing Firebase Analytics:", err);
+    try {
+      const analytics = getAnalytics(app);
+      console.log("✅ Firebase Analytics initialized with consent");
+
+      logEvent(analytics, "page_view_enthalpy", {
+        page_location: window.location.href
+      });
+
+      window._enthalpyAnalytics = analytics;
+    } catch (err) {
+      console.error("❌ Error initializing Firebase Analytics:", err);
+    }
   }
 
-  if (analytics) {
-    logEvent(analytics, "page_view_enthalpy_test", {
-      page_location: window.location.href
+  function openCookieBanner() {
+    const banner = document.getElementById("cookieBanner");
+    const acceptBtn = document.getElementById("cookieAccept");
+    const rejectBtn = document.getElementById("cookieReject");
+
+    if (!banner || !acceptBtn || !rejectBtn) return;
+
+    banner.style.display = "block";
+
+    // Remove any existing listeners by cloning (simple trick)
+    const newAcceptBtn = acceptBtn.cloneNode(true);
+    const newRejectBtn = rejectBtn.cloneNode(true);
+    acceptBtn.replaceWith(newAcceptBtn);
+    rejectBtn.replaceWith(newRejectBtn);
+
+    newAcceptBtn.addEventListener("click", () => {
+      localStorage.setItem(CONSENT_KEY, "accepted");
+      banner.style.display = "none";
+      initAnalytics();
     });
-    window._enthalpyAnalytics = analytics;
+
+    newRejectBtn.addEventListener("click", () => {
+      localStorage.setItem(CONSENT_KEY, "rejected");
+      banner.style.display = "none";
+      // No analytics initialized on future loads
+    });
   }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const existingConsent = localStorage.getItem(CONSENT_KEY);
+
+    if (existingConsent === "accepted") {
+      // User has already accepted – initialize analytics silently
+      initAnalytics();
+    } else if (existingConsent === "rejected") {
+      // User rejected previously – do nothing
+    } else {
+      // No choice yet – show banner
+      openCookieBanner();
+    }
+
+    // Cookie settings link (to change choice later)
+    const cookieSettingsLink = document.getElementById("cookieSettingsLink");
+    if (cookieSettingsLink) {
+      cookieSettingsLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        openCookieBanner();
+      });
+    }
+  });
 </script>
 </body>
 </html>
