@@ -318,6 +318,12 @@
       padding: 4rem 0 3rem;
     }
 
+    @media (min-width: 1200px) {
+      .hero {
+        padding: 4.75rem 0 4rem;
+      }
+    }
+
     .hero-inner {
       display: grid;
       gap: 3rem;
@@ -440,7 +446,7 @@
       font-size: 1.6rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
     }
 
     .section-header p {
@@ -497,7 +503,7 @@
       border: 1px solid rgba(15, 118, 110, 0.5);
     }
 
-    /* Simple cards (markets, projects, company profile) */
+    /* Simple cards (markets, projects, company profile, credentials) */
     .simple-grid {
       display: grid;
       gap: 1.25rem;
@@ -551,6 +557,19 @@
       border-radius: 10px;
       margin-bottom: 0.6rem;
       object-fit: cover;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .simple-card:hover .project-image {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .project-outcome {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--gray-500);
+      margin-top: 0.15rem;
     }
 
     /* Team */
@@ -834,6 +853,11 @@
         width: 100%;
         justify-content: flex-start;
       }
+
+      .logo-text-sub,
+      .tag {
+        letter-spacing: 0.18em;
+      }
     }
   </style>
 </head>
@@ -1058,6 +1082,31 @@
       </div>
     </section>
 
+    <!-- Credentials & affiliations -->
+    <section aria-label="Credentials and affiliations">
+      <div class="container">
+        <div class="simple-grid">
+          <article class="simple-card">
+            <h3>Credentials</h3>
+            <p>
+              Professional engineers with experience delivering projects under LEED, WELL and Fitwel frameworks
+              across Canada and the United States.
+            </p>
+            <span>P.Eng • PE • PMP • LEED AP • WELL AP • Fitwel Ambassador</span>
+          </article>
+
+          <article class="simple-card">
+            <h3>Affiliations &amp; programs</h3>
+            <p>
+              Experience with utility incentive programs, green building councils and institutional initiatives
+              focused on decarbonization and high-performance buildings.
+            </p>
+            <span>Utility programs • Green building councils • Institutional portfolios</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- Markets -->
     <section id="markets">
       <div class="container">
@@ -1104,6 +1153,15 @@
             </p>
             <span>Manufacturing • Logistics • Specialized facilities</span>
           </article>
+
+          <article class="simple-card">
+            <h3>Defense &amp; security</h3>
+            <p>
+              Support for secure, resilient facilities serving defense, public safety and critical government
+              functions, with an emphasis on reliability, redundancy and discretion.
+            </p>
+            <span>Defense agencies • Public safety • Secure infrastructure</span>
+          </article>
         </div>
       </div>
     </section>
@@ -1134,6 +1192,7 @@
               operating cost reduction.
             </p>
             <span>Scope: Energy modelling, incentive submission, design advisory, reporting</span>
+            <span class="project-outcome">Outcome: Improved tenant comfort and lower projected utility consumption vs. code baseline.</span>
           </article>
 
           <article class="simple-card">
@@ -1149,6 +1208,7 @@
               reduction goals with capital planning, resilience requirements and funding opportunities.
             </p>
             <span>Scope: Baseline analysis, scenario modelling, decarbonization roadmap</span>
+            <span class="project-outcome">Outcome: Clear investment plan and sequencing to reduce emissions while managing risk and budget.</span>
           </article>
 
           <article class="simple-card">
@@ -1164,6 +1224,7 @@
               functional performance checks, issues tracking and turnover support.
             </p>
             <span>Scope: Building performance plan, field verification, deficiency management</span>
+            <span class="project-outcome">Outcome: Verified system operation at turnover and a structured path to resolve outstanding issues.</span>
           </article>
 
           <article class="simple-card">
@@ -1179,6 +1240,23 @@
               construction and operations stakeholders to manage risk and maintain operations.
             </p>
             <span>Scope: Project management, quantity surveying, risk and schedule support</span>
+            <span class="project-outcome">Outcome: Reduced delivery risk and clearer decisions on cost, schedule and phasing for the owner.</span>
+          </article>
+
+          <article class="simple-card">
+            <img
+              src="project-defense-facility.jpg"
+              alt="Secure defense and training facility"
+              class="project-image"
+              loading="lazy"
+            />
+            <h3>Secure defense facility upgrades</h3>
+            <p>
+              Mechanical and building performance advisory services for upgrades to a secure defense facility,
+              with focus on resilience, redundancy and operational continuity.
+            </p>
+            <span>Scope: Mechanical advisory, performance review, phasing input, commissioning support</span>
+            <span class="project-outcome">Outcome: Enhanced reliability of critical systems and a coordinated approach to construction in an active facility.</span>
           </article>
         </div>
       </div>
@@ -1214,7 +1292,7 @@
             be made with long-term building performance in mind, not just short-term project
             milestones. The partners brought different strengths — energy and sustainability,
             building performance, project delivery, design and contract administration — but
-            shared one belief: engineering should help create resilient, efficient
+            shared one belief: mechanical engineering should help create resilient, efficient
             and comfortable buildings that people actually enjoy using.
           </p>
 
