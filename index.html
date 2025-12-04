@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Enthalpy Engineering Incorporated</title>
+
+  <title>Enthalpy Engineering | Building Performance &amp; Energy Management</title>
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://enthalpyinc.com" />
@@ -22,7 +23,7 @@
   />
 
   <!-- Open Graph / Social -->
-  <meta property="og:title" content="Enthalpy Engineering Incorporated" />
+  <meta property="og:title" content="Enthalpy Engineering | Building Performance &amp; Energy Management" />
   <meta property="og:description" content="High-performance engineering for the built environment across Canada and the United States." />
   <meta property="og:url" content="https://enthalpyinc.com" />
   <meta property="og:type" content="website" />
@@ -34,6 +35,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Enthalpy Engineering Incorporated",
+    "url": "https://enthalpyinc.com",
+    "logo": "https://enthalpyinc.com/enthalpy-logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "CA"
+    },
+    "areaServed": ["CA", "US"]
+  }
+  </script>
+
   <style>
     :root {
       --gold: #d4a53a;
@@ -41,7 +58,7 @@
       --black: #050608;
       --gray-100: #f7f7f9;
       --gray-300: #d0d4dd;
-      --gray-500: #6b7280;
+      --gray-500: #9ca3af;
       --gray-600: #6b7280;
       --white: #ffffff;
       --accent: #0f766e;
@@ -189,7 +206,8 @@
       transition: var(--transition);
     }
 
-    .nav-links a:hover::after {
+    .nav-links a:hover::after,
+    .nav-links a[aria-current="page"]::after {
       width: 100%;
     }
 
@@ -838,7 +856,7 @@
       </div>
 
       <nav class="nav-links" id="primary-nav" aria-label="Primary navigation">
-        <a href="#services">Services</a>
+        <a href="#services" aria-current="page">Services</a>
         <a href="#markets">Markets</a>
         <a href="#projects">Projects</a>
         <a href="#team">Team</a>
@@ -884,7 +902,7 @@
 
           <div class="hero-actions">
             <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-              Start a project
+              Start a project conversation
             </button>
             <button class="btn btn-ghost" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
               View services
@@ -1025,10 +1043,10 @@
           </article>
 
           <article class="card">
-            <h3>Design + Build (discussion)</h3>
+            <h3>Design-Build (select projects)</h3>
             <p>
-              Collaborative design-build delivery for select projects, developed through further discussion with
-              our partners, contractors and clients.
+              Collaborative design-build delivery for select projects, scoped and priced through direct discussion
+              with our partners, contractors and clients.
             </p>
             <div class="pill-list">
               <span class="pill">Integrated delivery</span>
@@ -1298,7 +1316,7 @@
           <h3>Current opportunities</h3>
           <p>
             We’re always interested in hearing from curious people who care about performance, detail and
-            collaboration.
+            collaboration. Applications are reviewed directly by our partners.
           </p>
           <p class="contact-meta">
             Send your CV and short note to
@@ -1388,7 +1406,7 @@
                 ></textarea>
               </div>
               <div>
-                <button type="submit" class="btn btn-primary">Submit inquiry</button>
+                <button type="submit" class="btn btn-primary">Send inquiry</button>
               </div>
             </form>
           </div>
@@ -1410,8 +1428,7 @@
             <div class="contact-card">
               <h3>Locations</h3>
               <p class="contact-meta">
-                Based in British Columbia, serving clients across Canada and select U.S. markets. Update this
-                section with your registered office address once confirmed.
+                Based in British Columbia, serving clients across Canada and select U.S. markets.
               </p>
             </div>
           </div>
@@ -1438,9 +1455,16 @@
 </div>
 
 <!-- Cookie banner -->
-<div class="cookie-banner" id="cookieBanner" aria-live="polite">
+<div
+  class="cookie-banner"
+  id="cookieBanner"
+  aria-live="polite"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="cookieBannerTitle"
+>
   <div class="cookie-banner-inner">
-    <p class="cookie-text">
+    <p class="cookie-text" id="cookieBannerTitle">
       We use cookies and similar technologies to understand how our website is used and to improve it.
       You can accept or reject optional analytics.
     </p>
@@ -1480,9 +1504,6 @@
 </script>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-  import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
-
   const firebaseConfig = {
     apiKey: "AIzaSyBSCtJy6rFTe9dEI5k79V4lvFhs84NhNCw",
     authDomain: "enthalpyinc-e7320.firebaseapp.com",
@@ -1494,11 +1515,17 @@
   };
 
   const CONSENT_KEY = "enthalpy_cookie_consent";
+  let previousFocus = null;
 
-  function initAnalytics() {
-    const app = initializeApp(firebaseConfig);
+  async function initAnalytics() {
+    if (window._enthalpyAnalytics) return;
 
     try {
+      const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js");
+      const { getAnalytics, logEvent } = await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js");
+
+      const app = initializeApp(firebaseConfig);
+
       const analytics = getAnalytics(app);
       console.log("✅ Firebase Analytics initialized with consent");
 
@@ -1512,6 +1539,17 @@
     }
   }
 
+  function closeCookieBanner() {
+    const banner = document.getElementById("cookieBanner");
+    if (banner) {
+      banner.style.display = "none";
+    }
+    if (previousFocus && typeof previousFocus.focus === "function") {
+      previousFocus.focus();
+      previousFocus = null;
+    }
+  }
+
   function openCookieBanner() {
     const banner = document.getElementById("cookieBanner");
     const acceptBtn = document.getElementById("cookieAccept");
@@ -1519,6 +1557,7 @@
 
     if (!banner || !acceptBtn || !rejectBtn) return;
 
+    previousFocus = document.activeElement;
     banner.style.display = "block";
 
     // Remove any existing listeners by cloning (simple trick)
@@ -1529,15 +1568,18 @@
 
     newAcceptBtn.addEventListener("click", () => {
       localStorage.setItem(CONSENT_KEY, "accepted");
-      banner.style.display = "none";
+      closeCookieBanner();
       initAnalytics();
     });
 
     newRejectBtn.addEventListener("click", () => {
       localStorage.setItem(CONSENT_KEY, "rejected");
-      banner.style.display = "none";
+      closeCookieBanner();
       // No analytics initialized on future loads
     });
+
+    // Move focus into the dialog for accessibility
+    newAcceptBtn.focus();
   }
 
   document.addEventListener("DOMContentLoaded", () => {
