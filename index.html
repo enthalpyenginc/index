@@ -151,6 +151,15 @@
       gap: 0.75rem;
     }
 
+    /* NEW: make logo + text clickable but keep layout the same */
+    .nav-left-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
     .logo-mark {
       width: 52px;
       height: 52px;
@@ -870,13 +879,16 @@
   <header id="top">
     <div class="container nav">
       <div class="nav-left">
-        <div class="logo-mark">
-          <img src="enthalpy-logo.png" alt="Enthalpy Engineering Incorporated logo" />
-        </div>
-        <div>
-          <div class="logo-text-main">ENTHALPY ENGINEERING</div>
-          <div class="logo-text-sub">INCORPORATED</div>
-        </div>
+        <!-- UPDATED: logo + wordmark now link to home -->
+        <a href="/" class="nav-left-link" aria-label="Enthalpy Engineering home">
+          <div class="logo-mark">
+            <img src="enthalpy-logo.png" alt="Enthalpy Engineering Incorporated logo" />
+          </div>
+          <div>
+            <div class="logo-text-main">ENTHALPY ENGINEERING</div>
+            <div class="logo-text-sub">INCORPORATED</div>
+          </div>
+        </a>
       </div>
 
       <nav class="nav-links" id="primary-nav" aria-label="Primary navigation">
