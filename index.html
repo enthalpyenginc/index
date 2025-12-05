@@ -14,7 +14,6 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#d4a53a"> -->
 
   <!-- Meta description -->
   <meta
@@ -157,7 +156,6 @@
       gap: 0.75rem;
     }
 
-    /* make logo + text clickable but keep layout the same */
     .nav-left-link {
       display: flex;
       align-items: center;
@@ -330,7 +328,49 @@
 
     /* Hero */
     .hero {
+      position: relative;
       padding: 4rem 0 3rem;
+      overflow: hidden;
+    }
+
+    /* Video background */
+    .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .hero-video-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.35) saturate(1.1);
+    }
+
+    /* Extra overlay for contrast */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(circle at top left, rgba(17, 19, 26, 0.9), rgba(5, 6, 8, 0.98)),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(5, 6, 8, 0.95));
+    }
+
+    .hero-inner {
+      display: grid;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (min-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      }
     }
 
     @media (min-width: 1200px) {
@@ -339,15 +379,20 @@
       }
     }
 
-    .hero-inner {
-      display: grid;
-      gap: 3rem;
-      align-items: center;
+    /* Disable video on small screens for performance */
+    @media (max-width: 768px) {
+      .hero-video-bg {
+        display: none;
+      }
+      .hero {
+        background: radial-gradient(circle at top left, #11131a 0, #050608 55%);
+      }
     }
 
-    @media (min-width: 900px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    /* Respect prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-video-bg video {
+        animation: none;
       }
     }
 
@@ -555,7 +600,6 @@
       color: var(--gray-600);
     }
 
-    /* Company profile and project images */
     .company-profile {
       margin-bottom: 2rem;
     }
@@ -834,113 +878,7 @@
       }
     }
 
-    /* Cookie banner */
-    .cookie-banner {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 50;
-      background: rgba(5, 6, 8, 0.98);
-      border-top: 1px solid rgba(212, 165, 58, 0.3);
-      padding: 0.85rem 1.25rem;
-      display: none; /* shown via JS */
-    }
-
-    .cookie-banner-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.75rem;
-      justify-content: space-between;
-    }
-
-    .cookie-text {
-      font-size: 0.78rem;
-      color: var(--gray-300);
-      flex: 1 1 220px;
-    }
-
-    .cookie-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    @media (max-width: 600px) {
-      .cookie-banner {
-        padding: 0.9rem 1rem 1rem;
-      }
-
-      .cookie-banner-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .cookie-actions {
-        width: 100%;
-        justify-content: flex-start;
-      }
-
-      .logo-text-sub,
-      .tag {
-        letter-spacing: 0.18em;
-      }
-    }
-
-    /* Hero video background */
-    .hero {
-      position: relative;
-      overflow: hidden;
-      isolation: isolate; /* keeps video behind content cleanly */
-    }
-
-    .hero-has-video .hero-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    /* Dark overlay to keep text readable */
-    .hero-video::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top left, rgba(15, 23, 42, 0.85), transparent 55%),
-        linear-gradient(to bottom, rgba(3, 4, 7, 0.95), rgba(3, 4, 7, 0.98));
-      mix-blend-mode: multiply;
-    }
-
-    .hero-video video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.5) contrast(1.1) saturate(0.9);
-    }
-
-    /* Disable video on small screens */
-    @media (max-width: 768px) {
-      .hero-video {
-        display: none;
-      }
-    }
-
-    /* Respect reduced-motion preferences */
-    @media (prefers-reduced-motion: reduce) {
-      .hero-video {
-        display: none;
-      }
-    }
+    /* (Cookie banner styles removed in this version as per your last HTML) */
   </style>
 </head>
 
@@ -952,7 +890,6 @@
   <header id="top">
     <div class="container nav">
       <div class="nav-left">
-        <!-- logo + wordmark link to home -->
         <a href="/" class="nav-left-link" aria-label="Enthalpy Engineering home">
           <div class="logo-mark">
             <img src="enthalpy-logo.png" alt="Enthalpy Engineering Incorporated logo" />
@@ -995,17 +932,11 @@
   </header>
 
   <main id="main">
-    <!-- Hero with video background -->
-    <section class="hero hero-has-video">
-      <!-- Background video layer -->
-      <div class="hero-video" aria-hidden="true">
-        <video
-          id="heroVideo"
-          autoplay
-          muted
-          loop
-          playsinline
-        >
+    <!-- Hero -->
+    <section class="hero">
+      <!-- Video background -->
+      <div class="hero-video-bg" aria-hidden="true">
+        <video autoplay muted loop playsinline>
           <source src="hero-vancouver.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -1372,7 +1303,6 @@
           </p>
         </header>
 
-        <!-- Updated story-style company profile -->
         <article class="simple-card company-profile">
           <h3>Enthalpy Engineering Incorporated</h3>
 
@@ -1522,16 +1452,9 @@
             </p>
 
             <form action="https://formsubmit.co/info@enthalpyinc.com" method="POST">
-              <!-- send a copy to John -->
               <input type="hidden" name="_cc" value="john@enthalpyinc.com" />
-
-              <!-- optional: disable FormSubmit captcha -->
               <input type="hidden" name="_captcha" value="false" />
-
-              <!-- redirect back to the contact section after submit -->
               <input type="hidden" name="_next" value="https://enthalpyinc.com/#contact" />
-
-              <!-- honeypot field to reduce spam (visually hidden but still in DOM) -->
               <input
                 type="text"
                 name="_honey"
@@ -1650,35 +1573,10 @@
         <a href="#top">Back to top</a>
         <a href="#">Privacy</a>
         <a href="#">Terms</a>
-        <a href="#" id="cookieSettingsLink">Cookie settings</a>
+        <a href="#">Cookie settings</a>
       </div>
     </div>
   </footer>
-</div>
-
-<!-- Cookie banner -->
-<div
-  class="cookie-banner"
-  id="cookieBanner"
-  aria-live="polite"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="cookieBannerTitle"
->
-  <div class="cookie-banner-inner">
-    <p class="cookie-text" id="cookieBannerTitle">
-      We use cookies and similar technologies to understand how our website is used and to improve it.
-      You can accept or reject optional analytics.
-    </p>
-    <div class="cookie-actions">
-      <button type="button" class="btn btn-primary" id="cookieAccept">
-        Accept analytics
-      </button>
-      <button type="button" class="btn btn-ghost" id="cookieReject">
-        Reject
-      </button>
-    </div>
-  </div>
 </div>
 
 <script>
@@ -1692,7 +1590,6 @@
       navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
 
-    // Close mobile nav when clicking a link
     document.querySelectorAll(".nav-links a").forEach(link => {
       link.addEventListener("click", () => {
         header.classList.remove("nav-mobile-open");
@@ -1704,125 +1601,5 @@
   // Year in footer
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
-
-<script type="module">
-  const firebaseConfig = {
-    apiKey: "AIzaSyBSCtJy6rFTe9dEI5k79V4lvFhs84NhNCw",
-    authDomain: "enthalpyinc-e7320.firebaseapp.com",
-    projectId: "enthalpyinc-e7320",
-    storageBucket: "enthalpyinc-e7320.firebasestorage.app",
-    messagingSenderId: "179064554504",
-    appId: "1:179064554504:web:c06c7b31906acff907bdbd",
-    measurementId: "G-M26KH850Y5"
-  };
-
-  const CONSENT_KEY = "enthalpy_cookie_consent";
-  let previousFocus = null;
-
-  async function initAnalytics() {
-    if (window._enthalpyAnalytics) return;
-
-    try {
-      const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js");
-      const { getAnalytics, logEvent } = await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js");
-
-      const app = initializeApp(firebaseConfig);
-
-      const analytics = getAnalytics(app);
-      console.log("✅ Firebase Analytics initialized with consent");
-
-      logEvent(analytics, "page_view_enthalpy", {
-        page_location: window.location.href
-      });
-
-      window._enthalpyAnalytics = analytics;
-    } catch (err) {
-      console.error("❌ Error initializing Firebase Analytics:", err);
-    }
-  }
-
-  function closeCookieBanner() {
-    const banner = document.getElementById("cookieBanner");
-    if (banner) {
-      banner.style.display = "none";
-    }
-    if (previousFocus && typeof previousFocus.focus === "function") {
-      previousFocus.focus();
-      previousFocus = null;
-    }
-  }
-
-  function openCookieBanner() {
-    const banner = document.getElementById("cookieBanner");
-    const acceptBtn = document.getElementById("cookieAccept");
-    const rejectBtn = document.getElementById("cookieReject");
-
-    if (!banner || !acceptBtn || !rejectBtn) return;
-
-    previousFocus = document.activeElement;
-    banner.style.display = "block";
-
-    // Remove any existing listeners by cloning (simple trick)
-    const newAcceptBtn = acceptBtn.cloneNode(true);
-    const newRejectBtn = rejectBtn.cloneNode(true);
-    acceptBtn.replaceWith(newAcceptBtn);
-    rejectBtn.replaceWith(newRejectBtn);
-
-    newAcceptBtn.addEventListener("click", () => {
-      localStorage.setItem(CONSENT_KEY, "accepted");
-      closeCookieBanner();
-      initAnalytics();
-    });
-
-    newRejectBtn.addEventListener("click", () => {
-      localStorage.setItem(CONSENT_KEY, "rejected");
-      closeCookieBanner();
-      // No analytics initialized on future loads
-    });
-
-    // Move focus into the dialog for accessibility
-    newAcceptBtn.focus();
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const existingConsent = localStorage.getItem(CONSENT_KEY);
-
-    if (existingConsent === "accepted") {
-      // User has already accepted – initialize analytics silently
-      initAnalytics();
-    } else if (existingConsent === "rejected") {
-      // User rejected previously – do nothing
-    } else {
-      // No choice yet – show banner
-      openCookieBanner();
-    }
-
-    // Cookie settings link (to change choice later)
-    const cookieSettingsLink = document.getElementById("cookieSettingsLink");
-    if (cookieSettingsLink) {
-      cookieSettingsLink.addEventListener("click", (event) => {
-        event.preventDefault();
-        openCookieBanner();
-      });
-    }
-  });
-</script>
-
-<!-- Optional: autoplay fallback – hide video layer if autoplay fails -->
-<script>
-  (function () {
-    const video = document.getElementById("heroVideo");
-    if (!video) return;
-
-    const playPromise = video.play();
-    if (playPromise && typeof playPromise.then === "function") {
-      playPromise.catch(() => {
-        const wrapper = video.closest(".hero-video");
-        if (wrapper) wrapper.style.display = "none";
-      });
-    }
-  })();
-</script>
-
 </body>
 </html>
