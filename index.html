@@ -43,8 +43,14 @@
     "name": "Enthalpy Engineering Incorporated",
     "url": "https://enthalpyinc.com",
     "logo": "https://enthalpyinc.com/enthalpy-logo.png",
+    "telephone": "+1-778-945-2781",
     "address": {
       "@type": "PostalAddress",
+      "name": "Canada Place Business Centre",
+      "streetAddress": "#404 – 999 Canada Place",
+      "addressLocality": "Vancouver",
+      "addressRegion": "BC",
+      "postalCode": "V6C 3E2",
       "addressCountry": "CA"
     },
     "areaServed": ["CA", "US"]
@@ -777,6 +783,21 @@
       margin-bottom: 1.5rem;
     }
 
+    /* Map embed */
+    .map-embed {
+      margin-top: 0.75rem;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .map-embed iframe {
+      width: 100%;
+      height: 220px;
+      border: 0;
+      display: block;
+    }
+
     /* Footer */
     footer {
       border-top: 1px solid rgba(31, 41, 55, 0.9);
@@ -1104,7 +1125,7 @@
               Professional engineers with experience delivering projects under LEED, WELL and Fitwel frameworks
               across Canada and the United States.
             </p>
-            <span>P.Eng • PE • PMP • LEED AP • WELL AP • Fitwel Ambassador</span>
+            <span>P.Eng • PE • PMP • LEED AP • WELL AP • Fitwel Ambassador • CEM </span>
           </article>
 
           <article class="simple-card">
@@ -1512,14 +1533,39 @@
                 Business development:
                 <br />
                 <a href="mailto:john@enthalpyinc.com">john@enthalpyinc.com</a>
+                <br /><br />
+                Telephone:
+                <br />
+                <a href="tel:+17789452781">+1 778 945 2781</a>
               </p>
             </div>
 
             <div class="contact-card">
-              <h3>Locations</h3>
+              <h3>Location</h3>
               <p class="contact-meta">
-                Based in British Columbia, serving clients across Canada and select U.S. markets.
+                Canada Place Business Centre<br />
+                #404 – 999 Canada Place<br />
+                Vancouver, British Columbia V6C 3E2<br /><br />
+                Telephone:
+                <br />
+                <a href="tel:+17789452781">+1 778 945 2781</a>
+                <br /><br />
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Enthalpy+Engineering+Incorporated,+Canada+Place+Business+Centre,+%23404+999+Canada+Place,+Vancouver,+BC+V6C+3E2"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  View on Google Maps
+                </a>
               </p>
+
+              <div class="map-embed" aria-label="Map showing Enthalpy Engineering Incorporated office location">
+                <iframe
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps?q=Enthalpy+Engineering+Incorporated,+Canada+Place+Business+Centre,+%23404+999+Canada+Place,+Vancouver,+BC+V6C+3E2&output=embed">
+                </iframe>
+              </div>
             </div>
           </div>
         </div>
