@@ -125,6 +125,8 @@
     @media (prefers-reduced-motion: reduce) {
       .video-bg video {
         animation: none;
+        /* Hide the video for reduced-motion users */
+        display: none;
       }
     }
 
@@ -250,8 +252,7 @@
       transition: var(--transition);
     }
 
-    .nav-links a:hover::after,
-    .nav-links a[aria-current="page"]::after {
+    .nav-links a:hover::after {
       width: 100%;
     }
 
@@ -958,7 +959,7 @@
       </div>
 
       <nav class="nav-links" id="primary-nav" aria-label="Primary navigation">
-        <a href="#services" aria-current="page">Services</a>
+        <a href="#services">Services</a>
         <a href="#markets">Markets</a>
         <a href="#projects">Projects</a>
         <a href="#team">Team</a>
@@ -1563,6 +1564,10 @@
               <div>
                 <button type="submit" class="btn btn-primary">Send inquiry</button>
               </div>
+
+              <p class="contact-meta" style="margin-top:0.6rem;">
+                We use the information you provide only to respond to your inquiry and to follow up on your project or request.
+              </p>
             </form>
           </div>
 
@@ -1626,8 +1631,8 @@
       </div>
       <div class="footer-links">
         <a href="#top">Back to top</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
         <a href="#" id="cookieSettingsLink">Cookie settings</a>
       </div>
     </div>
@@ -1639,9 +1644,8 @@
   class="cookie-banner"
   id="cookieBanner"
   aria-live="polite"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="cookieBannerTitle"
+  role="region"
+  aria-label="Cookie consent"
 >
   <div class="cookie-banner-inner">
     <p class="cookie-text" id="cookieBannerTitle">
@@ -1681,6 +1685,41 @@
 
   // Year in footer
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Respect prefers-reduced-motion for background video:
+  (function () {
+    const video = document.querySelector(".video-bg video");
+    if (!video) return;
+
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    function handleMotionPreference(e) {
+      if (e.matches) {
+        // User prefers reduced motion – pause and reset video
+        try {
+          video.pause();
+        } catch (err) {}
+        video.removeAttribute("autoplay");
+        video.removeAttribute("loop");
+        video.currentTime = 0;
+      } else {
+        // User does not prefer reduced motion – allow normal playback if desired
+        video.setAttribute("autoplay", "true");
+        video.setAttribute("loop", "true");
+      }
+    }
+
+    // Initial check
+    handleMotionPreference(motionQuery);
+
+    // Respond to changes
+    if (typeof motionQuery.addEventListener === "function") {
+      motionQuery.addEventListener("change", handleMotionPreference);
+    } else if (typeof motionQuery.addListener === "function") {
+      // Fallback for older browsers
+      motionQuery.addListener(handleMotionPreference);
+    }
+  })();
 </script>
 
 <script type="module">
