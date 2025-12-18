@@ -73,15 +73,8 @@
       --transition: 0.25s ease;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -92,15 +85,8 @@
       position: relative;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
 
     /* Scroll progress bar */
     .scroll-progress {
@@ -131,14 +117,13 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      /* LIGHTER: let the Vancouver hero breathe more */
       filter: brightness(0.92) contrast(1.02) saturate(1.05);
     }
 
     @media (prefers-reduced-motion: reduce) {
       .video-bg video {
         animation: none;
-        display: none; /* Hide video for reduced-motion users */
+        display: none;
       }
     }
 
@@ -148,7 +133,6 @@
       flex-direction: column;
       position: relative;
       z-index: 0;
-      /* LIGHTER: softer overlay so the video shows more */
       background: radial-gradient(
         circle at top left,
         rgba(30, 34, 46, 0.25) 0,
@@ -163,10 +147,7 @@
       padding: 0 1.5rem;
     }
 
-    /* Ensure anchor jumps don't hide behind sticky header */
-    section[id] {
-      scroll-margin-top: 88px;
-    }
+    section[id] { scroll-margin-top: 88px; }
 
     /* Skip link */
     .skip-link {
@@ -181,10 +162,7 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
     }
-    .skip-link:focus {
-      left: 1rem;
-      top: 1rem;
-    }
+    .skip-link:focus { left: 1rem; top: 1rem; }
 
     /* Header & Nav */
     header {
@@ -204,11 +182,7 @@
       padding: 0.85rem 0;
     }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
+    .nav-left { display: flex; align-items: center; gap: 0.75rem; }
 
     .nav-left-link {
       display: flex;
@@ -227,11 +201,7 @@
       background: #000;
     }
 
-    .logo-mark img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
 
     .logo-text-main {
       font-weight: 600;
@@ -273,15 +243,9 @@
       transition: var(--transition);
     }
 
-    .nav-links a:hover::after {
-      width: 100%;
-    }
+    .nav-links a:hover::after { width: 100%; }
 
-    .nav-cta {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
+    .nav-cta { display: flex; align-items: center; gap: 0.75rem; }
 
     .btn {
       border-radius: 999px;
@@ -328,12 +292,7 @@
       letter-spacing: 0.16em;
     }
 
-    .nav-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 4px;
-      cursor: pointer;
-    }
+    .nav-toggle { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
 
     .nav-toggle span {
       width: 20px;
@@ -343,24 +302,13 @@
       transition: var(--transition);
     }
 
-    .nav-mobile-open .nav-toggle span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-    .nav-mobile-open .nav-toggle span:nth-child(2) {
-      opacity: 0;
-    }
-    .nav-mobile-open .nav-toggle span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
+    .nav-mobile-open .nav-toggle span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-mobile-open .nav-toggle span:nth-child(2) { opacity: 0; }
+    .nav-mobile-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
     @media (max-width: 880px) {
-      .nav-links,
-      .nav-cta {
-        display: none;
-      }
-      .nav-toggle {
-        display: flex;
-      }
+      .nav-links, .nav-cta { display: none; }
+      .nav-toggle { display: flex; }
 
       header.nav-mobile-open .nav-links,
       header.nav-mobile-open .nav-cta {
@@ -377,49 +325,29 @@
         border-bottom: 1px solid rgba(212, 165, 58, 0.18);
       }
 
-      header.nav-mobile-open .nav-links {
-        order: 1;
-      }
-      header.nav-mobile-open .nav-cta {
-        order: 2;
-      }
+      header.nav-mobile-open .nav-links { order: 1; }
+      header.nav-mobile-open .nav-cta { order: 2; }
     }
 
     /* Hero */
-    .hero {
-      padding: 4rem 0 3rem;
-      position: relative;
-    }
+    .hero { padding: 4rem 0 3rem; position: relative; }
 
     @media (min-width: 1200px) {
-      .hero {
-        padding: 4.75rem 0 4rem;
-      }
+      .hero { padding: 4.75rem 0 4rem; }
     }
 
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      /* LIGHTER: thinner veil over the video */
-      background: radial-gradient(
-        circle at top left,
-        rgba(5, 6, 8, 0.18),
-        rgba(5, 6, 8, 0.45)
-      );
+      background: radial-gradient(circle at top left, rgba(5, 6, 8, 0.18), rgba(5, 6, 8, 0.45));
       z-index: -1;
     }
 
-    .hero-inner {
-      display: grid;
-      gap: 3rem;
-      align-items: center;
-    }
+    .hero-inner { display: grid; gap: 3rem; align-items: center; }
 
     @media (min-width: 900px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      }
+      .hero-inner { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
     }
 
     .eyebrow {
@@ -438,9 +366,7 @@
       margin-bottom: 1rem;
     }
 
-    .hero h1 span.accent {
-      color: var(--gold);
-    }
+    .hero h1 span.accent { color: var(--gold); }
 
     .hero-lede {
       max-width: 34rem;
@@ -449,12 +375,7 @@
       margin-bottom: 1.8rem;
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1.8rem;
-    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.8rem; }
 
     .hero-meta {
       display: flex;
@@ -496,10 +417,7 @@
       margin-bottom: 1.2rem;
     }
 
-    .metric {
-      font-size: 0.8rem;
-      color: var(--gray-600);
-    }
+    .metric { font-size: 0.8rem; color: var(--gray-600); }
 
     .metric strong {
       display: block;
@@ -508,20 +426,12 @@
       margin-bottom: 0.1rem;
     }
 
-    .hero-panel-note {
-      font-size: 0.75rem;
-      color: var(--gray-600);
-    }
+    .hero-panel-note { font-size: 0.75rem; color: var(--gray-600); }
 
     /* Sections */
-    section {
-      padding: 3.5rem 0;
-    }
+    section { padding: 3.5rem 0; }
 
-    section:nth-of-type(even) {
-      /* LIGHTER: keep rhythm but not as close to pure black */
-      background: rgba(15, 18, 28, 0.9);
-    }
+    section:nth-of-type(even) { background: rgba(15, 18, 28, 0.9); }
 
     .section-header {
       margin-bottom: 2.4rem;
@@ -544,15 +454,10 @@
     }
 
     /* Services */
-    .card-grid {
-      display: grid;
-      gap: 1.5rem;
-    }
+    .card-grid { display: grid; gap: 1.5rem; }
 
     @media (min-width: 720px) {
-      .card-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+      .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
     .card {
@@ -561,11 +466,7 @@
       padding: 1.4rem 1.35rem 1.5rem;
       border: 1px solid rgba(212, 165, 58, 0.16);
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        border-color 0.3s ease,
-        background 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
       position: relative;
       overflow: hidden;
     }
@@ -590,11 +491,7 @@
       margin-bottom: 0.75rem;
     }
 
-    .pill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-    }
+    .pill-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
 
     .pill {
       border-radius: 999px;
@@ -603,32 +500,19 @@
       font-size: 0.7rem;
       padding: 0.18rem 0.6rem;
       border: 1px solid rgba(15, 118, 110, 0.5);
-
-      /* default (before animation) */
       opacity: 0;
       transform: translateY(8px);
-      transition:
-        opacity 0.35s ease-out,
-        transform 0.35s ease-out;
+      transition: opacity 0.35s ease-out, transform 0.35s ease-out;
       transition-delay: var(--pill-delay, 0s);
     }
 
-    /* When services section is in view, animate pills */
-    #services.services-pills-visible .pill {
-      opacity: 1;
-      transform: none;
-    }
+    #services.services-pills-visible .pill { opacity: 1; transform: none; }
 
-    /* Simple cards (markets, projects, company profile, credentials) */
-    .simple-grid {
-      display: grid;
-      gap: 1.25rem;
-    }
+    /* Simple cards */
+    .simple-grid { display: grid; gap: 1.25rem; }
 
     @media (min-width: 720px) {
-      .simple-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .simple-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     .simple-card {
@@ -636,11 +520,7 @@
       border-radius: 14px;
       padding: 1.1rem 1.2rem 1.2rem;
       border: 1px solid rgba(148, 163, 184, 0.2);
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        border-color 0.3s ease,
-        background 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
       position: relative;
       overflow: hidden;
     }
@@ -659,21 +539,11 @@
       margin-bottom: 0.3rem;
     }
 
-    .simple-card p {
-      font-size: 0.84rem;
-      color: var(--gray-300);
-      margin-bottom: 0.4rem;
-    }
-
-    .simple-card span {
-      font-size: 0.76rem;
-      color: var(--gray-600);
-    }
+    .simple-card p { font-size: 0.84rem; color: var(--gray-300); margin-bottom: 0.4rem; }
+    .simple-card span { font-size: 0.76rem; color: var(--gray-600); }
 
     /* Company profile and project images */
-    .company-profile {
-      margin-bottom: 2rem;
-    }
+    .company-profile { margin-bottom: 2rem; }
 
     .company-profile h3 {
       font-size: 1rem;
@@ -682,9 +552,7 @@
       margin-bottom: 0.4rem;
     }
 
-    .company-profile .company-toggle {
-      margin-top: 0.6rem;
-    }
+    .company-profile .company-toggle { margin-top: 0.6rem; }
 
     .simple-card img.project-image {
       width: 100%;
@@ -707,15 +575,10 @@
     }
 
     /* Team */
-    .team-grid {
-      display: grid;
-      gap: 1.4rem;
-    }
+    .team-grid { display: grid; gap: 1.4rem; }
 
     @media (min-width: 780px) {
-      .team-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
+      .team-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     }
 
     .team-card {
@@ -724,11 +587,7 @@
       padding: 1rem 1rem 1.1rem;
       border: 1px solid rgba(148, 163, 184, 0.22);
       font-size: 0.8rem;
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        border-color 0.3s ease,
-        background 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
       position: relative;
       overflow: hidden;
     }
@@ -749,28 +608,11 @@
       overflow: hidden;
     }
 
-    .team-avatar img {
-      width: 100%;
-      height: 100%;
-      border-radius: 999px;
-      object-fit: cover;
-    }
+    .team-avatar img { width: 100%; height: 100%; border-radius: 999px; object-fit: cover; }
 
-    .team-card h3 {
-      font-size: 0.9rem;
-      margin-bottom: 0.1rem;
-    }
-
-    .team-role {
-      font-size: 0.76rem;
-      color: var(--gray-600);
-      margin-bottom: 0.4rem;
-    }
-
-    .team-card p {
-      font-size: 0.76rem;
-      color: var(--gray-300);
-    }
+    .team-card h3 { font-size: 0.9rem; margin-bottom: 0.1rem; }
+    .team-role { font-size: 0.76rem; color: var(--gray-600); margin-bottom: 0.4rem; }
+    .team-card p { font-size: 0.76rem; color: var(--gray-300); }
 
     /* Careers */
     .careers {
@@ -779,16 +621,10 @@
       border-bottom: 1px solid rgba(212, 165, 58, 0.18);
     }
 
-    .careers-inner {
-      display: grid;
-      gap: 2rem;
-      align-items: center;
-    }
+    .careers-inner { display: grid; gap: 2rem; align-items: center; }
 
     @media (min-width: 860px) {
-      .careers-inner {
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      }
+      .careers-inner { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
     }
 
     .tag {
@@ -806,17 +642,9 @@
       margin-bottom: 0.8rem;
     }
 
-    .careers p {
-      font-size: 0.9rem;
-      color: var(--gray-300);
-      margin-bottom: 1.2rem;
-    }
+    .careers p { font-size: 0.9rem; color: var(--gray-300); margin-bottom: 1.2rem; }
 
-    .careers-list {
-      list-style: none;
-      font-size: 0.82rem;
-      color: var(--gray-300);
-    }
+    .careers-list { list-style: none; font-size: 0.82rem; color: var(--gray-300); }
 
     .careers-list li {
       margin-bottom: 0.4rem;
@@ -834,15 +662,10 @@
     }
 
     /* Contact */
-    .contact-grid {
-      display: grid;
-      gap: 2rem;
-    }
+    .contact-grid { display: grid; gap: 2rem; }
 
     @media (min-width: 860px) {
-      .contact-grid {
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      }
+      .contact-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
     }
 
     .contact-card {
@@ -861,25 +684,12 @@
       margin-bottom: 0.7rem;
     }
 
-    .contact-card p {
-      font-size: 0.86rem;
-      color: var(--gray-300);
-      margin-bottom: 0.8rem;
-    }
+    .contact-card p { font-size: 0.86rem; color: var(--gray-300); margin-bottom: 0.8rem; }
 
-    .contact-meta {
-      font-size: 0.84rem;
-      color: var(--gray-300);
-    }
+    .contact-meta { font-size: 0.84rem; color: var(--gray-300); }
+    .contact-meta a { color: var(--gold); }
 
-    .contact-meta a {
-      color: var(--gold);
-    }
-
-    form {
-      display: grid;
-      gap: 0.9rem;
-    }
+    form { display: grid; gap: 0.9rem; }
 
     label {
       font-size: 0.75rem;
@@ -890,8 +700,7 @@
       margin-bottom: 0.2rem;
     }
 
-    input,
-    textarea {
+    input, textarea {
       width: 100%;
       padding: 0.55rem 0.7rem;
       border-radius: 10px;
@@ -902,21 +711,14 @@
       font-family: inherit;
     }
 
-    input:focus,
-    textarea:focus {
+    input:focus, textarea:focus {
       outline: none;
       border-color: var(--gold);
       box-shadow: 0 0 0 1px rgba(212, 165, 58, 0.5);
     }
 
-    textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
-
-    .mb-1_5 {
-      margin-bottom: 1.5rem;
-    }
+    textarea { min-height: 130px; resize: vertical; }
+    .mb-1_5 { margin-bottom: 1.5rem; }
 
     /* Map embed */
     .map-embed {
@@ -926,12 +728,7 @@
       border: 1px solid rgba(148, 163, 184, 0.35);
     }
 
-    .map-embed iframe {
-      width: 100%;
-      height: 220px;
-      border: 0;
-      display: block;
-    }
+    .map-embed iframe { width: 100%; height: 220px; border: 0; display: block; }
 
     /* Footer */
     footer {
@@ -950,42 +747,16 @@
       gap: 0.8rem;
     }
 
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.1rem;
-    }
-
-    .footer-links a {
-      color: var(--gray-500);
-    }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 1.1rem; }
+    .footer-links a { color: var(--gray-500); }
 
     @media (max-width: 600px) {
-      .hero {
-        padding-top: 3rem;
-      }
-      .hero-panel {
-        margin-top: -0.5rem;
-      }
-
-      .cookie-banner {
-        padding: 0.9rem 1rem 1rem;
-      }
-
-      .cookie-banner-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .cookie-actions {
-        width: 100%;
-        justify-content: flex-start;
-      }
-
-      .logo-text-sub,
-      .tag {
-        letter-spacing: 0.18em;
-      }
+      .hero { padding-top: 3rem; }
+      .hero-panel { margin-top: -0.5rem; }
+      .cookie-banner { padding: 0.9rem 1rem 1rem; }
+      .cookie-banner-inner { flex-direction: column; align-items: flex-start; }
+      .cookie-actions { width: 100%; justify-content: flex-start; }
+      .logo-text-sub, .tag { letter-spacing: 0.18em; }
     }
 
     /* Cookie banner */
@@ -998,7 +769,7 @@
       background: rgba(5, 6, 8, 0.98);
       border-top: 1px solid rgba(212, 165, 58, 0.3);
       padding: 0.85rem 1.25rem;
-      display: none; /* shown via JS */
+      display: none;
     }
 
     .cookie-banner-inner {
@@ -1017,48 +788,31 @@
       flex: 1 1 220px;
     }
 
-    .cookie-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
+    .cookie-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
     /* Scroll reveal – sections */
     .reveal {
       opacity: 0;
       transform: translateY(18px);
-      transition:
-        opacity 0.55s ease-out,
-        transform 0.55s ease-out;
+      transition: opacity 0.55s ease-out, transform 0.55s ease-out;
     }
 
-    .reveal.is-visible {
-      opacity: 1;
-      transform: none;
-    }
+    .reveal.is-visible { opacity: 1; transform: none; }
 
-    /* Scroll reveal – staggered items (cards, team, etc.) */
+    /* Scroll reveal – staggered items */
     .reveal-item {
       opacity: 0;
       transform: translateY(16px);
-      transition:
-        opacity 0.45s ease-out,
-        transform 0.45s ease-out;
+      transition: opacity 0.45s ease-out, transform 0.45s ease-out;
       transition-delay: var(--reveal-delay, 0s);
     }
 
-    .reveal-item.is-visible {
-      opacity: 1;
-      transform: none;
-    }
+    .reveal-item.is-visible { opacity: 1; transform: none; }
 
-    /* Shared parallax layers (hero panel + project images) */
-    .parallax-layer {
-      will-change: transform;
-      transition: transform 0.25s ease-out;
-    }
+    /* Shared parallax layers */
+    .parallax-layer { will-change: transform; transition: transform 0.25s ease-out; }
 
-    /* Spotlight hover for all major cards */
+    /* Spotlight hover */
     .card::before,
     .simple-card::before,
     .team-card::before,
@@ -1079,9 +833,7 @@
     .card:hover::before,
     .simple-card:hover::before,
     .team-card:hover::before,
-    .contact-card:hover::before {
-      opacity: 1;
-    }
+    .contact-card:hover::before { opacity: 1; }
   </style>
 </head>
 
@@ -1150,7 +902,8 @@
       <section class="hero reveal">
         <div class="container hero-inner">
           <div>
-            <div class="eyebrow">Design • Contract Administration • Energy Management • Building Performance</div>
+            <!-- Removed "Design" + any "Design-Build" reference from eyebrow -->
+            <div class="eyebrow">Contract Administration • Energy Management • Building Performance</div>
             <h1>
               High-performance <span class="accent">engineering</span> for the built environment.
             </h1>
@@ -1203,7 +956,7 @@
             </div>
             <p class="hero-panel-note">
               Our scope spans design and contract administration, building performance, energy management,
-              LEED &amp; WELL consulting, project management, engineering procurement and design-build support.
+              LEED &amp; WELL consulting, and project management.
             </p>
           </aside>
         </div>
@@ -1289,31 +1042,8 @@
               </div>
             </article>
 
-            <article class="card reveal-item">
-              <h3>Engineering Procurement</h3>
-              <p>
-                Support with procuring engineering and construction services, including RFP development, technical
-                evaluation and recommendation.
-              </p>
-              <div class="pill-list">
-                <span class="pill">Scope definition</span>
-                <span class="pill">RFP/RFQ input</span>
-                <span class="pill">Technical review</span>
-              </div>
-            </article>
-
-            <article class="card reveal-item">
-              <h3>Design-Build (select projects)</h3>
-              <p>
-                Collaborative design-build delivery for select projects, scoped and priced through direct discussion
-                with our partners, contractors and clients.
-              </p>
-              <div class="pill-list">
-                <span class="pill">Integrated delivery</span>
-                <span class="pill">Contractor collaboration</span>
-                <span class="pill">Scope to be defined</span>
-              </div>
-            </article>
+            <!-- Removed Engineering Procurement card -->
+            <!-- Removed Design-Build card -->
           </div>
         </div>
       </section>
@@ -1361,7 +1091,7 @@
                 Support for mid-rise and high-rise residential developments, including programs linked to energy
                 performance and incentives.
               </p>
-              <span>Developers • Asset managers • Design-build teams</span>
+              <span>Developers • Asset managers • Project teams</span>
             </article>
 
             <article class="simple-card reveal-item">
@@ -1512,7 +1242,6 @@
           <article class="simple-card company-profile reveal-item">
             <h3>Enthalpy Engineering Incorporated</h3>
 
-            <!-- Always-visible intro -->
             <p>
               <strong>The Start</strong><br />
               Enthalpy was founded after a pattern the partners saw too often on projects:
@@ -1522,7 +1251,6 @@
               were close to owners, contractors and operators the whole way through.
             </p>
 
-            <!-- Hidden extended story -->
             <div class="company-more" hidden>
               <p>
                 Eventually, the question became simple: what if we built a firm that worked that way by design?
@@ -1559,11 +1287,7 @@
               </p>
             </div>
 
-            <button
-              type="button"
-              class="btn btn-ghost btn-sm company-toggle"
-              aria-expanded="false"
-            >
+            <button type="button" class="btn btn-ghost btn-sm company-toggle" aria-expanded="false">
               Read full story
             </button>
           </article>
@@ -1670,16 +1394,9 @@
               </p>
 
               <form action="https://formsubmit.co/info@enthalpyinc.com" method="POST">
-                <!-- send a copy to John -->
                 <input type="hidden" name="_cc" value="john@enthalpyinc.com" />
-
-                <!-- optional: disable FormSubmit captcha -->
                 <input type="hidden" name="_captcha" value="false" />
-
-                <!-- redirect back to the contact section after submit -->
                 <input type="hidden" name="_next" value="https://enthalpyinc.com/#contact" />
-
-                <!-- honeypot field -->
                 <input
                   type="text"
                   name="_honey"
@@ -1691,36 +1408,19 @@
 
                 <div>
                   <label for="name">Name</label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    placeholder="Your name"
-                    required
-                    autocomplete="name"
-                  />
+                  <input id="name" name="name" type="text" placeholder="Your name" required autocomplete="name" />
                 </div>
+
                 <div>
                   <label for="email">Email</label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="you@example.com"
-                    required
-                    autocomplete="email"
-                  />
+                  <input id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email" />
                 </div>
+
                 <div>
                   <label for="org">Organization</label>
-                  <input
-                    id="org"
-                    name="organization"
-                    type="text"
-                    placeholder="Company / organization"
-                    autocomplete="organization"
-                  />
+                  <input id="org" name="organization" type="text" placeholder="Company / organization" autocomplete="organization" />
                 </div>
+
                 <div>
                   <label for="message">Project / inquiry</label>
                   <textarea
@@ -1730,6 +1430,7 @@
                     required
                   ></textarea>
                 </div>
+
                 <div>
                   <button type="submit" class="btn btn-primary">Send inquiry</button>
                 </div>
@@ -1864,9 +1565,7 @@
 
       function handleMotionPreference(e) {
         if (e.matches) {
-          try {
-            video.pause();
-          } catch (err) {}
+          try { video.pause(); } catch (err) {}
           video.removeAttribute("autoplay");
           video.removeAttribute("loop");
           video.currentTime = 0;
@@ -1876,10 +1575,8 @@
         }
       }
 
-      // Initial check
       handleMotionPreference(motionQuery);
 
-      // Respond to changes
       if (typeof motionQuery.addEventListener === "function") {
         motionQuery.addEventListener("change", handleMotionPreference);
       } else if (typeof motionQuery.addListener === "function") {
@@ -1910,7 +1607,7 @@
       revealEls.forEach(el => observer.observe(el));
     })();
 
-    // Scroll reveal – staggered items (cards, team, etc.)
+    // Scroll reveal – staggered items
     (function () {
       const groups = document.querySelectorAll(".reveal-stagger");
       const items = document.querySelectorAll(".reveal-item");
@@ -1920,7 +1617,6 @@
         return;
       }
 
-      // Assign stagger delays within each group
       groups.forEach(group => {
         const children = group.querySelectorAll(".reveal-item");
         children.forEach((el, index) => {
@@ -1952,7 +1648,7 @@
       if (!values.length) return;
 
       let hasRun = false;
-      const duration = 1200; // ms
+      const duration = 1200;
 
       function animate() {
         const startTime = performance.now();
@@ -1968,9 +1664,7 @@
             el.textContent = suffix ? current + suffix : current;
           });
 
-          if (progress < 1) {
-            requestAnimationFrame(step);
-          }
+          if (progress < 1) requestAnimationFrame(step);
         }
 
         requestAnimationFrame(step);
@@ -1992,7 +1686,7 @@
       io.observe(panel);
     })();
 
-    // Company story "Read more" toggle
+    // Company story toggle
     (function () {
       const profile = document.querySelector(".company-profile");
       if (!profile) return;
@@ -2017,7 +1711,7 @@
       });
     })();
 
-    // Services pill animation – staggered when services section enters view
+    // Services pill animation
     (function () {
       const servicesSection = document.getElementById("services");
       if (!servicesSection) return;
@@ -2025,13 +1719,11 @@
       const pills = servicesSection.querySelectorAll(".pill");
       if (!pills.length) return;
 
-      // Assign stagger delays across all pills in services
       pills.forEach((pill, index) => {
         pill.style.setProperty("--pill-delay", `${index * 60}ms`);
       });
 
       if (!("IntersectionObserver" in window)) {
-        // No IO support – just show them
         servicesSection.classList.add("services-pills-visible");
         return;
       }
@@ -2103,11 +1795,11 @@
       function handleMove(event) {
         if (!enabled()) return;
 
-        const xRatio = (event.clientX / window.innerWidth - 0.5) * 2; // -1 to 1
+        const xRatio = (event.clientX / window.innerWidth - 0.5) * 2;
         const yRatio = (event.clientY / window.innerHeight - 0.5) * 2;
 
         layers.forEach((layer, index) => {
-          const depth = 4 + index; // slightly different movement per layer
+          const depth = 4 + index;
           const translateX = -(xRatio * depth);
           const translateY = -(yRatio * depth * 0.4);
           layer.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
@@ -2156,9 +1848,8 @@
 
     function closeCookieBanner() {
       const banner = document.getElementById("cookieBanner");
-      if (banner) {
-        banner.style.display = "none";
-      }
+      if (banner) banner.style.display = "none";
+
       if (previousFocus && typeof previousFocus.focus === "function") {
         previousFocus.focus();
         previousFocus = null;
@@ -2175,7 +1866,6 @@
       previousFocus = document.activeElement;
       banner.style.display = "block";
 
-      // Remove any existing listeners by cloning
       const newAcceptBtn = acceptBtn.cloneNode(true);
       const newRejectBtn = rejectBtn.cloneNode(true);
       acceptBtn.replaceWith(newAcceptBtn);
@@ -2199,16 +1889,13 @@
       const existingConsent = localStorage.getItem(CONSENT_KEY);
 
       if (existingConsent === "accepted") {
-        // User has already accepted – initialize analytics silently
         initAnalytics();
       } else if (existingConsent === "rejected") {
-        // User rejected previously – do nothing
+        // do nothing
       } else {
-        // No choice yet – show banner
         openCookieBanner();
       }
 
-      // Cookie settings link (to change choice later)
       const cookieSettingsLink = document.getElementById("cookieSettingsLink");
       if (cookieSettingsLink) {
         cookieSettingsLink.addEventListener("click", (event) => {
