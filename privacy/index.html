@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+l<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -9,6 +9,12 @@
 
   <meta name="description" content="Privacy Policy for Enthalpy Engineering Incorporated." />
   <meta name="robots" content="index, follow" />
+
+  <!-- Security & compliance (Step 4) -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -83,7 +89,6 @@
 
     section[id] { scroll-margin-top: 88px; }
 
-    /* Skip link */
     .skip-link {
       position: absolute;
       left: -999px;
@@ -99,7 +104,6 @@
     }
     .skip-link:focus { left: 1rem; top: 1rem; }
 
-    /* Header & Nav */
     header {
       position: sticky;
       top: 0;
@@ -219,12 +223,9 @@
       background: rgba(212, 165, 58, 0.04);
     }
 
-    /* Privacy page content */
     main { flex: 1; }
 
-    .privacy {
-      padding: 3.5rem 0 3rem;
-    }
+    .privacy { padding: 3.5rem 0 3rem; }
 
     .privacy-card {
       max-width: 920px;
@@ -294,7 +295,6 @@
       margin: 1.25rem 0 0.75rem;
     }
 
-    /* Footer */
     footer {
       border-top: 1px solid rgba(31, 41, 55, 0.9);
       background: #050608;
@@ -315,7 +315,6 @@
     .footer-links a { color: var(--gray-500); text-decoration: none; }
     .footer-links a:hover { color: var(--gold); }
 
-    /* Cookie banner / dialog */
     .cookie-banner {
       position: fixed;
       left: 0;
@@ -346,7 +345,6 @@
 
     .cookie-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
-    /* Button inline styles removed by creating minimal classes for this page */
     .btn-primary-inline {
       background: linear-gradient(135deg, var(--gold), var(--gold-dark));
       color: #050608;
@@ -375,19 +373,12 @@
   <div class="page">
     <a href="#main" class="skip-link">Skip to main content</a>
 
-    <!-- Header -->
     <header id="top">
       <div class="container nav">
         <div class="nav-left">
           <a href="/" class="nav-left-link" aria-label="Enthalpy Engineering home">
             <div class="logo-mark">
-              <img
-                src="/enthalpy-logo.png"
-                alt="Enthalpy Engineering Incorporated logo"
-                width="52"
-                height="52"
-                decoding="async"
-              />
+              <img src="/enthalpy-logo.png" alt="Enthalpy Engineering Incorporated logo" width="52" height="52" decoding="async" />
             </div>
             <div>
               <div class="logo-text-main">ENTHALPY ENGINEERING</div>
@@ -420,9 +411,7 @@
           <div class="divider" aria-hidden="true"></div>
 
           <h2>1. Who we are</h2>
-          <p>
-            Enthalpy Engineering Incorporated (“Enthalpy”, “we”, “us”) operates this website at enthalpyinc.com.
-          </p>
+          <p>Enthalpy Engineering Incorporated (“Enthalpy”, “we”, “us”) operates this website at enthalpyinc.com.</p>
 
           <h2>2. What information we collect</h2>
           <ul>
@@ -442,9 +431,7 @@
             We store a consent preference in your browser (local storage) to remember whether you accepted or rejected optional analytics.
             If you accept analytics, our site enables Firebase Analytics (Google). If you reject, analytics is not loaded.
           </p>
-          <p>
-            You can change your choice anytime using the “Cookie settings” link in the website footer.
-          </p>
+          <p>You can change your choice anytime using the “Cookie settings” link in the website footer.</p>
 
           <h2>5. Third-party service providers</h2>
           <p>We use third parties to operate certain site functions:</p>
@@ -454,20 +441,13 @@
           </ul>
 
           <h2>6. Data retention</h2>
-          <p>
-            Inquiry messages are retained as long as needed to respond and for reasonable business records.
-            Analytics data is retained according to the settings in Firebase/Google.
-          </p>
+          <p>Inquiry messages are retained as long as needed to respond and for reasonable business records. Analytics data is retained according to the settings in Firebase/Google.</p>
 
           <h2>7. Sharing</h2>
-          <p>
-            We do not sell your personal information. We share information only with service providers described above and when required by law.
-          </p>
+          <p>We do not sell your personal information. We share information only with service providers described above and when required by law.</p>
 
           <h2>8. Security</h2>
-          <p>
-            We use reasonable safeguards to protect information. No method of transmission or storage is completely secure.
-          </p>
+          <p>We use reasonable safeguards to protect information. No method of transmission or storage is completely secure.</p>
 
           <h2>9. Your choices</h2>
           <ul>
@@ -489,13 +469,9 @@
       </div>
     </main>
 
-    <!-- Footer -->
     <footer>
       <div class="container footer-inner">
-        <div>
-          © <span id="year"></span> Enthalpy Engineering Incorporated. All rights reserved. &nbsp;|&nbsp;
-          enthalpyinc.com
-        </div>
+        <div>© <span id="year"></span> Enthalpy Engineering Incorporated. All rights reserved. &nbsp;|&nbsp; enthalpyinc.com</div>
         <div class="footer-links">
           <a href="/#top">Back to top</a>
           <a href="/privacy">Privacy</a>
@@ -506,48 +482,32 @@
     </footer>
   </div>
 
-  <!-- Cookie banner / dialog -->
-  <div
-    class="cookie-banner"
-    id="cookieBanner"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="cookieBannerTitle"
-  >
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="true" aria-labelledby="cookieBannerTitle">
     <div class="cookie-banner-inner">
       <p class="cookie-text" id="cookieBannerTitle">
         We use cookies and similar technologies to understand how our website is used and to improve it.
         You can accept or reject optional analytics.
       </p>
       <div class="cookie-actions">
-        <button type="button" class="btn btn-primary-inline" id="cookieAccept">
-          Accept analytics
-        </button>
-        <button type="button" class="btn btn-ghost" id="cookieReject">
-          Reject
-        </button>
+        <button type="button" class="btn btn-primary-inline" id="cookieAccept">Accept analytics</button>
+        <button type="button" class="btn btn-ghost" id="cookieReject">Reject</button>
       </div>
     </div>
   </div>
 
   <script>
-    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Option A: "Last updated" based on page last modified timestamp
     (function () {
       const el = document.getElementById("lastUpdated");
       if (!el) return;
-
       const raw = document.lastModified || new Date().toISOString();
       const d = new Date(raw);
-
       el.textContent = isNaN(d.getTime())
         ? new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })
         : d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
     })();
 
-    // Cookie banner logic (no analytics loaded here; this page only manages the preference)
     const CONSENT_KEY = "enthalpy_cookie_consent";
     let previousFocus = null;
     let cookieCleanup = null;
@@ -555,9 +515,7 @@
     function closeCookieBanner() {
       const banner = document.getElementById("cookieBanner");
       if (banner) banner.style.display = "none";
-
       if (cookieCleanup) { cookieCleanup(); cookieCleanup = null; }
-
       if (previousFocus && typeof previousFocus.focus === "function") {
         previousFocus.focus();
         previousFocus = null;
@@ -573,7 +531,6 @@
       previousFocus = document.activeElement;
       banner.style.display = "block";
 
-      // Refresh listeners safely
       const newAcceptBtn = acceptBtn.cloneNode(true);
       const newRejectBtn = rejectBtn.cloneNode(true);
       acceptBtn.replaceWith(newAcceptBtn);
@@ -589,7 +546,6 @@
         closeCookieBanner();
       });
 
-      // Focus trap + ESC closes
       if (cookieCleanup) cookieCleanup();
       cookieCleanup = (function trapFocusDialog() {
         const focusablesSelector = [
@@ -607,10 +563,7 @@
         }
 
         function onKeydown(e) {
-          if (e.key === "Escape") {
-            closeCookieBanner();
-            return;
-          }
+          if (e.key === "Escape") { closeCookieBanner(); return; }
           if (e.key !== "Tab") return;
 
           const focusables = getFocusables();
