@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+l<!doctype html>
+<html lang="en-CA">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,11 +12,29 @@
   <!-- Basic SEO -->
   <meta name="description" content="Enthalpy Engineering Incorporated is a partner-led firm specializing in building performance, energy management, and project delivery across Canada and the United States." />
   <meta name="robots" content="index, follow" />
-  <!-- Security & compliance (Step 4) -->
+  <meta name="theme-color" content="#050608" />
+
+  <!-- Security & compliance (Note: real protection should be set as HTTP response headers) -->
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta http-equiv="X-Frame-Options" content="DENY" />
   <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
+
+  <!-- Optional CSP fallback (best set as an HTTP header; adjust origins as needed) -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    base-uri 'self';
+    object-src 'none';
+    frame-ancestors 'none';
+    img-src 'self' https: data:;
+    media-src 'self' https:;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com data:;
+    script-src 'self' 'unsafe-inline' https://www.gstatic.com;
+    connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firebasestorage.googleapis.com https://www.google-analytics.com;
+    frame-src https://www.google.com;
+    upgrade-insecure-requests;
+  " />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -109,6 +127,7 @@
       --radius-lg: 14px;
       --shadow-soft: 0 18px 40px rgba(4, 4, 10, 0.25);
       --transition: 0.25s ease;
+      --focus-ring: 0 0 0 2px rgba(212, 165, 58, 0.55);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -125,6 +144,16 @@
 
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
+
+    /* Visible focus styles */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+      border-radius: 10px;
+    }
 
     /* Scroll progress bar */
     .scroll-progress {
@@ -160,9 +189,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .video-bg video {
-        display: none !important;
-      }
+      .video-bg video { display: none !important; }
     }
 
     .page {
@@ -311,7 +338,9 @@
       transition: var(--transition);
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.35rem;
+      line-height: 1;
     }
 
     .btn-primary {
@@ -357,9 +386,7 @@
     .nav-mobile-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
     /* Mobile menu container */
-    .mobile-menu {
-      display: none;
-    }
+    .mobile-menu { display: none; }
 
     @media (max-width: 880px) {
       .nav-links, .nav-cta { display: none; }
@@ -964,12 +991,8 @@
         </nav>
 
         <div class="nav-cta">
-          <button class="btn btn-ghost" type="button" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-            Portfolio
-          </button>
-          <button class="btn btn-primary" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-            Let’s Talk
-          </button>
+          <a class="btn btn-ghost" href="#projects">Portfolio</a>
+          <a class="btn btn-primary" href="#contact">Let’s Talk</a>
         </div>
 
         <!-- Mobile toggle -->
@@ -997,12 +1020,8 @@
         </nav>
 
         <div class="nav-cta" aria-label="Primary actions">
-          <button class="btn btn-ghost" type="button" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-            Portfolio
-          </button>
-          <button class="btn btn-primary" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-            Let’s Talk
-          </button>
+          <a class="btn btn-ghost" href="#projects">Portfolio</a>
+          <a class="btn btn-primary" href="#contact">Let’s Talk</a>
         </div>
       </div>
     </header>
@@ -1023,12 +1042,8 @@
             </p>
 
             <div class="hero-actions">
-              <button class="btn btn-primary" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-                Start a project conversation
-              </button>
-              <button class="btn btn-ghost" type="button" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
-                View services
-              </button>
+              <a class="btn btn-primary" href="#contact">Start a project conversation</a>
+              <a class="btn btn-ghost" href="#services">View services</a>
             </div>
 
             <div class="hero-meta">
@@ -1362,7 +1377,7 @@
               were close to owners, contractors and operators the whole way through.
             </p>
 
-            <div class="company-more" hidden>
+            <div class="company-more" id="companyMore" hidden>
               <p>
                 Eventually, the question became simple: what if we built a firm that worked that way by design?
                 Enthalpy was established as an independent, partner-led practice so decisions could
@@ -1398,7 +1413,12 @@
               </p>
             </div>
 
-            <button type="button" class="btn btn-ghost btn-sm company-toggle" aria-expanded="false">
+            <button
+              type="button"
+              class="btn btn-ghost btn-sm company-toggle"
+              aria-expanded="false"
+              aria-controls="companyMore"
+            >
               Read full story
             </button>
           </article>
@@ -1542,6 +1562,7 @@
                     id="message"
                     name="message"
                     placeholder="Briefly describe your project, goals or questions."
+                    minlength="30"
                     required
                   ></textarea>
                 </div>
@@ -1587,7 +1608,7 @@
                   <a
                     href="https://www.google.com/maps/search/?api=1&query=Enthalpy+Engineering+Incorporated,+Canada+Place+Business+Centre,+%23404+999+Canada+Place,+Vancouver,+BC+V6C+3E2"
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                   >
                     View on Google Maps
                   </a>
@@ -1631,19 +1652,22 @@
     role="dialog"
     aria-modal="true"
     aria-labelledby="cookieBannerTitle"
+    aria-describedby="cookieBannerDesc"
   >
     <div class="cookie-banner-inner">
-      <p class="cookie-text" id="cookieBannerTitle">
-        We use cookies and similar technologies to understand how our website is used and to improve it.
-        You can accept or reject optional analytics.
-      </p>
+      <div class="cookie-text">
+        <p id="cookieBannerTitle" style="font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.25rem;">
+          Cookie preferences
+        </p>
+        <p id="cookieBannerDesc">
+          We use cookies and similar technologies to understand how our website is used and to improve it.
+          You can accept or reject optional analytics.
+        </p>
+      </div>
       <div class="cookie-actions">
-        <button type="button" class="btn btn-primary" id="cookieAccept">
-          Accept analytics
-        </button>
-        <button type="button" class="btn btn-ghost" id="cookieReject">
-          Reject
-        </button>
+        <button type="button" class="btn btn-primary" id="cookieAccept">Accept analytics</button>
+        <button type="button" class="btn btn-ghost" id="cookieReject">Only necessary</button>
+        <button type="button" class="btn btn-ghost" id="cookieClose">Close</button>
       </div>
     </div>
   </div>
@@ -1695,6 +1719,7 @@
     const navToggle = document.getElementById("navToggle");
     const header = document.querySelector("header");
     const mobileMenu = document.getElementById("mobileMenu");
+    const main = document.getElementById("main");
     let navCleanup = null;
     let navPreviousFocus = null;
 
@@ -1706,11 +1731,12 @@
       mobileMenu.hidden = false;
       navToggle.setAttribute("aria-expanded", "true");
 
-      // Focus first link for keyboard users
+      if (main) main.inert = true;
+      document.body.style.overflow = "hidden";
+
       const firstLink = mobileMenu.querySelector('a[href]');
       if (firstLink) firstLink.focus();
 
-      // Trap focus within mobile menu; ESC closes
       if (navCleanup) navCleanup();
       navCleanup = trapFocus(mobileMenu, closeMobileNav);
     }
@@ -1721,6 +1747,9 @@
       header.classList.remove("nav-mobile-open");
       mobileMenu.hidden = true;
       navToggle.setAttribute("aria-expanded", "false");
+
+      if (main) main.inert = false;
+      document.body.style.overflow = "";
 
       if (navCleanup) { navCleanup(); navCleanup = null; }
 
@@ -1737,12 +1766,10 @@
         else openMobileNav();
       });
 
-      // Close when clicking a link
       mobileMenu.querySelectorAll("a").forEach(link => {
         link.addEventListener("click", () => closeMobileNav());
       });
 
-      // Close when resizing up
       window.addEventListener("resize", () => {
         if (window.innerWidth > 880 && header.classList.contains("nav-mobile-open")) {
           closeMobileNav();
@@ -1753,33 +1780,40 @@
     // Year in footer
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Respect prefers-reduced-motion for background video
+    // Respect prefers-reduced-motion + Save-Data for background video
     (function () {
       const video = document.getElementById("bgVideo");
       if (!video) return;
 
       const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const saveData = !!(navigator.connection && navigator.connection.saveData);
 
-      function handleMotionPreference(e) {
-        if (e.matches) {
-          try { video.pause(); } catch (err) {}
-          video.removeAttribute("autoplay");
-          video.removeAttribute("loop");
-          video.currentTime = 0;
-        } else {
-          video.setAttribute("autoplay", "true");
-          video.setAttribute("loop", "true");
-          // attempt to play (may be blocked, but muted usually ok)
-          try { video.play(); } catch (err) {}
-        }
+      function disableVideo() {
+        try { video.pause(); } catch (err) {}
+        video.removeAttribute("autoplay");
+        video.removeAttribute("loop");
+        video.currentTime = 0;
+        video.style.display = "none";
       }
 
-      handleMotionPreference(motionQuery);
+      function enableVideo() {
+        video.style.display = "";
+        video.setAttribute("autoplay", "true");
+        video.setAttribute("loop", "true");
+        try { video.play(); } catch (err) {}
+      }
+
+      function handlePreferences(e) {
+        if (saveData || e.matches) disableVideo();
+        else enableVideo();
+      }
+
+      handlePreferences(motionQuery);
 
       if (typeof motionQuery.addEventListener === "function") {
-        motionQuery.addEventListener("change", handleMotionPreference);
+        motionQuery.addEventListener("change", handlePreferences);
       } else if (typeof motionQuery.addListener === "function") {
-        motionQuery.addListener(handleMotionPreference);
+        motionQuery.addListener(handlePreferences);
       }
     })();
 
@@ -2035,7 +2069,6 @@
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
 
-        // minimal event; Firebase also auto-tracks page_view depending on config
         logEvent(analytics, "page_view_enthalpy", {
           page_location: window.location.href
         });
@@ -2046,9 +2079,17 @@
       }
     }
 
+    function setDialogMode(isOpen) {
+      const main = document.getElementById("main");
+      if (main) main.inert = isOpen;
+      document.body.style.overflow = isOpen ? "hidden" : "";
+    }
+
     function closeCookieBanner() {
       const banner = document.getElementById("cookieBanner");
       if (banner) banner.style.display = "none";
+
+      setDialogMode(false);
 
       if (cookieCleanup) { cookieCleanup(); cookieCleanup = null; }
 
@@ -2062,17 +2103,21 @@
       const banner = document.getElementById("cookieBanner");
       const acceptBtn = document.getElementById("cookieAccept");
       const rejectBtn = document.getElementById("cookieReject");
+      const closeBtn  = document.getElementById("cookieClose");
 
-      if (!banner || !acceptBtn || !rejectBtn) return;
+      if (!banner || !acceptBtn || !rejectBtn || !closeBtn) return;
 
       previousFocus = document.activeElement;
       banner.style.display = "block";
+      setDialogMode(true);
 
       // Refresh listeners safely (avoid duplicates)
       const newAcceptBtn = acceptBtn.cloneNode(true);
       const newRejectBtn = rejectBtn.cloneNode(true);
+      const newCloseBtn  = closeBtn.cloneNode(true);
       acceptBtn.replaceWith(newAcceptBtn);
       rejectBtn.replaceWith(newRejectBtn);
+      closeBtn.replaceWith(newCloseBtn);
 
       newAcceptBtn.addEventListener("click", () => {
         localStorage.setItem(CONSENT_KEY, "accepted");
@@ -2085,48 +2130,12 @@
         closeCookieBanner();
       });
 
-      // Focus trap + ESC closes (no choice made; user can reopen via footer)
+      newCloseBtn.addEventListener("click", () => {
+        closeCookieBanner();
+      });
+
       if (cookieCleanup) cookieCleanup();
-      cookieCleanup = (function trapFocusDialog() {
-        const focusablesSelector = [
-          'a[href]',
-          'button:not([disabled])',
-          'textarea:not([disabled])',
-          'input:not([disabled])',
-          'select:not([disabled])',
-          '[tabindex]:not([tabindex="-1"])'
-        ].join(',');
-
-        function getFocusables() {
-          return Array.from(banner.querySelectorAll(focusablesSelector))
-            .filter(el => el.offsetParent !== null);
-        }
-
-        function onKeydown(e) {
-          if (e.key === "Escape") {
-            closeCookieBanner();
-            return;
-          }
-          if (e.key !== "Tab") return;
-
-          const focusables = getFocusables();
-          if (!focusables.length) return;
-
-          const first = focusables[0];
-          const last = focusables[focusables.length - 1];
-
-          if (e.shiftKey && document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-          } else if (!e.shiftKey && document.activeElement === last) {
-            e.preventDefault();
-            first.focus();
-          }
-        }
-
-        document.addEventListener("keydown", onKeydown);
-        return () => document.removeEventListener("keydown", onKeydown);
-      })();
+      cookieCleanup = trapFocus(banner, closeCookieBanner);
 
       newAcceptBtn.focus();
     }
