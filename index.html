@@ -17,15 +17,6 @@
   <!-- ✅ Referrer policy meta IS valid + enforced -->
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-  <!-- ✅ Security headers: set these as REAL HTTP response headers (recommended).
-       Meta http-equiv security headers are inconsistent and can be ignored by browsers. -->
-  <!-- ❌ Removed:
-       <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-       <meta http-equiv="X-Frame-Options" content="DENY" />
-       <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
-       <meta http-equiv="Content-Security-Policy" content="..." />
-  -->
-
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
@@ -571,6 +562,43 @@
       background: linear-gradient(150deg, #101425, #191d2c);
     }
 
+    /* ============================
+       ✅ SERVICES VIDEO CARDS
+       ============================ */
+    .card .service-media {
+      width: 100%;
+      height: 160px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 0.85rem;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      background: #050608;
+      position: relative;
+    }
+
+    .card .service-media video.service-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.02) contrast(1.04) brightness(0.92);
+      transform: scale(1.01);
+      transition: transform 0.35s ease, filter 0.35s ease;
+    }
+
+    @media (pointer: fine) {
+      .card:hover .service-media video.service-video,
+      .card:focus-within .service-media video.service-video {
+        transform: scale(1.05);
+        filter: saturate(1.06) contrast(1.06) brightness(0.96);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card .service-media { display: none !important; }
+    }
+    /* ============================ */
+
     .card h3 {
       font-size: 1rem;
       margin-bottom: 0.5rem;
@@ -740,7 +768,6 @@
       transform: none;
     }
 
-    /* ✅ APPLY: show pan hint when the frame itself has keyboard focus */
     .image-frame:focus-visible .pan-hint{
       opacity: 1 !important;
       transform: none !important;
@@ -1386,8 +1413,15 @@
             </p>
           </header>
 
+          <!-- ✅ UPDATED: services cards now include hover-play videos -->
           <div class="card-grid reveal-stagger">
             <article class="card reveal-item">
+              <div class="service-media" aria-hidden="true">
+                <video class="service-video" muted playsinline preload="metadata" poster="/services-design-poster.jpg">
+                  <source src="/services-design.mp4" type="video/mp4" />
+                </video>
+              </div>
+
               <h3>Design + Contract Administration</h3>
               <p>
                 Mechanical engineering design and contract administration services from concept through tender and
@@ -1402,6 +1436,12 @@
             </article>
 
             <article class="card reveal-item">
+              <div class="service-media" aria-hidden="true">
+                <video class="service-video" muted playsinline preload="metadata" poster="/services-performance-poster.jpg">
+                  <source src="/services-performance.mp4" type="video/mp4" />
+                </video>
+              </div>
+
               <h3>Building performance</h3>
               <p>
                 Building performance services to verify that systems operate as intended, support comfort and meet
@@ -1416,6 +1456,12 @@
             </article>
 
             <article class="card reveal-item">
+              <div class="service-media" aria-hidden="true">
+                <video class="service-video" muted playsinline preload="metadata" poster="/services-energy-poster.jpg">
+                  <source src="/services-energy.mp4" type="video/mp4" />
+                </video>
+              </div>
+
               <h3>Energy Management</h3>
               <p>
                 Strategic energy management for existing buildings and new projects, aligning performance targets,
@@ -1430,6 +1476,12 @@
             </article>
 
             <article class="card reveal-item">
+              <div class="service-media" aria-hidden="true">
+                <video class="service-video" muted playsinline preload="metadata" poster="/services-leed-well-poster.jpg">
+                  <source src="/services-leed-well.mp4" type="video/mp4" />
+                </video>
+              </div>
+
               <h3>LEED + WELL</h3>
               <p>
                 Support for green building certifications, focusing on energy, comfort and wellness performance
@@ -1443,6 +1495,12 @@
             </article>
 
             <article class="card reveal-item">
+              <div class="service-media" aria-hidden="true">
+                <video class="service-video" muted playsinline preload="metadata" poster="/services-project-management-poster.jpg">
+                  <source src="/services-project-management.mp4" type="video/mp4" />
+                </video>
+              </div>
+
               <h3>Project Management</h3>
               <p>
                 Technical project management with an engineering lens, balancing scope, schedule, cost and risk
@@ -1941,8 +1999,6 @@
                 <input type="hidden" name="_subject" value="New inquiry from enthalpyinc.com" />
                 <input type="hidden" name="_cc" value="john@enthalpyinc.com" />
                 <input type="hidden" name="_captcha" value="false" />
-
-                <!-- ✅ APPLY: better UX to redirect to a real thank-you page -->
                 <input type="hidden" name="_next" value="https://enthalpyinc.com/thanks" />
 
                 <input
@@ -2836,6 +2892,85 @@
         });
       });
     })();
+
+    /* ============================================================
+       ✅ SERVICES: HOVER-PLAY VIDEOS (only one plays at a time)
+       - plays on hover (desktop) / focus (keyboard)
+       - pauses + resets on leave/blur
+       - respects reduced motion + data saver
+       ============================================================ */
+    (function () {
+      const services = document.getElementById("services");
+      if (!services) return;
+
+      const cards = Array.from(services.querySelectorAll(".card"));
+      if (!cards.length) return;
+
+      const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const saveData = !!(navigator.connection && navigator.connection.saveData);
+
+      if (motionQuery.matches || saveData) return;
+
+      function getVideo(card) {
+        return card.querySelector("video.service-video");
+      }
+
+      function pauseAndReset(video) {
+        if (!video) return;
+        try { video.pause(); } catch {}
+        try { video.currentTime = 0; } catch {}
+        video.loop = false;
+        video.removeAttribute("data-playing");
+      }
+
+      function pauseAllExcept(exceptVideo) {
+        cards.forEach(card => {
+          const v = getVideo(card);
+          if (!v || v === exceptVideo) return;
+          pauseAndReset(v);
+        });
+      }
+
+      async function playVideo(video) {
+        if (!video) return;
+
+        pauseAllExcept(video);
+
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+
+        try { video.currentTime = 0; } catch {}
+
+        try {
+          await video.play();
+          video.setAttribute("data-playing", "1");
+        } catch {
+          // ignore autoplay blocking (should be rare since muted)
+        }
+      }
+
+      cards.forEach(card => {
+        const video = getVideo(card);
+        if (!video) return;
+
+        card.addEventListener("mouseenter", () => playVideo(video));
+        card.addEventListener("mouseleave", () => pauseAndReset(video));
+
+        // keyboard users (tab into pills/links/buttons inside card)
+        card.addEventListener("focusin", () => playVideo(video));
+        card.addEventListener("focusout", (e) => {
+          if (!card.contains(e.relatedTarget)) pauseAndReset(video);
+        });
+      });
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          cards.forEach(card => pauseAndReset(getVideo(card)));
+        }
+      });
+    })();
+    /* ============================================================ */
   </script>
 
   <script type="module">
@@ -2923,7 +3058,6 @@
         closeCookieBanner();
       });
 
-      /* ✅ APPLY: Close is a durable choice ("Only necessary") */
       newCloseBtn.addEventListener("click", () => {
         try { localStorage.setItem(CONSENT_KEY, "rejected"); } catch {}
         closeCookieBanner();
@@ -2947,7 +3081,6 @@
 
         function onKeydown(e) {
           if (e.key === "Escape") {
-            /* ✅ APPLY: Escape is also a durable choice ("Only necessary") */
             try { localStorage.setItem(CONSENT_KEY, "rejected"); } catch {}
             closeCookieBanner();
             return;
