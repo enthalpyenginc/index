@@ -1,4 +1,4 @@
-l<!doctype html>
+<!doctype html>
 <html lang="en-CA">
 <head>
   <meta charset="UTF-8" />
@@ -14,7 +14,7 @@ l<!doctype html>
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#050608" />
 
-  <!-- Security & compliance (Note: real protection should be set as HTTP response headers) -->
+  <!-- Security & compliance (Note: best set as HTTP response headers) -->
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta http-equiv="X-Frame-Options" content="DENY" />
@@ -51,7 +51,7 @@ l<!doctype html>
   <meta property="og:locale" content="en_CA" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Performance: preconnect + optional preload for critical image -->
+  <!-- Performance: preconnect + preload for critical image -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="image" href="enthalpy-logo.png" fetchpriority="high" />
@@ -636,7 +636,7 @@ l<!doctype html>
     .simple-card p { font-size: 0.84rem; color: var(--gray-300); margin-bottom: 0.4rem; }
     .simple-card span { font-size: 0.76rem; color: var(--gray-600); }
 
-    /* Company profile and project images */
+    /* Company profile */
     .company-profile { margin-bottom: 2rem; }
 
     .company-profile h3 {
@@ -648,18 +648,101 @@ l<!doctype html>
 
     .company-profile .company-toggle { margin-top: 0.6rem; }
 
-    .simple-card img.project-image {
+    /* ========= COOL PROJECT IMAGE PANNING (even grid + reset icon) ========= */
+    .simple-card .image-frame{
       width: 100%;
+      height: 220px; /* even grid */
       border-radius: 10px;
+      overflow: hidden;
       margin-bottom: 0.6rem;
-      object-fit: cover;
-      aspect-ratio: 16 / 9;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      background: #050608;
+      position: relative;
+      touch-action: none;
     }
 
-    .simple-card:hover .project-image {
-      transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.5);
+    .simple-card img.project-image{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: var(--posx, 50%) var(--posy, 50%);
+      user-select: none;
+      -webkit-user-drag: none;
+      cursor: grab;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    @media (pointer:fine){
+      .simple-card .image-frame:hover img.project-image{
+        transform: scale(1.02);
+        filter: saturate(1.02);
+      }
+    }
+    .simple-card img.project-image:active{ cursor: grabbing; }
+
+    /* Hint bubble (first-time discoverability) */
+    .pan-hint{
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      background: rgba(5,6,8,0.55);
+      border: 1px solid rgba(212,165,58,0.25);
+      padding: 0.35rem 0.55rem;
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    @media (pointer:fine){
+      .simple-card .image-frame:hover .pan-hint{
+        opacity: 1;
+        transform: none;
+      }
+    }
+    @media (pointer:coarse){
+      .pan-hint{ opacity: 0.9; transform: none; }
+    }
+
+    /* Reset icon button */
+    .pan-reset{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(5,6,8,0.55);
+      border: 1px solid rgba(212,165,58,0.25);
+      backdrop-filter: blur(10px);
+      color: rgba(255,255,255,0.92);
+      cursor: pointer;
+      pointer-events: auto;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+    .pan-reset svg{ width: 18px; height: 18px; display:block; }
+    .pan-reset:hover{ border-color: rgba(212,165,58,0.55); }
+
+    /* Show reset on hover (desktop) and whenever image has been panned */
+    @media (pointer:fine){
+      .image-frame:hover .pan-reset{
+        opacity: 1;
+        transform: none;
+      }
+    }
+    .image-frame.is-panned .pan-reset{
+      opacity: 1;
+      transform: none;
     }
 
     .project-outcome {
@@ -1266,13 +1349,22 @@ l<!doctype html>
 
           <div class="simple-grid reveal-stagger">
             <article class="simple-card reveal-item">
-              <img
-                src="project-multifamily.jpg"
-                alt="Rendering of a high-performance multi-family residential development"
-                class="project-image parallax-layer"
-                loading="lazy"
-                decoding="async"
-              />
+              <div class="image-frame" data-pan>
+                <img
+                  src="project-multifamily.jpg"
+                  alt="Rendering of a high-performance multi-family residential development"
+                  class="project-image parallax-layer"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <button class="pan-reset" type="button" aria-label="Reset image position">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M20 12a8 8 0 1 1-2.34-5.66" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M20 4v6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <div class="pan-hint" aria-hidden="true">Drag to pan</div>
+              </div>
               <h3>High-performance multi-family</h3>
               <p>
                 Energy models and incentive submission for a multi-building residential development targeting
@@ -1284,13 +1376,22 @@ l<!doctype html>
             </article>
 
             <article class="simple-card reveal-item">
-              <img
-                src="project-campus-decarbonization.jpg"
-                alt="Campus buildings included in the decarbonization roadmap"
-                class="project-image parallax-layer"
-                loading="lazy"
-                decoding="async"
-              />
+              <div class="image-frame" data-pan>
+                <img
+                  src="project-campus-decarbonization.jpg"
+                  alt="Campus buildings included in the decarbonization roadmap"
+                  class="project-image parallax-layer"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <button class="pan-reset" type="button" aria-label="Reset image position">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M20 12a8 8 0 1 1-2.34-5.66" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M20 4v6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <div class="pan-hint" aria-hidden="true">Drag to pan</div>
+              </div>
               <h3>Campus decarbonization roadmap</h3>
               <p>
                 Phased electrification and retrofit strategy for an institutional portfolio, aligning carbon
@@ -1301,13 +1402,22 @@ l<!doctype html>
             </article>
 
             <article class="simple-card reveal-item">
-              <img
-                src="project-building-performance.jpg"
-                alt="Mechanical systems and plant serving a complex facility"
-                class="project-image parallax-layer"
-                loading="lazy"
-                decoding="async"
-              />
+              <div class="image-frame" data-pan>
+                <img
+                  src="project-building-performance.jpg"
+                  alt="Mechanical systems and plant serving a complex facility"
+                  class="project-image parallax-layer"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <button class="pan-reset" type="button" aria-label="Reset image position">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M20 12a8 8 0 1 1-2.34-5.66" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M20 4v6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <div class="pan-hint" aria-hidden="true">Drag to pan</div>
+              </div>
               <h3>Building performance verification</h3>
               <p>
                 Whole-building performance verification for a complex facility, from design reviews through
@@ -1318,13 +1428,22 @@ l<!doctype html>
             </article>
 
             <article class="simple-card reveal-item">
-              <img
-                src="project-retrofit-owners-rep.jpg"
-                alt="Major building undergoing phased retrofit"
-                class="project-image parallax-layer"
-                loading="lazy"
-                decoding="async"
-              />
+              <div class="image-frame" data-pan>
+                <img
+                  src="project-retrofit-owners-rep.jpg"
+                  alt="Major building undergoing phased retrofit"
+                  class="project-image parallax-layer"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <button class="pan-reset" type="button" aria-label="Reset image position">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M20 12a8 8 0 1 1-2.34-5.66" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M20 4v6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <div class="pan-hint" aria-hidden="true">Drag to pan</div>
+              </div>
               <h3>Owner’s representative – major retrofit</h3>
               <p>
                 Independent technical and cost oversight for a multi-phase building renewal, coordinating design,
@@ -1335,13 +1454,22 @@ l<!doctype html>
             </article>
 
             <article class="simple-card reveal-item">
-              <img
-                src="project-defense-facility.jpg"
-                alt="Secure defense and training facility"
-                class="project-image parallax-layer"
-                loading="lazy"
-                decoding="async"
-              />
+              <div class="image-frame" data-pan>
+                <img
+                  src="project-defense-facility.jpg"
+                  alt="Secure defense and training facility"
+                  class="project-image parallax-layer"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <button class="pan-reset" type="button" aria-label="Reset image position">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M20 12a8 8 0 1 1-2.34-5.66" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M20 4v6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <div class="pan-hint" aria-hidden="true">Drag to pan</div>
+              </div>
               <h3>Secure defense facility upgrades</h3>
               <p>
                 Mechanical and building performance advisory services for upgrades to a secure defense facility,
@@ -1525,13 +1653,11 @@ l<!doctype html>
               </p>
 
               <form action="https://formsubmit.co/info@enthalpyinc.com" method="POST">
-                <!-- Formsubmit extras -->
                 <input type="hidden" name="_subject" value="New inquiry from enthalpyinc.com" />
                 <input type="hidden" name="_cc" value="john@enthalpyinc.com" />
                 <input type="hidden" name="_captcha" value="false" />
                 <input type="hidden" name="_next" value="https://enthalpyinc.com/#contact" />
 
-                <!-- Honeypot -->
                 <input
                   type="text"
                   name="_honey"
@@ -2041,6 +2167,116 @@ l<!doctype html>
 
       window.addEventListener("pointermove", handleMove, { passive: true });
     })();
+
+    // ===== Project image panning + reset icon =====
+    (function () {
+      const frames = document.querySelectorAll(".image-frame[data-pan]");
+      if (!frames.length) return;
+
+      const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+      const isDefault = (x, y) => Math.abs(x - 50) < 0.1 && Math.abs(y - 50) < 0.1;
+
+      const hintSeenKey = "enthalpy:panHintSeen";
+
+      frames.forEach(frame => {
+        const img = frame.querySelector("img.project-image");
+        const resetBtn = frame.querySelector(".pan-reset");
+        const hint = frame.querySelector(".pan-hint");
+        if (!img || !resetBtn) return;
+
+        let dragging = false;
+        let startX = 0, startY = 0;
+        let posX = 50, posY = 50;
+
+        // Per-image persistence
+        const key = "enthalpy:imgpos:" + (img.getAttribute("src") || "");
+        const saved = localStorage.getItem(key);
+        if (saved) {
+          try {
+            const { x, y } = JSON.parse(saved);
+            if (Number.isFinite(x)) posX = clamp(x, 0, 100);
+            if (Number.isFinite(y)) posY = clamp(y, 0, 100);
+          } catch {}
+        }
+
+        // Apply initial state
+        img.style.setProperty("--posx", posX + "%");
+        img.style.setProperty("--posy", posY + "%");
+        if (!isDefault(posX, posY)) frame.classList.add("is-panned");
+
+        // Hide hint if already seen (site-wide)
+        const seen = localStorage.getItem(hintSeenKey) === "1";
+        if (hint && seen) hint.style.display = "none";
+
+        function markHintSeen() {
+          localStorage.setItem(hintSeenKey, "1");
+          if (hint) hint.style.display = "none";
+        }
+
+        function setPos(x, y, persist = true) {
+          posX = clamp(x, 0, 100);
+          posY = clamp(y, 0, 100);
+          img.style.setProperty("--posx", posX + "%");
+          img.style.setProperty("--posy", posY + "%");
+
+          if (isDefault(posX, posY)) {
+            frame.classList.remove("is-panned");
+            if (persist) localStorage.removeItem(key);
+          } else {
+            frame.classList.add("is-panned");
+            if (persist) localStorage.setItem(key, JSON.stringify({ x: posX, y: posY }));
+          }
+        }
+
+        function reset() {
+          setPos(50, 50, true);
+        }
+
+        resetBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          reset();
+        });
+
+        // Double-click reset (desktop)
+        img.addEventListener("dblclick", () => reset());
+
+        img.addEventListener("pointerdown", (e) => {
+          // Ignore if user clicked the reset button
+          if (e.target && resetBtn.contains(e.target)) return;
+
+          dragging = true;
+          img.setPointerCapture(e.pointerId);
+          startX = e.clientX;
+          startY = e.clientY;
+          markHintSeen();
+        });
+
+        img.addEventListener("pointermove", (e) => {
+          if (!dragging) return;
+
+          const rect = frame.getBoundingClientRect();
+          const dx = (e.clientX - startX) / rect.width;
+          const dy = (e.clientY - startY) / rect.height;
+
+          const sensitivity = 120; // premium feel
+          setPos(posX + dx * sensitivity, posY + dy * sensitivity, true);
+
+          startX = e.clientX;
+          startY = e.clientY;
+        });
+
+        const end = () => { dragging = false; };
+        img.addEventListener("pointerup", end);
+        img.addEventListener("pointercancel", end);
+        img.addEventListener("lostpointercapture", end);
+
+        // Keyboard reset support if focus is on frame (optional: R key)
+        frame.addEventListener("keydown", (e) => {
+          if (e.key.toLowerCase() === "r") reset();
+        });
+      });
+    })();
   </script>
 
   <script type="module">
@@ -2111,7 +2347,6 @@ l<!doctype html>
       banner.style.display = "block";
       setDialogMode(true);
 
-      // Refresh listeners safely (avoid duplicates)
       const newAcceptBtn = acceptBtn.cloneNode(true);
       const newRejectBtn = rejectBtn.cloneNode(true);
       const newCloseBtn  = closeBtn.cloneNode(true);
@@ -2135,7 +2370,46 @@ l<!doctype html>
       });
 
       if (cookieCleanup) cookieCleanup();
-      cookieCleanup = trapFocus(banner, closeCookieBanner);
+      cookieCleanup = (function trapFocusDialog() {
+        const focusablesSelector = [
+          'a[href]',
+          'button:not([disabled])',
+          'textarea:not([disabled])',
+          'input:not([disabled])',
+          'select:not([disabled])',
+          '[tabindex]:not([tabindex="-1"])'
+        ].join(',');
+
+        function getFocusables() {
+          return Array.from(banner.querySelectorAll(focusablesSelector))
+            .filter(el => el.offsetParent !== null);
+        }
+
+        function onKeydown(e) {
+          if (e.key === "Escape") {
+            closeCookieBanner();
+            return;
+          }
+          if (e.key !== "Tab") return;
+
+          const focusables = getFocusables();
+          if (!focusables.length) return;
+
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+
+        document.addEventListener("keydown", onKeydown);
+        return () => document.removeEventListener("keydown", onKeydown);
+      })();
 
       newAcceptBtn.focus();
     }
