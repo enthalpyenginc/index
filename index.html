@@ -14,15 +14,17 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#050608" />
 
-  <!-- Security & compliance (best set as HTTP response headers; meta is not consistently enforced) -->
+  <!-- ✅ Referrer policy meta IS valid + enforced -->
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <!-- NOTE: The following meta http-equiv headers are not reliable substitutes for real HTTP headers -->
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta http-equiv="X-Frame-Options" content="DENY" />
-  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
 
-  <!-- CSP fallback (best set as an HTTP header; keep content on ONE line to avoid parsing issues) -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' https: data:; media-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline' https://www.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firebasestorage.googleapis.com https://firebase.googleapis.com https://firestore.googleapis.com https://www.google-analytics.com https://region1.google-analytics.com https://stats.g.doubleclick.net; frame-src https://www.google.com https://www.google.com/maps; form-action 'self' https://formsubmit.co; upgrade-insecure-requests;" />
+  <!-- ✅ Security headers: set these as REAL HTTP response headers (recommended).
+       Meta http-equiv security headers are inconsistent and can be ignored by browsers. -->
+  <!-- ❌ Removed:
+       <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+       <meta http-equiv="X-Frame-Options" content="DENY" />
+       <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
+       <meta http-equiv="Content-Security-Policy" content="..." />
+  -->
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -736,6 +738,12 @@
     .image-frame.is-panned .pan-reset{
       opacity: 1;
       transform: none;
+    }
+
+    /* ✅ APPLY: show pan hint when the frame itself has keyboard focus */
+    .image-frame:focus-visible .pan-hint{
+      opacity: 1 !important;
+      transform: none !important;
     }
 
     .project-outcome {
@@ -1933,7 +1941,9 @@
                 <input type="hidden" name="_subject" value="New inquiry from enthalpyinc.com" />
                 <input type="hidden" name="_cc" value="john@enthalpyinc.com" />
                 <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_next" value="https://enthalpyinc.com/#contact" />
+
+                <!-- ✅ APPLY: better UX to redirect to a real thank-you page -->
+                <input type="hidden" name="_next" value="https://enthalpyinc.com/thanks" />
 
                 <input
                   type="text"
@@ -2913,7 +2923,9 @@
         closeCookieBanner();
       });
 
+      /* ✅ APPLY: Close is a durable choice ("Only necessary") */
       newCloseBtn.addEventListener("click", () => {
+        try { localStorage.setItem(CONSENT_KEY, "rejected"); } catch {}
         closeCookieBanner();
       });
 
@@ -2935,6 +2947,8 @@
 
         function onKeydown(e) {
           if (e.key === "Escape") {
+            /* ✅ APPLY: Escape is also a durable choice ("Only necessary") */
+            try { localStorage.setItem(CONSENT_KEY, "rejected"); } catch {}
             closeCookieBanner();
             return;
           }
