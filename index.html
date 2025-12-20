@@ -937,6 +937,68 @@
 
     .map-embed iframe { width: 100%; height: 220px; border: 0; display: block; }
 
+    /* ======= LOCATION HERO ADD-ON (APPLIED) ======= */
+    .location-hero-link { display: block; }
+    .location-hero {
+      position: relative;
+      width: 100%;
+      height: 190px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 0.95rem;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      background: #050608;
+    }
+    .location-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.01);
+      transition: transform 0.35s ease, filter 0.35s ease;
+      filter: saturate(1.02) contrast(1.04) brightness(0.92);
+    }
+    .location-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(212,165,58,0.18), transparent 50%),
+        linear-gradient(to top, rgba(5,6,8,0.82), rgba(5,6,8,0.12));
+      pointer-events: none;
+    }
+    .location-badge {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.35rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(5,6,8,0.58);
+      border: 1px solid rgba(212,165,58,0.25);
+      color: rgba(255,255,255,0.86);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      pointer-events: none;
+    }
+    .location-badge .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), var(--accent));
+      box-shadow: 0 0 0 2px rgba(5,6,8,0.65);
+    }
+    @media (pointer:fine) {
+      .location-hero-link:hover .location-hero img {
+        transform: scale(1.05);
+        filter: saturate(1.05) contrast(1.08) brightness(0.96);
+      }
+    }
+    /* ======= END LOCATION HERO ADD-ON ======= */
+
     /* Footer */
     footer {
       border-top: 1px solid rgba(31, 41, 55, 0.9);
@@ -1608,7 +1670,7 @@
               <h3>Marvin dela&nbsp;Cruz, P.Eng., PE, IntPE, APEC Engineer.</h3>
               <div class="team-role">Partner – Project Delivery</div>
               <p>
-                Provides project management, quantity surveying and technical advisory services with an emphasis
+                Provides project management, quantity surveying, and technical advisory services with an emphasis
                 on safety, quality and value.
               </p>
             </article>
@@ -1746,7 +1808,32 @@
                 </p>
               </div>
 
-              <div class="contact-card reveal-item">
+              <!-- ===== UPDATED LOCATION CARD (APPLIED) ===== -->
+              <div class="contact-card reveal-item location-card">
+
+                <!-- Cinematic office image -->
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Enthalpy+Engineering+Incorporated,+Canada+Place+Business+Centre,+%23404+999+Canada+Place,+Vancouver,+BC+V6C+3E2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="location-hero-link"
+                  aria-label="Open Enthalpy Engineering office location in Google Maps"
+                >
+                  <div class="location-hero" aria-hidden="true">
+                    <img
+                      src="office-vancouver-skyline.jpg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="location-hero-overlay"></div>
+                    <div class="location-badge">
+                      <span class="dot" aria-hidden="true"></span>
+                      Vancouver • Canada Place
+                    </div>
+                  </div>
+                </a>
+
                 <h3>Location</h3>
                 <p class="contact-meta">
                   Canada Place Business Centre<br />
@@ -1773,6 +1860,8 @@
                   </iframe>
                 </div>
               </div>
+              <!-- ===== END UPDATED LOCATION CARD ===== -->
+
             </div>
           </div>
         </div>
