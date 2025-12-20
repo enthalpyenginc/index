@@ -599,6 +599,44 @@
     }
     /* ============================ */
 
+    /* ============================
+       ✅ MARKETS VIDEO CARDS
+       (match Services hover-play look)
+       ============================ */
+    .simple-card .market-media {
+      width: 100%;
+      height: 160px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 0.85rem;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      background: #050608;
+      position: relative;
+    }
+
+    .simple-card .market-media video.market-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.02) contrast(1.04) brightness(0.92);
+      transform: scale(1.01);
+      transition: transform 0.35s ease, filter 0.35s ease;
+    }
+
+    @media (pointer: fine) {
+      .simple-card:hover .market-media video.market-video,
+      .simple-card:focus-within .market-media video.market-video {
+        transform: scale(1.05);
+        filter: saturate(1.06) contrast(1.06) brightness(0.96);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .simple-card .market-media { display: none !important; }
+    }
+    /* ============================ */
+
     .card h3 {
       font-size: 1rem;
       margin-bottom: 0.5rem;
@@ -1554,6 +1592,11 @@
 
           <div class="simple-grid reveal-stagger">
             <article class="simple-card reveal-item">
+              <div class="market-media" aria-hidden="true">
+                <video class="market-video" muted playsinline preload="metadata" poster="/markets-multifamily-poster.jpg">
+                  <source src="/markets-multifamily.mp4" type="video/mp4" />
+                </video>
+              </div>
               <h3>Multi-family &amp; mixed-use</h3>
               <p>
                 Support for mid-rise and high-rise residential developments, including programs linked to energy
@@ -1563,6 +1606,11 @@
             </article>
 
             <article class="simple-card reveal-item">
+              <div class="market-media" aria-hidden="true">
+                <video class="market-video" muted playsinline preload="metadata" poster="/markets-public-poster.jpg">
+                  <source src="/markets-public.mp4" type="video/mp4" />
+                </video>
+              </div>
               <h3>Public &amp; institutional</h3>
               <p>
                 Support for municipalities, universities, schools and healthcare providers seeking resilient,
@@ -1572,6 +1620,11 @@
             </article>
 
             <article class="simple-card reveal-item">
+              <div class="market-media" aria-hidden="true">
+                <video class="market-video" muted playsinline preload="metadata" poster="/markets-commercial-poster.jpg">
+                  <source src="/markets-commercial.mp4" type="video/mp4" />
+                </video>
+              </div>
               <h3>Commercial &amp; workplace</h3>
               <p>
                 High-performance offices, tenant improvements and workplace transformations aligned with ESG and
@@ -1581,6 +1634,11 @@
             </article>
 
             <article class="simple-card reveal-item">
+              <div class="market-media" aria-hidden="true">
+                <video class="market-video" muted playsinline preload="metadata" poster="/markets-industrial-poster.jpg">
+                  <source src="/markets-industrial.mp4" type="video/mp4" />
+                </video>
+              </div>
               <h3>Industrial &amp; mission-critical</h3>
               <p>
                 Performance-driven projects where uptime, reliability and energy use are critical to operations.
@@ -1589,6 +1647,11 @@
             </article>
 
             <article class="simple-card reveal-item">
+              <div class="market-media" aria-hidden="true">
+                <video class="market-video" muted playsinline preload="metadata" poster="/markets-defense-poster.jpg">
+                  <source src="/markets-defense.mp4" type="video/mp4" />
+                </video>
+              </div>
               <h3>Defense &amp; security</h3>
               <p>
                 Support for secure, resilient facilities serving defense, public safety and critical government
@@ -2895,9 +2958,6 @@
 
     /* ============================================================
        ✅ SERVICES: HOVER-PLAY VIDEOS (only one plays at a time)
-       - plays on hover (desktop) / focus (keyboard)
-       - pauses + resets on leave/blur
-       - respects reduced motion + data saver
        ============================================================ */
     (function () {
       const services = document.getElementById("services");
@@ -2945,9 +3005,7 @@
         try {
           await video.play();
           video.setAttribute("data-playing", "1");
-        } catch {
-          // ignore autoplay blocking (should be rare since muted)
-        }
+        } catch {}
       }
 
       cards.forEach(card => {
@@ -2957,7 +3015,79 @@
         card.addEventListener("mouseenter", () => playVideo(video));
         card.addEventListener("mouseleave", () => pauseAndReset(video));
 
-        // keyboard users (tab into pills/links/buttons inside card)
+        card.addEventListener("focusin", () => playVideo(video));
+        card.addEventListener("focusout", (e) => {
+          if (!card.contains(e.relatedTarget)) pauseAndReset(video);
+        });
+      });
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          cards.forEach(card => pauseAndReset(getVideo(card)));
+        }
+      });
+    })();
+    /* ============================================================ */
+
+    /* ============================================================
+       ✅ MARKETS: HOVER-PLAY VIDEOS (only one plays at a time)
+       ============================================================ */
+    (function () {
+      const markets = document.getElementById("markets");
+      if (!markets) return;
+
+      const cards = Array.from(markets.querySelectorAll(".simple-card"));
+      if (!cards.length) return;
+
+      const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const saveData = !!(navigator.connection && navigator.connection.saveData);
+
+      if (motionQuery.matches || saveData) return;
+
+      function getVideo(card) {
+        return card.querySelector("video.market-video");
+      }
+
+      function pauseAndReset(video) {
+        if (!video) return;
+        try { video.pause(); } catch {}
+        try { video.currentTime = 0; } catch {}
+        video.loop = false;
+        video.removeAttribute("data-playing");
+      }
+
+      function pauseAllExcept(exceptVideo) {
+        cards.forEach(card => {
+          const v = getVideo(card);
+          if (!v || v === exceptVideo) return;
+          pauseAndReset(v);
+        });
+      }
+
+      async function playVideo(video) {
+        if (!video) return;
+
+        pauseAllExcept(video);
+
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+
+        try { video.currentTime = 0; } catch {}
+
+        try {
+          await video.play();
+          video.setAttribute("data-playing", "1");
+        } catch {}
+      }
+
+      cards.forEach(card => {
+        const video = getVideo(card);
+        if (!video) return;
+
+        card.addEventListener("mouseenter", () => playVideo(video));
+        card.addEventListener("mouseleave", () => pauseAndReset(video));
+
         card.addEventListener("focusin", () => playVideo(video));
         card.addEventListener("focusout", (e) => {
           if (!card.contains(e.relatedTarget)) pauseAndReset(video);
