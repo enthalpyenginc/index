@@ -14,36 +14,23 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#050608" />
 
-  <!-- Security & compliance (Note: best set as HTTP response headers) -->
+  <!-- Security & compliance (best set as HTTP response headers; meta is not consistently enforced) -->
   <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <!-- NOTE: The following meta http-equiv headers are not reliable substitutes for real HTTP headers -->
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta http-equiv="X-Frame-Options" content="DENY" />
   <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
 
-  <!-- Optional CSP fallback (best set as an HTTP header; adjust origins as needed) -->
-  <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self';
-    base-uri 'self';
-    object-src 'none';
-    frame-ancestors 'none';
-    img-src 'self' https: data:;
-    media-src 'self' https:;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com data:;
-    script-src 'self' 'unsafe-inline' https://www.gstatic.com;
-    connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firebasestorage.googleapis.com https://www.google-analytics.com;
-    frame-src https://www.google.com;
-    form-action 'self' https://formsubmit.co;
-    upgrade-insecure-requests;
-  " />
+  <!-- CSP fallback (best set as an HTTP header; keep content on ONE line to avoid parsing issues) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' https: data:; media-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline' https://www.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firebasestorage.googleapis.com https://firebase.googleapis.com https://firestore.googleapis.com https://www.google-analytics.com https://region1.google-analytics.com https://stats.g.doubleclick.net; frame-src https://www.google.com https://www.google.com/maps; form-action 'self' https://formsubmit.co; upgrade-insecure-requests;" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-  <!-- Social (works across Facebook/Messenger/WhatsApp/LinkedIn/Slack/Discord/iMessage + X/Twitter) -->
+  <!-- Social -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Enthalpy Engineering" />
   <meta property="og:title" content="Enthalpy Engineering | Building Performance &amp; Energy Management" />
@@ -59,7 +46,7 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Enthalpy Engineering Incorporated logo" />
 
-  <!-- Optional square fallback (upload og-image-square.jpg to use this) -->
+  <!-- Optional square fallback -->
   <meta property="og:image" content="https://enthalpyinc.com/og-image-square.jpg" />
   <meta property="og:image:secure_url" content="https://enthalpyinc.com/og-image-square.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -74,10 +61,10 @@
   <meta name="twitter:image" content="https://enthalpyinc.com/og-image.jpg" />
   <meta name="twitter:image:alt" content="Enthalpy Engineering Incorporated logo" />
 
-  <!-- Performance: preconnect + preload for critical image -->
+  <!-- Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="image" href="enthalpy-logo.png" fetchpriority="high" />
+  <link rel="preload" as="image" href="/enthalpy-logo.png" fetchpriority="high" />
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -168,7 +155,6 @@
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
 
-    /* Visible focus styles */
     a:focus-visible,
     button:focus-visible,
     input:focus-visible,
@@ -180,7 +166,6 @@
       border-radius: 10px;
     }
 
-    /* Scroll progress bar */
     .scroll-progress {
       position: fixed;
       top: 0;
@@ -193,7 +178,6 @@
       pointer-events: none;
     }
 
-    /* Background video behind page */
     .video-bg {
       position: fixed;
       inset: 0;
@@ -223,11 +207,7 @@
       flex-direction: column;
       position: relative;
       z-index: 0;
-      background: radial-gradient(
-        circle at top left,
-        rgba(30, 34, 46, 0.25) 0,
-        rgba(10, 12, 18, 0.75) 55%
-      );
+      background: radial-gradient(circle at top left, rgba(30, 34, 46, 0.25) 0, rgba(10, 12, 18, 0.75) 55%);
     }
 
     .container {
@@ -239,7 +219,6 @@
 
     section[id] { scroll-margin-top: 88px; }
 
-    /* Skip link */
     .skip-link {
       position: absolute;
       left: -999px;
@@ -254,7 +233,6 @@
     }
     .skip-link:focus { left: 1rem; top: 1rem; }
 
-    /* Header & Nav */
     header {
       position: sticky;
       top: 0;
@@ -318,7 +296,6 @@
       white-space: nowrap;
     }
 
-    /* Desktop nav */
     .nav-links {
       display: flex;
       align-items: center;
@@ -411,7 +388,6 @@
     .nav-mobile-open .nav-toggle span:nth-child(2) { opacity: 0; }
     .nav-mobile-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-    /* Mobile menu container */
     .mobile-menu { display: none; }
 
     @media (max-width: 880px) {
@@ -446,7 +422,6 @@
       }
     }
 
-    /* Hero */
     .hero { padding: 4rem 0 3rem; position: relative; }
 
     @media (min-width: 1200px) {
@@ -545,7 +520,6 @@
 
     .hero-panel-note { font-size: 0.75rem; color: var(--gray-600); }
 
-    /* Sections */
     section { padding: 3.5rem 0; }
     section:nth-of-type(even) { background: rgba(15, 18, 28, 0.9); }
 
@@ -569,7 +543,6 @@
       color: var(--gray-300);
     }
 
-    /* Services */
     .card-grid { display: grid; gap: 1.5rem; }
 
     @media (min-width: 720px) {
@@ -626,7 +599,6 @@
 
     #services.services-pills-visible .pill { opacity: 1; transform: none; }
 
-    /* Simple cards */
     .simple-grid { display: grid; gap: 1.25rem; }
 
     @media (min-width: 720px) {
@@ -662,7 +634,6 @@
     .simple-card p { font-size: 0.84rem; color: var(--gray-300); margin-bottom: 0.4rem; }
     .simple-card span { font-size: 0.76rem; color: var(--gray-600); }
 
-    /* Company profile */
     .company-profile { margin-bottom: 2rem; }
 
     .company-profile h3 {
@@ -674,10 +645,9 @@
 
     .company-profile .company-toggle { margin-top: 0.6rem; }
 
-    /* ========= COOL PROJECT IMAGE PANNING (even grid + reset icon) ========= */
     .simple-card .image-frame{
       width: 100%;
-      height: 220px; /* even grid */
+      height: 220px;
       border-radius: 10px;
       overflow: hidden;
       margin-bottom: 0.6rem;
@@ -706,7 +676,6 @@
     }
     .simple-card img.project-image:active{ cursor: grabbing; }
 
-    /* Hint bubble (first-time discoverability) */
     .pan-hint{
       position: absolute;
       left: 12px;
@@ -735,7 +704,6 @@
       .pan-hint{ opacity: 0.9; transform: none; }
     }
 
-    /* Reset icon button */
     .pan-reset{
       position: absolute;
       top: 10px;
@@ -759,7 +727,6 @@
     .pan-reset svg{ width: 18px; height: 18px; display:block; }
     .pan-reset:hover{ border-color: rgba(212,165,58,0.55); }
 
-    /* Show reset on hover (desktop) and whenever image has been panned */
     @media (pointer:fine){
       .image-frame:hover .pan-reset{
         opacity: 1;
@@ -778,7 +745,6 @@
       margin-top: 0.15rem;
     }
 
-    /* Team */
     .team-grid { display: grid; gap: 1.4rem; }
 
     @media (min-width: 780px) {
@@ -820,7 +786,6 @@
     .team-role { font-size: 0.76rem; color: var(--gray-600); margin-bottom: 0.4rem; }
     .team-card p { font-size: 0.76rem; color: var(--gray-300); }
 
-    /* Careers */
     .careers {
       background: linear-gradient(120deg, #050608, #101322);
       border-top: 1px solid rgba(212, 165, 58, 0.18);
@@ -867,7 +832,6 @@
       margin-top: 4px;
     }
 
-    /* Contact */
     .contact-grid { display: grid; gap: 2rem; }
 
     @media (min-width: 860px) {
@@ -908,7 +872,7 @@
       margin-bottom: 0.2rem;
     }
 
-    input, textarea {
+    input, textarea, select {
       width: 100%;
       padding: 0.55rem 0.7rem;
       border-radius: 10px;
@@ -919,7 +883,7 @@
       font-family: inherit;
     }
 
-    input:focus, textarea:focus {
+    input:focus, textarea:focus, select:focus {
       outline: none;
       border-color: var(--gold);
       box-shadow: 0 0 0 1px rgba(212, 165, 58, 0.5);
@@ -928,7 +892,6 @@
     textarea { min-height: 130px; resize: vertical; }
     .mb-1_5 { margin-bottom: 1.5rem; }
 
-    /* Map embed */
     .map-embed {
       margin-top: 0.75rem;
       border-radius: 12px;
@@ -938,7 +901,6 @@
 
     .map-embed iframe { width: 100%; height: 220px; border: 0; display: block; }
 
-    /* ======= LOCATION HERO ADD-ON (APPLIED) ======= */
     .location-hero-link { display: block; }
     .location-hero {
       position: relative;
@@ -998,9 +960,7 @@
         filter: saturate(1.05) contrast(1.08) brightness(0.96);
       }
     }
-    /* ======= END LOCATION HERO ADD-ON ======= */
 
-    /* ===== How we work (interactive stepper) ===== */
     .process-shell{
       display:grid;
       gap: 1.25rem;
@@ -1145,7 +1105,6 @@
       gap: .6rem;
     }
 
-    /* ===== Smart intake form ===== */
     .form-grid{
       display:grid;
       gap: 0.9rem;
@@ -1157,23 +1116,6 @@
         gap: 0.9rem 1rem;
       }
       .form-grid .span-2{ grid-column: 1 / -1; }
-    }
-
-    select{
-      width: 100%;
-      padding: 0.55rem 0.7rem;
-      border-radius: 10px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: #050608;
-      color: var(--white);
-      font-size: 0.86rem;
-      font-family: inherit;
-    }
-
-    select:focus{
-      outline: none;
-      border-color: var(--gold);
-      box-shadow: 0 0 0 1px rgba(212, 165, 58, 0.5);
     }
 
     .form-actions-row{
@@ -1190,7 +1132,6 @@
       letter-spacing: .02em;
     }
 
-    /* Footer */
     footer {
       border-top: 1px solid rgba(31, 41, 55, 0.9);
       background: #050608;
@@ -1219,7 +1160,6 @@
       .logo-text-sub, .tag { letter-spacing: 0.18em; }
     }
 
-    /* Cookie banner / dialog */
     .cookie-banner {
       position: fixed;
       left: 0;
@@ -1250,7 +1190,6 @@
 
     .cookie-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
-    /* Scroll reveal – sections */
     .reveal {
       opacity: 0;
       transform: translateY(18px);
@@ -1258,7 +1197,6 @@
     }
     .reveal.is-visible { opacity: 1; transform: none; }
 
-    /* Scroll reveal – staggered items */
     .reveal-item {
       opacity: 0;
       transform: translateY(16px);
@@ -1267,10 +1205,8 @@
     }
     .reveal-item.is-visible { opacity: 1; transform: none; }
 
-    /* Shared parallax layers */
     .parallax-layer { will-change: transform; transition: transform 0.25s ease-out; }
 
-    /* Spotlight hover */
     .card::before,
     .simple-card::before,
     .team-card::before,
@@ -1278,11 +1214,7 @@
       content: "";
       position: absolute;
       inset: -40%;
-      background: radial-gradient(
-        circle at var(--mx, 50%) var(--my, 50%),
-        rgba(212, 165, 58, 0.16),
-        transparent 55%
-      );
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(212, 165, 58, 0.16), transparent 55%);
       opacity: 0;
       transition: opacity 0.3s ease-out;
       pointer-events: none;
@@ -1296,20 +1228,10 @@
 </head>
 
 <body>
-  <!-- Scroll progress bar -->
   <div class="scroll-progress" aria-hidden="true"></div>
 
-  <!-- BACKGROUND VIDEO -->
   <div class="video-bg" aria-hidden="true">
-    <video
-      id="bgVideo"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="metadata"
-      poster="/hero-vancouver-poster.jpg"
-    >
+    <video id="bgVideo" autoplay muted loop playsinline preload="metadata" poster="/hero-vancouver-poster.jpg">
       <source src="https://enthalpyinc.com/hero-vancouver.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
@@ -1318,14 +1240,13 @@
   <div class="page">
     <a href="#main" class="skip-link">Skip to main content</a>
 
-    <!-- Header -->
     <header id="top">
       <div class="container nav">
         <div class="nav-left">
           <a href="/" class="nav-left-link" aria-label="Enthalpy Engineering home">
             <div class="logo-mark">
               <img
-                src="enthalpy-logo.png"
+                src="/enthalpy-logo.png"
                 alt="Enthalpy Engineering Incorporated logo"
                 width="52"
                 height="52"
@@ -1341,7 +1262,6 @@
           </a>
         </div>
 
-        <!-- Desktop nav -->
         <nav class="nav-links" aria-label="Primary navigation (desktop)">
           <a href="#services">Services</a>
           <a href="#markets">Markets</a>
@@ -1357,7 +1277,6 @@
           <a class="btn btn-primary" href="#contact">Let’s Talk</a>
         </div>
 
-        <!-- Mobile toggle -->
         <button
           class="nav-toggle"
           id="navToggle"
@@ -1370,7 +1289,6 @@
         </button>
       </div>
 
-      <!-- Mobile menu (focus-managed) -->
       <div class="mobile-menu" id="mobileMenu" hidden>
         <nav class="nav-links" aria-label="Primary navigation (mobile)">
           <a href="#services">Services</a>
@@ -1628,44 +1546,44 @@
 
           <div class="process-shell reveal-item" aria-label="How we work">
             <div class="process-tabs" role="tablist" aria-label="Project workflow steps">
-              <button type="button" class="process-tab is-active" role="tab" aria-selected="true" aria-controls="stepPanel" data-step="0">
+              <button id="processTab0" type="button" class="process-tab is-active" role="tab" aria-selected="true" aria-controls="stepPanel" data-step="0">
                 <span class="process-stepnum">01</span>
                 <span class="process-steptitle">Discovery</span>
                 <span class="process-stepsub">Goals, constraints, stakeholders</span>
               </button>
 
-              <button type="button" class="process-tab" role="tab" aria-selected="false" aria-controls="stepPanel" data-step="1">
+              <button id="processTab1" type="button" class="process-tab" role="tab" aria-selected="false" aria-controls="stepPanel" data-step="1" tabindex="-1">
                 <span class="process-stepnum">02</span>
                 <span class="process-steptitle">Baseline</span>
                 <span class="process-stepsub">Loads, systems, data, risks</span>
               </button>
 
-              <button type="button" class="process-tab" role="tab" aria-selected="false" aria-controls="stepPanel" data-step="2">
+              <button id="processTab2" type="button" class="process-tab" role="tab" aria-selected="false" aria-controls="stepPanel" data-step="2" tabindex="-1">
                 <span class="process-stepnum">03</span>
                 <span class="process-steptitle">Options</span>
                 <span class="process-stepsub">Compare pathways & impacts</span>
               </button>
 
-              <button type="button" class="process-tab" role="tab" aria-selected="false" aria-controls="stepPanel" data-step="3">
+              <button id="processTab3" type="button" class="process-tab" role="tab" aria-selected="false" aria-controls="stepPanel" data-step="3" tabindex="-1">
                 <span class="process-stepnum">04</span>
                 <span class="process-steptitle">Delivery</span>
                 <span class="process-stepsub">Documentation & coordination</span>
               </button>
 
-              <button type="button" class="process-tab" role="tab" aria-selected="false" aria-controls="stepPanel" data-step="4">
+              <button id="processTab4" type="button" class="process-tab" role="tab" aria-selected="false" aria-controls="stepPanel" data-step="4" tabindex="-1">
                 <span class="process-stepnum">05</span>
                 <span class="process-steptitle">Verification</span>
                 <span class="process-stepsub">Field checks & issue closure</span>
               </button>
 
-              <button type="button" class="process-tab" role="tab" aria-selected="false" aria-controls="stepPanel" data-step="5">
+              <button id="processTab5" type="button" class="process-tab" role="tab" aria-selected="false" aria-controls="stepPanel" data-step="5" tabindex="-1">
                 <span class="process-stepnum">06</span>
                 <span class="process-steptitle">Handover</span>
                 <span class="process-stepsub">Turnover & follow-up</span>
               </button>
             </div>
 
-            <div class="process-panel" id="stepPanel" role="tabpanel" tabindex="0" aria-live="polite">
+            <div class="process-panel" id="stepPanel" role="tabpanel" tabindex="0" aria-live="polite" aria-labelledby="processTab0">
               <div class="process-panel-top">
                 <div class="tag">Step <span id="processStepIndex">01</span></div>
                 <h3 id="processTitle">Discovery</h3>
@@ -2026,7 +1944,6 @@
                   style="position:absolute;left:-9999px;"
                 />
 
-                <!-- Smart intake fields -->
                 <div class="form-grid">
                   <div>
                     <label for="name">Name</label>
@@ -2130,14 +2047,11 @@
                   <br /><br />
                   Telephone:
                   <br />
-                  <a href="tel:+17789452781">+1 778 945 278 81</a>
+                  <a href="tel:+17789452781">+1 778 945 2781</a>
                 </p>
               </div>
 
-              <!-- ===== UPDATED LOCATION CARD (APPLIED) ===== -->
               <div class="contact-card reveal-item location-card">
-
-                <!-- Cinematic office image -->
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=Enthalpy+Engineering+Incorporated,+Canada+Place+Business+Centre,+%23404+999+Canada+Place,+Vancouver,+BC+V6C+3E2"
                   target="_blank"
@@ -2146,12 +2060,7 @@
                   aria-label="Open Enthalpy Engineering office location in Google Maps"
                 >
                   <div class="location-hero" aria-hidden="true">
-                    <img
-                      src="office-vancouver-skyline.jpg"
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                    />
+                    <img src="office-vancouver-skyline.jpg" alt="" loading="lazy" decoding="async" />
                     <div class="location-hero-overlay"></div>
                     <div class="location-badge">
                       <span class="dot" aria-hidden="true"></span>
@@ -2186,15 +2095,12 @@
                   </iframe>
                 </div>
               </div>
-              <!-- ===== END UPDATED LOCATION CARD ===== -->
-
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- Footer -->
     <footer>
       <div class="container footer-inner">
         <div>
@@ -2211,7 +2117,6 @@
     </footer>
   </div>
 
-  <!-- Cookie banner / dialog -->
   <div
     class="cookie-banner"
     id="cookieBanner"
@@ -2239,7 +2144,6 @@
   </div>
 
   <script>
-    // Utilities: focus trap for a container
     function trapFocus(container, onDeactivate) {
       const focusablesSelector = [
         'a[href]',
@@ -2281,7 +2185,6 @@
       return () => document.removeEventListener('keydown', handleKeydown);
     }
 
-    // Mobile nav toggle + accessibility
     const navToggle = document.getElementById("navToggle");
     const header = document.querySelector("header");
     const mobileMenu = document.getElementById("mobileMenu");
@@ -2343,10 +2246,8 @@
       });
     }
 
-    // Year in footer
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Respect prefers-reduced-motion + Save-Data for background video
     (function () {
       const video = document.getElementById("bgVideo");
       if (!video) return;
@@ -2358,7 +2259,7 @@
         try { video.pause(); } catch (err) {}
         video.removeAttribute("autoplay");
         video.removeAttribute("loop");
-        video.currentTime = 0;
+        try { video.currentTime = 0; } catch (err) {}
         video.style.display = "none";
       }
 
@@ -2383,7 +2284,6 @@
       }
     })();
 
-    // Scroll reveal – sections
     (function () {
       const revealEls = document.querySelectorAll(".reveal");
       if (!("IntersectionObserver" in window) || !revealEls.length) {
@@ -2406,7 +2306,6 @@
       revealEls.forEach(el => observer.observe(el));
     })();
 
-    // Scroll reveal – staggered items
     (function () {
       const groups = document.querySelectorAll(".reveal-stagger");
       const items = document.querySelectorAll(".reveal-item");
@@ -2438,7 +2337,6 @@
       items.forEach(el => observer.observe(el));
     })();
 
-    // Hero metrics count-up animation
     (function () {
       const panel = document.querySelector(".hero-panel");
       if (!panel || !("IntersectionObserver" in window)) return;
@@ -2485,7 +2383,6 @@
       io.observe(panel);
     })();
 
-    // Company story toggle
     (function () {
       const profile = document.querySelector(".company-profile");
       if (!profile) return;
@@ -2510,7 +2407,6 @@
       });
     })();
 
-    // Services pill animation
     (function () {
       const servicesSection = document.getElementById("services");
       if (!servicesSection) return;
@@ -2542,7 +2438,6 @@
       observer.observe(servicesSection);
     })();
 
-    // Scroll progress bar
     (function () {
       const bar = document.querySelector(".scroll-progress");
       if (!bar) return;
@@ -2559,7 +2454,6 @@
       update();
     })();
 
-    // Spotlight hover (skip if reduced motion)
     (function () {
       const targets = document.querySelectorAll(".card, .simple-card, .team-card, .contact-card");
       if (!targets.length || !("matchMedia" in window)) return;
@@ -2578,7 +2472,6 @@
       });
     })();
 
-    // Subtle parallax (desktop only, reduced motion aware)
     (function () {
       const layers = document.querySelectorAll(".parallax-layer");
       if (!layers.length || !("matchMedia" in window)) return;
@@ -2608,7 +2501,6 @@
       window.addEventListener("pointermove", handleMove, { passive: true });
     })();
 
-    // ===== Project image panning + reset icon =====
     (function () {
       const frames = document.querySelectorAll(".image-frame[data-pan]");
       if (!frames.length) return;
@@ -2617,6 +2509,16 @@
       const isDefault = (x, y) => Math.abs(x - 50) < 0.1 && Math.abs(y - 50) < 0.1;
 
       const hintSeenKey = "enthalpy:panHintSeen";
+
+      function safeGet(key) {
+        try { return localStorage.getItem(key); } catch { return null; }
+      }
+      function safeSet(key, val) {
+        try { localStorage.setItem(key, val); } catch {}
+      }
+      function safeRemove(key) {
+        try { localStorage.removeItem(key); } catch {}
+      }
 
       frames.forEach(frame => {
         const img = frame.querySelector("img.project-image");
@@ -2628,9 +2530,8 @@
         let startX = 0, startY = 0;
         let posX = 50, posY = 50;
 
-        // Per-image persistence
         const key = "enthalpy:imgpos:" + (img.getAttribute("src") || "");
-        const saved = localStorage.getItem(key);
+        const saved = safeGet(key);
         if (saved) {
           try {
             const { x, y } = JSON.parse(saved);
@@ -2639,17 +2540,15 @@
           } catch {}
         }
 
-        // Apply initial state
         img.style.setProperty("--posx", posX + "%");
         img.style.setProperty("--posy", posY + "%");
         if (!isDefault(posX, posY)) frame.classList.add("is-panned");
 
-        // Hide hint if already seen (site-wide)
-        const seen = localStorage.getItem(hintSeenKey) === "1";
+        const seen = safeGet(hintSeenKey) === "1";
         if (hint && seen) hint.style.display = "none";
 
         function markHintSeen() {
-          localStorage.setItem(hintSeenKey, "1");
+          safeSet(hintSeenKey, "1");
           if (hint) hint.style.display = "none";
         }
 
@@ -2661,16 +2560,14 @@
 
           if (isDefault(posX, posY)) {
             frame.classList.remove("is-panned");
-            if (persist) localStorage.removeItem(key);
+            if (persist) safeRemove(key);
           } else {
             frame.classList.add("is-panned");
-            if (persist) localStorage.setItem(key, JSON.stringify({ x: posX, y: posY }));
+            if (persist) safeSet(key, JSON.stringify({ x: posX, y: posY }));
           }
         }
 
-        function reset() {
-          setPos(50, 50, true);
-        }
+        function reset() { setPos(50, 50, true); }
 
         resetBtn.addEventListener("click", (e) => {
           e.preventDefault();
@@ -2678,12 +2575,10 @@
           reset();
         });
 
-        // Double-click reset (desktop)
         img.addEventListener("dblclick", () => reset());
 
         img.addEventListener("pointerdown", (e) => {
           if (e.target && resetBtn.contains(e.target)) return;
-
           dragging = true;
           img.setPointerCapture(e.pointerId);
           startX = e.clientX;
@@ -2710,14 +2605,12 @@
         img.addEventListener("pointercancel", end);
         img.addEventListener("lostpointercapture", end);
 
-        // Keyboard reset support (R key) when frame is focused
         frame.addEventListener("keydown", (e) => {
           if (e.key && e.key.toLowerCase() === "r") reset();
         });
       });
     })();
 
-    /* ===== How we work stepper ===== */
     (function(){
       const section = document.getElementById("process");
       if(!section) return;
@@ -2794,6 +2687,9 @@
           li.textContent = t;
           elB.appendChild(li);
         });
+
+        const activeTab = tabs[stepIndex] || tabs[0];
+        if (activeTab?.id) panel.setAttribute("aria-labelledby", activeTab.id);
       }
 
       function setActive(activeTab){
@@ -2843,7 +2739,6 @@
       render(0);
     })();
 
-    /* ===== Smart intake summary builder ===== */
     (function(){
       const form = document.querySelector('#contact form');
       if(!form) return;
@@ -2864,9 +2759,7 @@
 
       if(!els.message || !els.build || !els.copy) return;
 
-      function clean(v){
-        return (v || "").toString().trim();
-      }
+      function clean(v){ return (v || "").toString().trim(); }
 
       function buildSummary(){
         const name = clean(els.name?.value);
@@ -2875,7 +2768,6 @@
         const stage = clean(els.stage?.value);
         const location = clean(els.location?.value);
         const timeline = clean(els.timeline?.value);
-
         const existing = clean(els.message.value);
 
         const lines = [];
@@ -2889,7 +2781,6 @@
         lines.push("");
         lines.push("Details / questions:");
         lines.push(existing && existing.length >= 10 ? existing : "•");
-
         return lines.join("\n");
       }
 
@@ -2913,7 +2804,6 @@
           await navigator.clipboard.writeText(text);
           setStatus("Summary copied.");
         }catch(e){
-          // Fallback
           els.message.value = text;
           els.message.focus();
           els.message.select();
@@ -2926,7 +2816,6 @@
         }
       });
 
-      // Optional: auto-suggest summary when user chooses scope/stage/timeline
       [els.scope, els.stage, els.timeline].forEach(sel=>{
         if(!sel) return;
         sel.addEventListener("change", ()=>{
@@ -2940,7 +2829,6 @@
   </script>
 
   <script type="module">
-    // Firebase config (public by design). Ensure Firebase rules are locked down server-side.
     const firebaseConfig = {
       apiKey: "AIzaSyBSCtJy6rFTe9dEI5k79V4lvFhs84NhNCw",
       authDomain: "enthalpyinc-e7320.firebaseapp.com",
@@ -3015,13 +2903,13 @@
       closeBtn.replaceWith(newCloseBtn);
 
       newAcceptBtn.addEventListener("click", () => {
-        localStorage.setItem(CONSENT_KEY, "accepted");
+        try { localStorage.setItem(CONSENT_KEY, "accepted"); } catch {}
         closeCookieBanner();
         initAnalytics();
       });
 
       newRejectBtn.addEventListener("click", () => {
-        localStorage.setItem(CONSENT_KEY, "rejected");
+        try { localStorage.setItem(CONSENT_KEY, "rejected"); } catch {}
         closeCookieBanner();
       });
 
@@ -3075,7 +2963,8 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      const existingConsent = localStorage.getItem(CONSENT_KEY);
+      let existingConsent = null;
+      try { existingConsent = localStorage.getItem(CONSENT_KEY); } catch {}
 
       if (existingConsent === "accepted") {
         initAnalytics();
