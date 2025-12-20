@@ -173,6 +173,7 @@
     button:focus-visible,
     input:focus-visible,
     textarea:focus-visible,
+    select:focus-visible,
     .image-frame:focus-visible {
       outline: none;
       box-shadow: var(--focus-ring);
@@ -999,6 +1000,196 @@
     }
     /* ======= END LOCATION HERO ADD-ON ======= */
 
+    /* ===== How we work (interactive stepper) ===== */
+    .process-shell{
+      display:grid;
+      gap: 1.25rem;
+      background: linear-gradient(145deg, #0c0f17, #151823);
+      border-radius: 16px;
+      border: 1px solid rgba(212,165,58,0.18);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.55);
+      overflow:hidden;
+    }
+
+    @media (min-width: 980px){
+      .process-shell{ grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); }
+    }
+
+    .process-tabs{
+      display:flex;
+      flex-direction:column;
+      gap: .25rem;
+      padding: 1.1rem;
+      background: rgba(5,6,8,0.55);
+      border-right: 1px solid rgba(212,165,58,0.10);
+    }
+
+    .process-tab{
+      width:100%;
+      text-align:left;
+      border: 1px solid rgba(148,163,184,0.18);
+      background: rgba(5,6,8,0.45);
+      border-radius: 14px;
+      padding: .85rem .9rem;
+      cursor:pointer;
+      transition: var(--transition);
+      display:grid;
+      grid-template-columns: 54px 1fr;
+      gap: .35rem .75rem;
+      align-items:center;
+    }
+
+    .process-tab:hover{
+      border-color: rgba(212,165,58,0.32);
+      background: rgba(16,19,33,0.75);
+    }
+
+    .process-tab.is-active{
+      border-color: rgba(212,165,58,0.5);
+      background: radial-gradient(circle at top left, rgba(212,165,58,0.12), rgba(8,10,20,0.92));
+      box-shadow: 0 12px 26px rgba(0,0,0,0.45);
+    }
+
+    .process-stepnum{
+      font-size: .8rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      grid-row: 1 / span 2;
+    }
+
+    .process-steptitle{
+      font-size: .9rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gray-100);
+    }
+
+    .process-stepsub{
+      font-size: .76rem;
+      color: var(--gray-600);
+    }
+
+    .process-panel{
+      padding: 1.35rem 1.35rem 1.4rem;
+      background: radial-gradient(circle at 15% 20%, rgba(212,165,58,0.10), transparent 55%),
+                linear-gradient(150deg, #0c0f17, #141827);
+    }
+
+    .process-panel h3{
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      margin-bottom: .45rem;
+    }
+
+    .process-panel p{
+      color: var(--gray-300);
+      font-size: .9rem;
+      max-width: 44rem;
+    }
+
+    .process-grid{
+      display:grid;
+      gap: 1rem;
+      margin-top: 1.15rem;
+    }
+
+    @media (min-width: 720px){
+      .process-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
+    .process-box{
+      background: rgba(5,6,8,0.55);
+      border: 1px solid rgba(148,163,184,0.2);
+      border-radius: 14px;
+      padding: 1rem 1rem 1.05rem;
+    }
+
+    .process-box h4{
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--gray-300);
+      margin-bottom: .6rem;
+    }
+
+    .process-box ul{
+      list-style:none;
+      display:grid;
+      gap: .45rem;
+    }
+
+    .process-box li{
+      display:flex;
+      gap: .55rem;
+      align-items:flex-start;
+      font-size: .84rem;
+      color: var(--gray-300);
+    }
+
+    .process-box li::before{
+      content:"";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), var(--accent));
+      margin-top: .45rem;
+      flex: 0 0 7px;
+    }
+
+    .process-cta{
+      margin-top: 1.1rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap: .6rem;
+    }
+
+    /* ===== Smart intake form ===== */
+    .form-grid{
+      display:grid;
+      gap: 0.9rem;
+    }
+
+    @media (min-width: 720px){
+      .form-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.9rem 1rem;
+      }
+      .form-grid .span-2{ grid-column: 1 / -1; }
+    }
+
+    select{
+      width: 100%;
+      padding: 0.55rem 0.7rem;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: #050608;
+      color: var(--white);
+      font-size: 0.86rem;
+      font-family: inherit;
+    }
+
+    select:focus{
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 1px rgba(212, 165, 58, 0.5);
+    }
+
+    .form-actions-row{
+      margin-top: .55rem;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap: .45rem;
+    }
+
+    .form-helper{
+      font-size: .75rem;
+      color: var(--gray-600);
+      letter-spacing: .02em;
+    }
+
     /* Footer */
     footer {
       border-top: 1px solid rgba(31, 41, 55, 0.9);
@@ -1154,6 +1345,7 @@
         <nav class="nav-links" aria-label="Primary navigation (desktop)">
           <a href="#services">Services</a>
           <a href="#markets">Markets</a>
+          <a href="#process">Process</a>
           <a href="#projects">Projects</a>
           <a href="#team">Team</a>
           <a href="#careers">Careers</a>
@@ -1183,6 +1375,7 @@
         <nav class="nav-links" aria-label="Primary navigation (mobile)">
           <a href="#services">Services</a>
           <a href="#markets">Markets</a>
+          <a href="#process">Process</a>
           <a href="#projects">Projects</a>
           <a href="#team">Team</a>
           <a href="#careers">Careers</a>
@@ -1419,6 +1612,85 @@
               </p>
               <span>Defense agencies • Public safety • Secure infrastructure</span>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- How we work -->
+      <section id="process" class="reveal">
+        <div class="container">
+          <header class="section-header">
+            <h2>How we work</h2>
+            <p>
+              A partner-led workflow designed to keep performance, constructability and long-term operations aligned from day one.
+            </p>
+          </header>
+
+          <div class="process-shell reveal-item" aria-label="How we work">
+            <div class="process-tabs" role="tablist" aria-label="Project workflow steps">
+              <button type="button" class="process-tab is-active" role="tab" aria-selected="true" aria-controls="stepPanel" data-step="0">
+                <span class="process-stepnum">01</span>
+                <span class="process-steptitle">Discovery</span>
+                <span class="process-stepsub">Goals, constraints, stakeholders</span>
+              </button>
+
+              <button type="button" class="process-tab" role="tab" aria-selected="false" aria-controls="stepPanel" data-step="1">
+                <span class="process-stepnum">02</span>
+                <span class="process-steptitle">Baseline</span>
+                <span class="process-stepsub">Loads, systems, data, risks</span>
+              </button>
+
+              <button type="button" class="process-tab" role="tab" aria-selected="false" aria-controls="stepPanel" data-step="2">
+                <span class="process-stepnum">03</span>
+                <span class="process-steptitle">Options</span>
+                <span class="process-stepsub">Compare pathways & impacts</span>
+              </button>
+
+              <button type="button" class="process-tab" role="tab" aria-selected="false" aria-controls="stepPanel" data-step="3">
+                <span class="process-stepnum">04</span>
+                <span class="process-steptitle">Delivery</span>
+                <span class="process-stepsub">Documentation & coordination</span>
+              </button>
+
+              <button type="button" class="process-tab" role="tab" aria-selected="false" aria-controls="stepPanel" data-step="4">
+                <span class="process-stepnum">05</span>
+                <span class="process-steptitle">Verification</span>
+                <span class="process-stepsub">Field checks & issue closure</span>
+              </button>
+
+              <button type="button" class="process-tab" role="tab" aria-selected="false" aria-controls="stepPanel" data-step="5">
+                <span class="process-stepnum">06</span>
+                <span class="process-steptitle">Handover</span>
+                <span class="process-stepsub">Turnover & follow-up</span>
+              </button>
+            </div>
+
+            <div class="process-panel" id="stepPanel" role="tabpanel" tabindex="0" aria-live="polite">
+              <div class="process-panel-top">
+                <div class="tag">Step <span id="processStepIndex">01</span></div>
+                <h3 id="processTitle">Discovery</h3>
+                <p id="processDesc">
+                  We start with outcomes: comfort, energy, resilience, schedule and budget. We confirm constraints and define what “success” means with the decision-makers.
+                </p>
+              </div>
+
+              <div class="process-grid">
+                <div class="process-box">
+                  <h4>What we clarify</h4>
+                  <ul id="processBulletsA"></ul>
+                </div>
+
+                <div class="process-box">
+                  <h4>What you receive</h4>
+                  <ul id="processBulletsB"></ul>
+                </div>
+              </div>
+
+              <div class="process-cta">
+                <a class="btn btn-primary" href="#contact">Start a project conversation</a>
+                <a class="btn btn-ghost" href="#services">View services</a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1754,39 +2026,93 @@
                   style="position:absolute;left:-9999px;"
                 />
 
-                <div>
-                  <label for="name">Name</label>
-                  <input id="name" name="name" type="text" placeholder="Your name" required autocomplete="name" />
-                </div>
+                <!-- Smart intake fields -->
+                <div class="form-grid">
+                  <div>
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" placeholder="Your name" required autocomplete="name" />
+                  </div>
 
-                <div>
-                  <label for="email">Email</label>
-                  <input id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email" />
-                </div>
+                  <div>
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email" />
+                  </div>
 
-                <div>
-                  <label for="org">Organization</label>
-                  <input id="org" name="organization" type="text" placeholder="Company / organization" autocomplete="organization" />
-                </div>
+                  <div class="span-2">
+                    <label for="org">Organization</label>
+                    <input id="org" name="organization" type="text" placeholder="Company / organization" autocomplete="organization" />
+                  </div>
 
-                <div>
-                  <label for="message">Project / inquiry</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    placeholder="Briefly describe your project, goals or questions."
-                    minlength="30"
-                    required
-                  ></textarea>
-                </div>
+                  <div>
+                    <label for="scope">What are you looking for?</label>
+                    <select id="scope" name="scope">
+                      <option value="">Select a scope (optional)</option>
+                      <option>Design + Contract Administration</option>
+                      <option>Building Performance / Verification</option>
+                      <option>Energy Management / Optimization</option>
+                      <option>Energy Modelling / Incentives</option>
+                      <option>Decarbonization Roadmap</option>
+                      <option>LEED / WELL / Fitwel Support</option>
+                      <option>Project Management / Owner’s Rep</option>
+                      <option>Not sure yet</option>
+                    </select>
+                  </div>
 
-                <div>
-                  <button type="submit" class="btn btn-primary">Send inquiry</button>
-                </div>
+                  <div>
+                    <label for="stage">Project stage</label>
+                    <select id="stage" name="project_stage">
+                      <option value="">Select a stage (optional)</option>
+                      <option>Concept / Feasibility</option>
+                      <option>Schematic Design</option>
+                      <option>Design Development</option>
+                      <option>Tender / Procurement</option>
+                      <option>Construction</option>
+                      <option>Existing building / Operations</option>
+                    </select>
+                  </div>
 
-                <p class="contact-meta" style="margin-top:0.6rem;">
-                  We use the information you provide only to respond to your inquiry and to follow up on your project or request.
-                </p>
+                  <div>
+                    <label for="location">Location</label>
+                    <input id="location" name="project_location" type="text" placeholder="City / region" autocomplete="address-level2" />
+                  </div>
+
+                  <div>
+                    <label for="timeline">Target timeline</label>
+                    <select id="timeline" name="timeline">
+                      <option value="">Select a timeline (optional)</option>
+                      <option>ASAP / Urgent</option>
+                      <option>Next 1–2 months</option>
+                      <option>Next 3–6 months</option>
+                      <option>6–12 months</option>
+                      <option>12+ months</option>
+                    </select>
+                  </div>
+
+                  <div class="span-2">
+                    <label for="message">Project / inquiry</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      placeholder="Briefly describe your project, goals or questions."
+                      minlength="30"
+                      required
+                    ></textarea>
+
+                    <div class="form-actions-row" aria-label="Form helper actions">
+                      <button type="button" class="btn btn-ghost btn-sm" id="buildSummaryBtn">Build summary</button>
+                      <button type="button" class="btn btn-ghost btn-sm" id="copySummaryBtn">Copy summary</button>
+                      <span class="form-helper" id="summaryStatus" role="status" aria-live="polite"></span>
+                    </div>
+
+                    <p class="contact-meta" style="margin-top:0.6rem;">
+                      We use the information you provide only to respond to your inquiry and to follow up on your project or request.
+                    </p>
+                  </div>
+
+                  <div class="span-2">
+                    <button type="submit" class="btn btn-primary">Send inquiry</button>
+                  </div>
+                </div>
               </form>
             </div>
 
@@ -1804,7 +2130,7 @@
                   <br /><br />
                   Telephone:
                   <br />
-                  <a href="tel:+17789452781">+1 778 945 2781</a>
+                  <a href="tel:+17789452781">+1 778 945 278 81</a>
                 </p>
               </div>
 
@@ -2387,6 +2713,227 @@
         // Keyboard reset support (R key) when frame is focused
         frame.addEventListener("keydown", (e) => {
           if (e.key && e.key.toLowerCase() === "r") reset();
+        });
+      });
+    })();
+
+    /* ===== How we work stepper ===== */
+    (function(){
+      const section = document.getElementById("process");
+      if(!section) return;
+
+      const tabs = Array.from(section.querySelectorAll(".process-tab"));
+      const panel = section.querySelector("#stepPanel");
+      const elIndex = section.querySelector("#processStepIndex");
+      const elTitle = section.querySelector("#processTitle");
+      const elDesc  = section.querySelector("#processDesc");
+      const elA = section.querySelector("#processBulletsA");
+      const elB = section.querySelector("#processBulletsB");
+      if(!tabs.length || !panel || !elTitle || !elDesc || !elA || !elB) return;
+
+      const steps = [
+        {
+          idx: "01",
+          title: "Discovery",
+          desc: "We start with outcomes: comfort, energy, resilience, schedule and budget. We confirm constraints and define what “success” means with the decision-makers.",
+          a: ["Project goals and success metrics", "Schedule, budget and risk drivers", "Stakeholders and decision flow", "Data availability and assumptions"],
+          b: ["A scoped approach and recommended next steps", "A clear set of inputs we need (if any)", "A concise summary you can share internally"]
+        },
+        {
+          idx: "02",
+          title: "Baseline",
+          desc: "We establish a technical baseline: systems, loads, envelope assumptions and utility or modelling inputs—so options can be compared fairly.",
+          a: ["Existing conditions or design basis", "Loads and system constraints", "Utility history (if applicable)", "Code / incentive / certification requirements"],
+          b: ["Baseline model or performance snapshot", "Constraints + risks list", "A short list of high-value improvement areas"]
+        },
+        {
+          idx: "03",
+          title: "Options",
+          desc: "We evaluate pathways and make tradeoffs visible: energy, carbon, comfort, constructability and cost—so decisions are grounded and defensible.",
+          a: ["System options and control strategies", "Phasing and constructability constraints", "Resilience requirements", "Cost / benefit sensitivity"],
+          b: ["Options comparison (clear and decision-ready)", "Recommended pathway with rationale", "Inputs for incentives / reporting as needed"]
+        },
+        {
+          idx: "04",
+          title: "Delivery",
+          desc: "We coordinate the technical work into buildable documents and align the team—so design intent survives schedules and procurement.",
+          a: ["Scope clarity and interfaces", "Coordination across disciplines", "Tender / procurement constraints", "Owner priorities and change control"],
+          b: ["Drawings/spec input (as applicable)", "Tender support / addenda responses", "Engineering guidance that stays practical"]
+        },
+        {
+          idx: "05",
+          title: "Verification",
+          desc: "We verify performance in the field and track issues to closure—protecting owners from ‘paper performance’ and ensuring systems operate as intended.",
+          a: ["Field checks and functional expectations", "Deficiency tracking workflows", "Documentation and commissioning interfaces", "Turnover readiness"],
+          b: ["Issues log with clear ownership", "Performance verification findings", "Structured closeout support"]
+        },
+        {
+          idx: "06",
+          title: "Handover",
+          desc: "We support turnover and early operations—so teams can run the building confidently and performance targets remain achievable after occupancy.",
+          a: ["Operator needs and training priorities", "Control sequences and setpoints", "Seasonal tuning requirements", "Performance tracking approach"],
+          b: ["Turnover guidance + O&M alignment", "Early-operations recommendations", "A path for ongoing optimization"]
+        }
+      ];
+
+      function render(stepIndex){
+        const s = steps[stepIndex] || steps[0];
+        if(elIndex) elIndex.textContent = s.idx;
+        elTitle.textContent = s.title;
+        elDesc.textContent = s.desc;
+
+        elA.innerHTML = "";
+        elB.innerHTML = "";
+        s.a.forEach(t => {
+          const li = document.createElement("li");
+          li.textContent = t;
+          elA.appendChild(li);
+        });
+        s.b.forEach(t => {
+          const li = document.createElement("li");
+          li.textContent = t;
+          elB.appendChild(li);
+        });
+      }
+
+      function setActive(activeTab){
+        tabs.forEach(tab=>{
+          const isActive = tab === activeTab;
+          tab.classList.toggle("is-active", isActive);
+          tab.setAttribute("aria-selected", isActive ? "true" : "false");
+          tab.setAttribute("tabindex", isActive ? "0" : "-1");
+        });
+      }
+
+      tabs.forEach((tab)=>{
+        tab.addEventListener("click", ()=>{
+          const i = Number(tab.getAttribute("data-step") || "0");
+          setActive(tab);
+          render(i);
+          panel.focus({ preventScroll: true });
+        });
+
+        tab.addEventListener("keydown", (e)=>{
+          const current = tabs.findIndex(t => t.classList.contains("is-active"));
+          if(e.key === "ArrowDown" || e.key === "ArrowRight"){
+            e.preventDefault();
+            const next = tabs[(current + 1) % tabs.length];
+            next.click();
+            next.focus();
+          }
+          if(e.key === "ArrowUp" || e.key === "ArrowLeft"){
+            e.preventDefault();
+            const prev = tabs[(current - 1 + tabs.length) % tabs.length];
+            prev.click();
+            prev.focus();
+          }
+          if(e.key === "Home"){
+            e.preventDefault();
+            tabs[0].click();
+            tabs[0].focus();
+          }
+          if(e.key === "End"){
+            e.preventDefault();
+            tabs[tabs.length - 1].click();
+            tabs[tabs.length - 1].focus();
+          }
+        });
+      });
+
+      render(0);
+    })();
+
+    /* ===== Smart intake summary builder ===== */
+    (function(){
+      const form = document.querySelector('#contact form');
+      if(!form) return;
+
+      const els = {
+        name: form.querySelector('#name'),
+        email: form.querySelector('#email'),
+        org: form.querySelector('#org'),
+        scope: form.querySelector('#scope'),
+        stage: form.querySelector('#stage'),
+        location: form.querySelector('#location'),
+        timeline: form.querySelector('#timeline'),
+        message: form.querySelector('#message'),
+        build: form.querySelector('#buildSummaryBtn'),
+        copy: form.querySelector('#copySummaryBtn'),
+        status: form.querySelector('#summaryStatus')
+      };
+
+      if(!els.message || !els.build || !els.copy) return;
+
+      function clean(v){
+        return (v || "").toString().trim();
+      }
+
+      function buildSummary(){
+        const name = clean(els.name?.value);
+        const org = clean(els.org?.value);
+        const scope = clean(els.scope?.value);
+        const stage = clean(els.stage?.value);
+        const location = clean(els.location?.value);
+        const timeline = clean(els.timeline?.value);
+
+        const existing = clean(els.message.value);
+
+        const lines = [];
+        lines.push("Project inquiry — Enthalpy Engineering");
+        lines.push("");
+        if(name) lines.push(`Contact: ${name}${org ? " — " + org : ""}`);
+        if(location) lines.push(`Location: ${location}`);
+        if(scope) lines.push(`Scope: ${scope}`);
+        if(stage) lines.push(`Stage: ${stage}`);
+        if(timeline) lines.push(`Timeline: ${timeline}`);
+        lines.push("");
+        lines.push("Details / questions:");
+        lines.push(existing && existing.length >= 10 ? existing : "•");
+
+        return lines.join("\n");
+      }
+
+      function setStatus(text){
+        if(!els.status) return;
+        els.status.textContent = text;
+        window.clearTimeout(setStatus._t);
+        setStatus._t = window.setTimeout(()=>{ els.status.textContent = ""; }, 2200);
+      }
+
+      els.build.addEventListener("click", ()=>{
+        const summary = buildSummary();
+        els.message.value = summary;
+        setStatus("Summary added.");
+        els.message.focus();
+      });
+
+      els.copy.addEventListener("click", async ()=>{
+        const text = buildSummary();
+        try{
+          await navigator.clipboard.writeText(text);
+          setStatus("Summary copied.");
+        }catch(e){
+          // Fallback
+          els.message.value = text;
+          els.message.focus();
+          els.message.select();
+          try{
+            document.execCommand("copy");
+            setStatus("Summary copied.");
+          }catch(_){
+            setStatus("Copy not available—summary inserted.");
+          }
+        }
+      });
+
+      // Optional: auto-suggest summary when user chooses scope/stage/timeline
+      [els.scope, els.stage, els.timeline].forEach(sel=>{
+        if(!sel) return;
+        sel.addEventListener("change", ()=>{
+          const v = clean(els.message.value);
+          if(v && v.includes("Project inquiry — Enthalpy Engineering")) return;
+          if(v.length > 120) return;
+          els.message.value = buildSummary();
         });
       });
     })();
