@@ -1406,9 +1406,8 @@
 
     /* Sections: solid white / soft gray (do NOT show video through them) */
     section{
-      background: #FFFFFF !important;
-      backdrop-filter: none !important;
-    }
+  background: transparent !important;
+}
     section:nth-of-type(even){
       background: #F6F8FB !important;
     }
@@ -1656,6 +1655,100 @@
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+}
+
+
+/* === Show background video behind SERVICES section === */
+.video-bg{ background: transparent !important; } /* don't paint over the video */
+#services{ background: transparent !important; } /* remove the solid white section fill */
+/* Optional: add a very light veil for readability (tweak or delete) */
+#services .container{ background: rgba(255,255,255,0.20); border-radius: 24px; }
+
+
+/* === Global: let background video show through page sections === */
+section{
+  background: transparent !important;
+}
+
+/* Keep key content readable by giving common surfaces a light veil */
+.section-surface,
+.container.section-surface{
+  background: rgba(255,255,255,0.18);
+  border-radius: 24px;
+}
+
+/* Common card-like components stay mostly solid but slightly translucent */
+.card,
+.service-card,
+.workflow-card,
+.info-card,
+.tile{
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+
+/* === FORCE transparency for How We Work info boxes (highest specificity) === */
+#stepPanel .card,
+#stepPanel .card *{
+  background-color: transparent;
+}
+
+/* Re-apply controlled translucent surface ONLY to the card container */
+#stepPanel .card{
+  background: rgba(255,255,255,0.82) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+
+/* === Make these sections show the background video through === */
+#markets,
+#projects,   /* Selected Experience */
+#careers,
+#contact{
+  background: transparent !important;
+}
+
+/* Remove any solid white wrappers inside these sections */
+#markets .container,
+#projects .container,
+#careers .container,
+#contact .container{
+  background: rgba(255,255,255,0.14) !important; /* light readability veil */
+  border-radius: 24px;
+}
+
+/* Keep cards readable but not opaque */
+#markets .card,
+#projects .card,
+#careers .card,
+#contact .card,
+#markets .tile,
+#projects .tile{
+  background: rgba(255,255,255,0.82) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+
+/* === Careers: improve readability over background video (left copy block) === */
+#careers .careers-inner > div:first-child{
+  background: rgba(255,255,255,0.40) !important; /* translucent veil */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+  border-radius: 24px;
+  padding: 44px 46px;
+}
+
+/* Ensure spacing stays nice on smaller screens */
+@media (max-width: 860px){
+  #careers .careers-inner > div:first-child{
+    padding: 28px 24px;
+  }
 }
 
 </style>
