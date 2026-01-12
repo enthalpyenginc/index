@@ -1823,6 +1823,41 @@ section{
   background: transparent !important;
 }
 
+
+/* === How We Work readability + true glass boxes === */
+
+/* Give the top copy a subtle glass panel so text stays readable over any photo */
+#stepPanel .process-panel-top{
+  background: rgba(255,255,255,0.38) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(15,23,42,0.10);
+  border-radius: 18px;
+  padding: 18px 18px;
+}
+
+/* Ensure top copy text has enough contrast */
+#stepPanel .process-panel-top h3,
+#stepPanel .process-panel-top p,
+#stepPanel .process-panel-top .tag{
+  color: #0F172A !important;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.35);
+}
+
+/* Make the two "What we clarify / What you receive" boxes genuinely translucent */
+#stepPanel .process-box{
+  background: rgba(255,255,255,0.32) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(15,23,42,0.10);
+  box-shadow: 0 18px 45px rgba(15,23,42,0.14);
+}
+
+/* Prevent inner elements from repainting opaque backgrounds */
+#stepPanel .process-box *{
+  background: transparent !important;
+}
+
 </style>
 </head>
 
