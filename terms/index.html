@@ -1,13 +1,13 @@
-l<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Terms of Use | Enthalpy Engineering</title>
-  <link rel="canonical" href="https://enthalpyinc.com/terms" />
+  <title>Privacy Policy | Enthalpy Engineering</title>
+  <link rel="canonical" href="https://enthalpyinc.com/privacy" />
 
-  <meta name="description" content="Terms of Use for Enthalpy Engineering Incorporated." />
+  <meta name="description" content="Privacy Policy for Enthalpy Engineering Incorporated." />
   <meta name="robots" content="index, follow" />
 
   <!-- Security & compliance (Step 4) -->
@@ -23,9 +23,9 @@ l<!DOCTYPE html>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
   <!-- Social -->
-  <meta property="og:title" content="Terms of Use | Enthalpy Engineering" />
-  <meta property="og:description" content="Terms of Use for enthalpyinc.com." />
-  <meta property="og:url" content="https://enthalpyinc.com/terms" />
+  <meta property="og:title" content="Privacy Policy | Enthalpy Engineering" />
+  <meta property="og:description" content="How Enthalpy Engineering Incorporated handles personal information and analytics consent." />
+  <meta property="og:url" content="https://enthalpyinc.com/privacy" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://enthalpyinc.com/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -37,16 +37,24 @@ l<!DOCTYPE html>
 
   <style>
     :root {
-      --gold: #d4a53a;
-      --gold-dark: #b18a30;
-      --black: #050608;
-      --gray-100: #f7f7f9;
-      --gray-300: #d0d4dd;
-      --gray-500: #9ca3af;
-      --gray-600: #6b7280;
-      --white: #ffffff;
+      /* Brand (match homepage) */
+      --green: #5FB32E;
+      --green-dark: #4FA026;
+      --navy: #0B3C5D;
+
+      /* Neutrals */
+      --bg: #F6F8FB;
+      --surface: #FFFFFF;
+      --surface-2: #F0F4F8;
+      --ink: #0B3C5D;
+      --ink-soft: rgba(11, 60, 93, 0.85);
+      --muted: rgba(11, 60, 93, 0.62);
+      --border: rgba(11, 60, 93, 0.14);
+
       --max-width: 1120px;
-      --transition: 0.25s ease;
+      --radius-lg: 14px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
+      --transition: 0.22s ease;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -54,10 +62,11 @@ l<!DOCTYPE html>
 
     body {
       font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background-color: var(--black);
-      color: var(--white);
+      background: var(--bg);
+      color: var(--ink);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      position: relative;
     }
 
     img { max-width: 100%; display: block; }
@@ -67,11 +76,12 @@ l<!DOCTYPE html>
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background: radial-gradient(
-        circle at top left,
-        rgba(30, 34, 46, 0.25) 0,
-        rgba(10, 12, 18, 0.85) 55%
-      );
+      position: relative;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(95, 179, 46, 0.08) 0, rgba(95, 179, 46, 0) 48%),
+        radial-gradient(circle at 80% 10%, rgba(11, 60, 93, 0.08) 0, rgba(11, 60, 93, 0) 52%),
+        linear-gradient(180deg, #FFFFFF 0%, var(--bg) 60%);
     }
 
     .container {
@@ -81,18 +91,21 @@ l<!DOCTYPE html>
       padding: 0 1.5rem;
     }
 
+    section[id] { scroll-margin-top: 88px; }
+
     .skip-link {
       position: absolute;
       left: -999px;
       top: 0;
-      padding: 0.5rem 1rem;
-      background: var(--gold);
-      color: #050608;
+      padding: 0.55rem 1rem;
+      background: var(--green);
+      color: #ffffff;
       z-index: 999;
       font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       border-radius: 999px;
+      box-shadow: 0 10px 24px rgba(95, 179, 46, 0.28);
     }
     .skip-link:focus { left: 1rem; top: 1rem; }
 
@@ -100,9 +113,10 @@ l<!DOCTYPE html>
       position: sticky;
       top: 0;
       z-index: 30;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(to bottom, rgba(5, 6, 8, 0.96), rgba(5, 6, 8, 0.92));
-      border-bottom: 1px solid rgba(212, 165, 58, 0.15);
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .nav {
@@ -113,10 +127,13 @@ l<!DOCTYPE html>
       padding: 0.85rem 0;
     }
 
+    .nav-left { display: flex; align-items: center; gap: 0.75rem; }
+
     .nav-left-link {
       display: flex;
       align-items: center;
       gap: 0.75rem;
+      text-decoration: none;
       color: inherit;
     }
 
@@ -125,9 +142,10 @@ l<!DOCTYPE html>
       height: 52px;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
-      background: #000;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.10);
+      background: #ffffff;
       flex: 0 0 52px;
+      border: 1px solid rgba(11, 60, 93, 0.10);
     }
 
     .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
@@ -137,20 +155,21 @@ l<!DOCTYPE html>
       letter-spacing: 0.2em;
       font-size: 0.85rem;
       text-transform: uppercase;
+      color: var(--ink);
     }
 
     .logo-text-sub {
       font-size: 0.7rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--gray-600);
+      color: var(--muted);
     }
 
     .logo-text-tagline {
       font-size: 0.58rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.55);
+      color: rgba(11, 60, 93, 0.62);
       margin-top: 0.15rem;
       line-height: 1.05;
       white-space: nowrap;
@@ -166,7 +185,7 @@ l<!DOCTYPE html>
     }
 
     .nav-links a {
-      color: var(--gray-300);
+      color: rgba(11, 60, 93, 0.78);
       position: relative;
       padding-bottom: 0.15rem;
     }
@@ -178,40 +197,54 @@ l<!DOCTYPE html>
       bottom: 0;
       width: 0;
       height: 2px;
-      background: var(--gold);
+      background: var(--green);
       transition: var(--transition);
     }
 
+    .nav-links a:hover { color: var(--ink); }
     .nav-links a:hover::after { width: 100%; }
 
     .btn {
       border-radius: 999px;
       padding: 0.55rem 1.4rem;
-      border: 1px solid rgba(212, 165, 58, 0.4);
+      border: 1px solid transparent;
       font-size: 0.8rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       background: none;
-      color: var(--gray-300);
+      color: inherit;
       transition: var(--transition);
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
     }
-    .btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(212, 165, 58, 0.04); }
+
+    .btn-ghost {
+      border-color: rgba(11, 60, 93, 0.22);
+      color: rgba(11, 60, 93, 0.82);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(95, 179, 46, 0.55);
+      color: var(--green-dark);
+      background: rgba(95, 179, 46, 0.08);
+      transform: translateY(-1px);
+    }
 
     main { flex: 1; }
-    .terms { padding: 3.5rem 0 3rem; }
 
-    .terms-card {
+    .privacy { padding: 3.5rem 0 3rem; }
+
+    .privacy-card {
       max-width: 920px;
       margin: 0 auto;
       border-radius: 16px;
-      background: linear-gradient(145deg, #0c0f17, #151823);
-      border: 1px solid rgba(212, 165, 58, 0.16);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+      background: linear-gradient(180deg, #ffffff, #f9fbfd);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
       padding: 2.1rem 1.75rem;
     }
 
@@ -219,65 +252,70 @@ l<!DOCTYPE html>
       text-transform: uppercase;
       letter-spacing: 0.2em;
       font-size: 0.76rem;
-      color: var(--gray-300);
+      color: rgba(11, 60, 93, 0.70);
       margin-bottom: 0.75rem;
     }
 
     h1 {
       font-size: clamp(2rem, 3vw, 2.4rem);
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       margin-bottom: 0.65rem;
+      color: var(--ink);
     }
 
     .meta {
-      color: var(--gray-300);
+      color: rgba(11, 60, 93, 0.72);
       font-size: 0.9rem;
       margin-bottom: 1.4rem;
     }
-    .meta strong { color: var(--gray-100); }
 
-    .terms-card h2 {
+    .meta strong { color: var(--ink); }
+
+    .privacy-card h2 {
       font-size: 0.95rem;
       text-transform: uppercase;
       letter-spacing: 0.14em;
       margin-top: 1.4rem;
       margin-bottom: 0.45rem;
+      color: var(--ink);
     }
 
-    .terms-card p {
-      color: var(--gray-300);
+    .privacy-card p {
+      color: var(--ink-soft);
       font-size: 0.95rem;
       margin-bottom: 0.8rem;
     }
 
-    .terms-card ul {
+    .privacy-card ul {
       margin: 0.25rem 0 0.9rem 1.1rem;
-      color: var(--gray-300);
+      color: var(--ink-soft);
       font-size: 0.95rem;
     }
 
-    .terms-card li { margin-bottom: 0.35rem; }
+    .privacy-card li { margin-bottom: 0.35rem; }
 
-    .terms-card a {
-      color: var(--gold);
+    .privacy-card a {
+      color: var(--green-dark);
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
     .divider {
       height: 1px;
-      background: rgba(212, 165, 58, 0.18);
+      background: rgba(11, 60, 93, 0.14);
       margin: 1.25rem 0 0.75rem;
     }
 
     footer {
-      border-top: 1px solid rgba(31, 41, 55, 0.9);
-      background: #050608;
+      border-top: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       padding: 1.4rem 0 1.6rem;
       font-size: 0.76rem;
-      color: var(--gray-600);
+      color: rgba(11, 60, 93, 0.70);
     }
 
     .footer-inner {
@@ -289,8 +327,8 @@ l<!DOCTYPE html>
     }
 
     .footer-links { display: flex; flex-wrap: wrap; gap: 1.1rem; }
-    .footer-links a { color: var(--gray-500); }
-    .footer-links a:hover { color: var(--gold); }
+    .footer-links a { color: rgba(11, 60, 93, 0.70); text-decoration: none; }
+    .footer-links a:hover { color: var(--green-dark); }
 
     .cookie-banner {
       position: fixed;
@@ -298,10 +336,12 @@ l<!DOCTYPE html>
       right: 0;
       bottom: 0;
       z-index: 50;
-      background: rgba(5, 6, 8, 0.98);
-      border-top: 1px solid rgba(212, 165, 58, 0.3);
+      background: rgba(255, 255, 255, 0.96);
+      border-top: 1px solid rgba(11, 60, 93, 0.18);
       padding: 0.85rem 1.25rem;
       display: none;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .cookie-banner-inner {
@@ -316,26 +356,26 @@ l<!DOCTYPE html>
 
     .cookie-text {
       font-size: 0.78rem;
-      color: var(--gray-300);
+      color: rgba(11, 60, 93, 0.76);
       flex: 1 1 220px;
     }
 
     .cookie-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
     .btn-primary-inline {
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-      color: #050608;
-      box-shadow: 0 10px 25px rgba(212, 165, 58, 0.55);
-      border: 1px solid transparent;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      box-shadow: 0 10px 25px rgba(95, 179, 46, 0.28);
+      border: 1px solid rgba(95, 179, 46, 0.25);
     }
     .btn-primary-inline:hover {
       transform: translateY(-1px);
-      box-shadow: 0 14px 32px rgba(212, 165, 58, 0.7);
+      box-shadow: 0 14px 32px rgba(95, 179, 46, 0.36);
     }
 
     @media (max-width: 880px) {
       .nav-links { display: none; }
-      .terms-card { padding: 1.7rem 1.25rem; }
+      .privacy-card { padding: 1.7rem 1.25rem; }
     }
 
     @media (max-width: 600px) {
@@ -353,7 +393,7 @@ l<!DOCTYPE html>
 
     <header id="top">
       <div class="container nav">
-        <div>
+        <div class="nav-left">
           <a href="/" class="nav-left-link" aria-label="Enthalpy Engineering home">
             <div class="logo-mark">
               <img src="/enthalpy-logo.png" alt="Enthalpy Engineering Incorporated logo" width="52" height="52" decoding="async" />
@@ -375,61 +415,67 @@ l<!DOCTYPE html>
           <a href="/#contact">Contact</a>
         </nav>
 
-        <a class="btn" href="/#contact">Let’s Talk</a>
+        <a class="btn btn-ghost" href="/#contact">Let’s Talk</a>
       </div>
     </header>
 
-    <main id="main" class="terms">
+    <main id="main" class="privacy">
       <div class="container">
-        <article class="terms-card" aria-label="Terms of Use">
+        <article class="privacy-card" aria-label="Privacy Policy">
           <div class="eyebrow">Legal</div>
-          <h1>Terms of Use</h1>
+          <h1>Privacy Policy</h1>
           <p class="meta">Last updated: <strong><span id="lastUpdated">—</span></strong></p>
 
           <div class="divider" aria-hidden="true"></div>
 
-          <h2>1. Acceptance of these terms</h2>
-          <p>By accessing or using this website (the “Site”), you agree to these Terms of Use. If you do not agree, do not use the Site.</p>
+          <h2>1. Who we are</h2>
+          <p>Enthalpy Engineering Incorporated (“Enthalpy”, “we”, “us”) operates this website at enthalpyinc.com.</p>
 
-          <h2>2. Who we are</h2>
-          <p>The Site is operated by Enthalpy Engineering Incorporated (“Enthalpy”, “we”, “us”).</p>
-
-          <h2>3. Informational purpose only</h2>
-          <p>The Site is provided for general informational purposes only. Content on the Site is not professional engineering advice and does not create an engineer-client relationship.</p>
-
-          <h2>4. No warranties</h2>
-          <p>The Site and its content are provided “as is” and “as available”. To the fullest extent permitted by law, we make no warranties or representations of any kind regarding the accuracy, completeness, reliability, availability, or suitability of the Site or its content.</p>
-
-          <h2>5. Limitation of liability</h2>
-          <p>To the fullest extent permitted by law, Enthalpy will not be liable for any direct, indirect, incidental, consequential, special, or punitive damages, or any loss of profits or revenues, arising out of or related to your use of (or inability to use) the Site.</p>
-
-          <h2>6. Third-party links</h2>
-          <p>The Site may contain links to third-party websites. We do not control and are not responsible for third-party sites, content, or practices. Links do not imply endorsement.</p>
-
-          <h2>7. Intellectual property</h2>
-          <p>Unless otherwise stated, the Site and its content (including text, images, graphics, and logos) are owned by Enthalpy or its licensors and are protected by applicable intellectual property laws. You may view and print pages for personal, non-commercial use only. Any other use requires prior written permission.</p>
-
-          <h2>8. Permitted use</h2>
-          <p>You agree not to:</p>
+          <h2>2. What information we collect</h2>
           <ul>
-            <li>Use the Site in any way that violates applicable laws or regulations.</li>
-            <li>Attempt to gain unauthorized access to the Site, servers, or networks.</li>
-            <li>Interfere with or disrupt the Site’s operation or security.</li>
-            <li>Copy, scrape, or harvest content from the Site at scale without permission.</li>
+            <li><strong>Information you provide:</strong> If you submit an inquiry form, we collect the information you enter (such as your name, email address, organization, and message).</li>
+            <li><strong>Analytics data (optional):</strong> If you consent to analytics cookies, we collect usage information about how visitors interact with the site (for example pages viewed, approximate location, device/browser information). This data is used to improve the website.</li>
           </ul>
 
-          <h2>9. Privacy</h2>
-          <p>Your use of the Site is also subject to our Privacy Policy: <a href="/privacy">https://enthalpyinc.com/privacy</a>.</p>
+          <h2>3. How we use information</h2>
+          <p>We use your information to:</p>
+          <ul>
+            <li>Respond to your inquiries and communicate with you about projects or services.</li>
+            <li>Improve our website and understand site usage (only if you consent to analytics).</li>
+          </ul>
 
-          <h2>10. Changes to the Site or these terms</h2>
-          <p>We may update the Site or these Terms of Use from time to time. Changes take effect when posted. The “Last updated” date above indicates the most recent revision.</p>
-
-          <h2>11. Governing law</h2>
-          <p>These Terms are governed by the laws of the jurisdiction in which Enthalpy Engineering Incorporated is organized and operates, without regard to conflict-of-law principles.</p>
-
-          <h2>12. Contact</h2>
+          <h2>4. Cookies and analytics</h2>
           <p>
-            Questions about these Terms:
+            We store a consent preference in your browser (local storage) to remember whether you accepted or rejected optional analytics.
+            If you accept analytics, our site enables Firebase Analytics (Google). If you reject, analytics is not loaded.
+          </p>
+          <p>You can change your choice anytime using the “Cookie settings” link in the website footer.</p>
+
+          <h2>5. Third-party service providers</h2>
+          <p>We use third parties to operate certain site functions:</p>
+          <ul>
+            <li><strong>Form submission processor:</strong> Our contact form is delivered using FormSubmit. When you submit a form, the information you enter is transmitted to FormSubmit to deliver the message to our email inbox.</li>
+            <li><strong>Analytics:</strong> If you consent, we use Firebase Analytics (Google) to measure and understand website usage.</li>
+          </ul>
+
+          <h2>6. Data retention</h2>
+          <p>Inquiry messages are retained as long as needed to respond and for reasonable business records. Analytics data is retained according to the settings in Firebase/Google.</p>
+
+          <h2>7. Sharing</h2>
+          <p>We do not sell your personal information. We share information only with service providers described above and when required by law.</p>
+
+          <h2>8. Security</h2>
+          <p>We use reasonable safeguards to protect information. No method of transmission or storage is completely secure.</p>
+
+          <h2>9. Your choices</h2>
+          <ul>
+            <li>You may contact us to request access, correction, or deletion of your inquiry information where applicable.</li>
+            <li>You can opt out of optional analytics via Cookie settings.</li>
+          </ul>
+
+          <h2>10. Contact</h2>
+          <p>
+            If you have questions about this Privacy Policy, contact:
             <br />
             <a href="mailto:info@enthalpyinc.com">info@enthalpyinc.com</a>
             <br /><br />
@@ -462,7 +508,7 @@ l<!DOCTYPE html>
       </p>
       <div class="cookie-actions">
         <button type="button" class="btn btn-primary-inline" id="cookieAccept">Accept analytics</button>
-        <button type="button" class="btn" id="cookieReject">Reject</button>
+        <button type="button" class="btn btn-ghost" id="cookieReject">Reject</button>
       </div>
     </div>
   </div>
