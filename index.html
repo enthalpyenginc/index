@@ -1933,6 +1933,45 @@ section{
   color: #0F172A;
 }
 
+
+/* =========================
+   READABILITY BOOST (still transparent, no blur)
+   ========================= */
+
+/* Stronger global veil to calm busy photos */
+#stepPanel::before{
+  background: rgba(255,255,255,0.28) !important;
+}
+
+/* Stronger panels behind text (still transparent) */
+#stepPanel .process-panel-top,
+#stepPanel .process-box,
+#stepPanel .card{
+  background: rgba(255,255,255,0.62) !important;
+  border: 1px solid rgba(15,23,42,0.16);
+  box-shadow: 0 14px 34px rgba(15,23,42,0.12);
+}
+
+/* Improve contrast without changing layout */
+#stepPanel h2,
+#stepPanel h3,
+#stepPanel h4{
+  color: #0B1220 !important;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.55);
+}
+
+#stepPanel p,
+#stepPanel li{
+  color: #0B1220 !important;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.45);
+}
+
+/* Slightly increase body text weight inside step panel */
+#stepPanel p,
+#stepPanel li{
+  font-weight: 500;
+}
+
 </style>
 </head>
 
