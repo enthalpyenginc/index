@@ -1787,6 +1787,42 @@ section{
   background: transparent !important;
 }
 
+
+/* =========================
+   FINAL OVERRIDES
+   Restore How We Work step photos + keep glass cards
+   ========================= */
+
+/* Restore step background images on the right panel */
+#stepPanel{
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-image: var(--step-bg) !important;
+}
+
+/* Remove ONLY the milky overlay layers (if implemented as pseudo-elements) */
+#stepPanel::before,
+#stepPanel::after{
+  content: none !important;
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* Glass effect for the info boxes */
+#stepPanel .card{
+  background: rgba(255,255,255,0.45) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(15,23,42,0.12);
+  box-shadow: 0 18px 45px rgba(15,23,42,0.14);
+}
+
+/* Prevent inner elements from repainting opaque white */
+#stepPanel .card *{
+  background: transparent !important;
+}
+
 </style>
 </head>
 
