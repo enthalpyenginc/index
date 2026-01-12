@@ -1,10 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg"
-     width="24"
-     height="24"
-     viewBox="0 0 24 24"
-     role="img"
-     aria-label="Facebook">
-  <title>Facebook</title>
-  <path fill="#FFFFFF" d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.103 4.388 23.095 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953h-1.513c-1.49 0-1.953.93-1.953 1.887v2.264h3.328l-.532 3.49h-2.796V24C19.612 23.095 24 18.103 24 12.073z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+  <rect width="24" height="24" rx="4" fill="#1877F2"></rect>
+  <path fill="#FFFFFF" d="M16.403 9.6h-2.02V8.267c0-.508.336-.626.572-.626h1.41V5.375L14.424 5.37c-2.155 0-2.646 1.615-2.646 2.646V9.6h-1.7v2.39h1.7v6.01h2.305v-6.01h1.555l.765-2.39z"></path>
 </svg>
