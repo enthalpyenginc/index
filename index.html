@@ -1895,6 +1895,44 @@ section{
   background: transparent !important;
 }
 
+
+/* =========================
+   READABILITY VEIL (NO BLUR)
+   ========================= */
+
+/* Soft white veil between image and content */
+#stepPanel::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.18); /* subtle global veil */
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure content sits above veil */
+#stepPanel > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* Panels slightly stronger for text clarity */
+#stepPanel .process-panel-top,
+#stepPanel .process-box,
+#stepPanel .card{
+  background: rgba(255,255,255,0.50) !important;
+  border: 1px solid rgba(15,23,42,0.14);
+}
+
+/* Text contrast */
+#stepPanel h2,
+#stepPanel h3,
+#stepPanel h4,
+#stepPanel p,
+#stepPanel li{
+  color: #0F172A;
+}
+
 </style>
 </head>
 
