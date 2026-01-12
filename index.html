@@ -1751,6 +1751,21 @@ section{
   }
 }
 
+
+/* === How We Work: make the two info boxes noticeably more transparent === */
+#stepPanel .card,
+#stepPanel .card *{
+  background-color: transparent !important;
+}
+
+#stepPanel .card{
+  background: rgba(255,255,255,0.65) !important;  /* was ~0.82/0.88 */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(15,23,42,0.10);
+  box-shadow: 0 18px 45px rgba(15,23,42,0.14);
+}
+
 </style>
 </head>
 
