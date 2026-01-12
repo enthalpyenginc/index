@@ -1972,6 +1972,136 @@ section{
   font-weight: 500;
 }
 
+
+/* === Brand-compliant social icons === */
+.social-links{
+  display:flex;
+  gap:12px;
+  margin-top:16px;
+}
+
+.social-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  border-radius:999px;
+  background: rgba(255,255,255,0.60);
+  border:1px solid rgba(15,23,42,0.14);
+}
+
+.social-link svg{
+  width:22px;
+  height:22px;
+  display:block;
+}
+
+.social-link.linkedin svg{ fill:#0A66C2; }
+.social-link.facebook svg{ fill:#1877F2; }
+
+.social-link:hover{
+  background: rgba(255,255,255,0.80);
+}
+
+
+/* === Social icons: STANDARD BRAND COLORS (no white) === */
+.social-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  border-radius:999px;
+  border:none;
+}
+
+/* LinkedIn official brand blue */
+.social-link.linkedin{
+  background:#0A66C2;
+}
+
+/* Facebook official brand blue */
+.social-link.facebook{
+  background:#1877F2;
+}
+
+/* Logo glyphs stay white as per brand usage */
+.social-link svg{
+  width:22px;
+  height:22px;
+  fill:#FFFFFF;
+  display:block;
+}
+
+.social-link:hover{
+  filter:brightness(1.05);
+}
+
+
+/* === FORCE STANDARD SOCIAL BRAND ICONS (NO WHITE) === */
+.social-links{
+  display:flex;
+  gap:14px;
+}
+
+.social-link{
+  width:44px;
+  height:44px;
+  border-radius:6px; /* matches official app-style icons */
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:none !important;
+  background:none !important;
+}
+
+/* LinkedIn official */
+.social-link.linkedin{
+  background:#0A66C2 !important;
+}
+.social-link.linkedin svg{
+  fill:#FFFFFF !important;
+}
+
+/* Facebook official */
+.social-link.facebook{
+  background:#1877F2 !important;
+}
+.social-link.facebook svg{
+  fill:#FFFFFF !important;
+}
+
+/* Remove any inherited backgrounds */
+.social-link *{
+  background:transparent !important;
+}
+
+.social-link:hover{
+  filter:brightness(1.05);
+}
+
+
+/* =========================
+   Embedded / Mounted Logo
+   ========================= */
+.logo-mark{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px;
+  border-radius:14px;
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(15,23,42,0.12);
+  box-shadow: 0 10px 26px rgba(15,23,42,0.12), inset 0 1px 0 rgba(255,255,255,0.6);
+}
+.logo-mark img{
+  display:block;
+  height:46px;
+  width:auto;
+  background: transparent !important;
+}
+
 </style>
 </head>
 
