@@ -835,6 +835,22 @@
       margin-top: 0.15rem;
     }
 
+
+    /* Project portfolio progressive reveal */
+    .project-list-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.75rem;
+    }
+
+    .project-list-actions[hidden] {
+      display: none !important;
+    }
+
+    .project-card-hidden {
+      display: none !important;
+    }
+
     .team-grid { display: grid; gap: 1.4rem; }
 
     @media (min-width: 780px) {
@@ -2564,6 +2580,18 @@ section{
 
           <!-- Project cards are generated from the PROJECTS list below. -->
           <div class="simple-grid reveal-stagger" id="projectGrid" aria-live="polite"></div>
+
+          <div class="project-list-actions" id="projectListActions" hidden>
+            <button
+              type="button"
+              class="btn btn-ghost"
+              id="projectToggle"
+              aria-controls="projectGrid"
+              aria-expanded="false"
+            >
+              View More Projects
+            </button>
+          </div>
         </div>
       </section>
 <!-- Careers -->
@@ -2880,7 +2908,9 @@ section{
   <script>
     // ============================================================
     // PROJECT PORTFOLIO DATA
-    // Add, remove, or reorder projects here. No HTML editing required.
+    // Add projects here. No HTML editing required.
+    // IMPORTANT: add each NEW project at the BOTTOM of this list.
+    // The display logic automatically shows the newest-added project first.
     // Keep each project between { ... } and separate projects with commas.
     // ============================================================
     const PROJECTS = [
@@ -2940,8 +2970,8 @@ section{
   scope: "Mechanical design, existing building commissioning (EBCx), HVAC and ventilation assessment, BAS/DDC controls review, functional performance testing",
   outcome: "Improved HVAC reliability, validated system and control performance, identified operational deficiencies and supported more reliable long-term operation across all three facilities."
 },
-      // COPY THIS TEMPLATE ABOVE THIS COMMENT TO ADD ANOTHER PROJECT:
-      // ,{
+      // COPY THIS TEMPLATE IMMEDIATELY ABOVE THIS COMMENT TO ADD A NEW PROJECT:
+      // {
       //   title: "Project title",
       //   image: "project-image.jpg",
       //   alt: "Short description of the project image",
@@ -2953,7 +2983,17 @@ section{
 
     (function renderProjects() {
       const grid = document.getElementById("projectGrid");
+      const actions = document.getElementById("projectListActions");
+      const toggle = document.getElementById("projectToggle");
       if (!grid) return;
+
+      const INITIAL_PROJECT_COUNT = 6;
+      const PROJECT_BATCH_SIZE = 6;
+
+      // Maintenance rule: append every new project to the BOTTOM of PROJECTS.
+      // The website reverses the array for display, so the last item added is shown first.
+      const newestFirst = [...PROJECTS].reverse();
+      let visibleCount = Math.min(INITIAL_PROJECT_COUNT, newestFirst.length);
 
       const escapeHTML = value => String(value ?? "").replace(/[&<>'"]/g, char => ({
         "&": "&amp;",
@@ -2963,8 +3003,10 @@ section{
         '"': "&quot;"
       })[char]);
 
-      grid.innerHTML = PROJECTS.map(project => `
-        <article class="simple-card reveal-item">
+      // Render all cards once so existing image-pan, reveal, and accessibility
+      // handlers can attach normally. Older cards are simply hidden until requested.
+      grid.innerHTML = newestFirst.map((project, index) => `
+        <article class="simple-card reveal-item${index >= visibleCount ? " project-card-hidden" : ""}" data-project-index="${index}">
           <div class="image-frame" data-pan tabindex="0" aria-label="Project image (drag to pan). Press R to reset.">
             <img
               src="${escapeHTML(project.image)}"
@@ -2987,6 +3029,53 @@ section{
           <span class="project-outcome">Outcome: ${escapeHTML(project.outcome)}</span>
         </article>
       `).join("");
+
+      const cards = Array.from(grid.querySelectorAll("[data-project-index]"));
+
+      function updateProjectVisibility() {
+        cards.forEach((card, index) => {
+          card.classList.toggle("project-card-hidden", index >= visibleCount);
+        });
+
+        if (!actions || !toggle) return;
+
+        if (newestFirst.length <= INITIAL_PROJECT_COUNT) {
+          actions.hidden = true;
+          return;
+        }
+
+        actions.hidden = false;
+        const allVisible = visibleCount >= newestFirst.length;
+        toggle.textContent = allVisible ? "Show Less" : "View More Projects";
+        toggle.setAttribute("aria-expanded", allVisible ? "true" : "false");
+      }
+
+      if (toggle) {
+        toggle.addEventListener("click", () => {
+          const allVisible = visibleCount >= newestFirst.length;
+
+          if (allVisible) {
+            visibleCount = Math.min(INITIAL_PROJECT_COUNT, newestFirst.length);
+            updateProjectVisibility();
+
+            // Return the visitor to the start of the portfolio after collapsing.
+            const projectsSection = document.getElementById("projects");
+            if (projectsSection) {
+              projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+            return;
+          }
+
+          visibleCount = Math.min(visibleCount + PROJECT_BATCH_SIZE, newestFirst.length);
+          updateProjectVisibility();
+
+          // Newly revealed cards may have been skipped by the initial intersection
+          // animation while display:none, so make them visible immediately.
+          cards.slice(0, visibleCount).forEach(card => card.classList.add("is-visible"));
+        });
+      }
+
+      updateProjectVisibility();
     })();
 
     function trapFocus(container, onDeactivate) {
