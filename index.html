@@ -2338,9 +2338,9 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
    Remove the tile/card treatment and mount the artwork on the header itself.
    ========================= */
 .site-header .logo-mark{
-  width:58px !important;
-  height:58px !important;
-  flex:0 0 58px !important;
+  width:72px !important;
+  height:64px !important;
+  flex:0 0 72px !important;
   display:flex !important;
   align-items:center !important;
   justify-content:center !important;
@@ -2356,8 +2356,8 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 }
 
 .site-header .logo-mark img{
-  width:58px !important;
-  height:58px !important;
+  width:72px !important;
+  height:64px !important;
   max-width:none !important;
   object-fit:contain !important;
   padding:0 !important;
@@ -2372,13 +2372,13 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
 @media (max-width:600px){
   .site-header .logo-mark{
-    width:48px !important;
-    height:48px !important;
-    flex-basis:48px !important;
+    width:56px !important;
+    height:52px !important;
+    flex-basis:56px !important;
   }
   .site-header .logo-mark img{
-    width:48px !important;
-    height:48px !important;
+    width:56px !important;
+    height:52px !important;
   }
 }
 
@@ -2389,7 +2389,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
   <div class="scroll-progress" aria-hidden="true"></div>
 
   <div class="video-bg" aria-hidden="true">
-    <video id="bgVideo" autoplay muted loop playsinline preload="metadata" poster="hero-vancouver-poster.jpg">
+    <video id="bgVideo" autoplay muted loop playsinline preload="auto" poster="hero-vancouver-poster.jpg">
       <source src="https://enthalpyinc.com/hero-vancouver.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
@@ -2542,7 +2542,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
           <div class="card-grid reveal-stagger">
             <article class="card reveal-item">
               <div class="service-media" aria-hidden="true">
-                <video class="service-video" muted playsinline preload="auto" poster="/services-design-poster.jpg">
+                <video class="service-video" muted playsinline preload="metadata" poster="/services-design-poster.jpg">
                   <source src="/services-design.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -2561,7 +2561,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
             <article class="card reveal-item">
               <div class="service-media" aria-hidden="true">
-                <video class="service-video" muted playsinline preload="auto" poster="/services-performance-poster.jpg">
+                <video class="service-video" muted playsinline preload="metadata" poster="/services-performance-poster.jpg">
                   <source src="/services-performance.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -2580,7 +2580,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
             <article class="card reveal-item">
               <div class="service-media" aria-hidden="true">
-                <video class="service-video" muted playsinline preload="auto" poster="/services-energy-poster.jpg">
+                <video class="service-video" muted playsinline preload="metadata" poster="/services-energy-poster.jpg">
                   <source src="/services-energy.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -2599,7 +2599,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
             <article class="card reveal-item">
               <div class="service-media" aria-hidden="true">
-                <video class="service-video" muted playsinline preload="auto" poster="/services-leed-well-poster.jpg">
+                <video class="service-video" muted playsinline preload="metadata" poster="/services-leed-well-poster.jpg">
                   <source src="/services-leed-well.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -2617,7 +2617,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
             <article class="card reveal-item">
               <div class="service-media" aria-hidden="true">
-                <video class="service-video" muted playsinline preload="auto" poster="/services-project-management-poster.jpg">
+                <video class="service-video" muted playsinline preload="metadata" poster="/services-project-management-poster.jpg">
                   <source src="/services-project-management.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -3510,7 +3510,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
       }
 
       function handlePreferences(e) {
-        if (saveData || e.matches) disableVideo();
+        if (e.matches) disableVideo();
         else enableVideo();
       }
 
@@ -4106,6 +4106,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
         pauseAllExcept(video);
 
+        video.preload = "auto";
         video.loop = true;
         video.muted = true;
         video.playsInline = true;
@@ -4185,6 +4186,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
         pauseAllExcept(video);
 
+        video.preload = "auto";
         video.loop = true;
         video.muted = true;
         video.playsInline = true;
@@ -4225,7 +4227,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
       if (!videos.length) return;
 
       videos.forEach(video => {
-        video.preload = "auto";
+        video.preload = "metadata";
         video.muted = true;
         video.playsInline = true;
 
