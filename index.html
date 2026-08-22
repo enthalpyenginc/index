@@ -2493,8 +2493,8 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
           <div class="card-grid reveal-stagger">
             <article class="card reveal-item">
               <div class="service-media" aria-hidden="true">
-                <video class="service-video" muted playsinline preload="metadata" poster="services-design-poster.jpg">
-                  <source src="services-design.mp4" type="video/mp4" />
+                <video class="service-video" muted playsinline preload="auto" poster="/services-design-poster.jpg">
+                  <source src="/services-design.mp4" type="video/mp4" />
                 </video>
               </div>
 
@@ -2512,8 +2512,8 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
             <article class="card reveal-item">
               <div class="service-media" aria-hidden="true">
-                <video class="service-video" muted playsinline preload="metadata" poster="services-performance-poster.jpg">
-                  <source src="services-performance.mp4" type="video/mp4" />
+                <video class="service-video" muted playsinline preload="auto" poster="/services-performance-poster.jpg">
+                  <source src="/services-performance.mp4" type="video/mp4" />
                 </video>
               </div>
 
@@ -2531,8 +2531,8 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
             <article class="card reveal-item">
               <div class="service-media" aria-hidden="true">
-                <video class="service-video" muted playsinline preload="metadata" poster="services-energy-poster.jpg">
-                  <source src="services-energy.mp4" type="video/mp4" />
+                <video class="service-video" muted playsinline preload="auto" poster="/services-energy-poster.jpg">
+                  <source src="/services-energy.mp4" type="video/mp4" />
                 </video>
               </div>
 
@@ -2550,8 +2550,8 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
             <article class="card reveal-item">
               <div class="service-media" aria-hidden="true">
-                <video class="service-video" muted playsinline preload="metadata" poster="services-leed-well-poster.jpg">
-                  <source src="services-leed-well.mp4" type="video/mp4" />
+                <video class="service-video" muted playsinline preload="auto" poster="/services-leed-well-poster.jpg">
+                  <source src="/services-leed-well.mp4" type="video/mp4" />
                 </video>
               </div>
 
@@ -2568,8 +2568,8 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
             <article class="card reveal-item">
               <div class="service-media" aria-hidden="true">
-                <video class="service-video" muted playsinline preload="metadata" poster="services-project-management-poster.jpg">
-                  <source src="services-project-management.mp4" type="video/mp4" />
+                <video class="service-video" muted playsinline preload="auto" poster="/services-project-management-poster.jpg">
+                  <source src="/services-project-management.mp4" type="video/mp4" />
                 </video>
               </div>
 
@@ -4019,6 +4019,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
     /* ============================================================
        ✅ SERVICES: HOVER-PLAY VIDEOS (only one plays at a time)
+       ============================================================ */
     (function () {
       const services = document.getElementById("services");
       if (!services) return;
@@ -4029,7 +4030,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
       const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
       const saveData = !!(navigator.connection && navigator.connection.saveData);
 
-      if (motionQuery.matches || saveData) return;
+      if (motionQuery.matches) return;
 
       function getVideo(card) {
         return card.querySelector("video.service-video");
@@ -4072,8 +4073,14 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
         const video = getVideo(card);
         if (!video) return;
 
-        card.addEventListener("mouseenter", () => playVideo(video));
-        card.addEventListener("mouseleave", () => pauseAndReset(video));
+        card.addEventListener("pointerenter", () => playVideo(video));
+        card.addEventListener("pointerleave", () => pauseAndReset(video));
+
+        card.addEventListener("click", event => {
+          if (event.target.closest("a, button")) return;
+          if (video.paused) playVideo(video);
+          else pauseAndReset(video);
+        });
 
         card.addEventListener("focusin", () => playVideo(video));
         card.addEventListener("focusout", (e) => {
