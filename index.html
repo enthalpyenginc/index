@@ -2128,6 +2128,211 @@ section{
   background: transparent !important;
 }
 
+/* =========================
+   VISITOR EXPERIENCE V2
+   One final, authoritative layer for key journey components.
+   ========================= */
+.hero h1{ max-width: 780px; }
+.hero-lede{ max-width: 660px; font-size: 1.02rem; }
+
+.trust-bar{
+  padding: 0 !important;
+  background: #0E2F4F !important;
+  color: #FFFFFF;
+  border-top: 1px solid rgba(255,255,255,.12);
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+.trust-bar-inner{
+  min-height: 104px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr)) auto;
+  align-items: center;
+  gap: 1.5rem;
+}
+.trust-bar span{ display:block; }
+.trust-bar strong{
+  display:block;
+  font-size:.78rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:.2rem;
+}
+.trust-bar small{ color:rgba(255,255,255,.76); font-size:.74rem; }
+.trust-bar a{
+  color:#FFFFFF;
+  font-size:.78rem;
+  font-weight:600;
+  border-bottom:1px solid rgba(255,255,255,.45);
+  padding-bottom:.12rem;
+}
+
+#services .card:nth-child(1){ order:1; }
+#services .card:nth-child(3){ order:2; }
+#services .card:nth-child(2){ order:3; }
+#services .card:nth-child(4){ order:4; }
+#services .card:nth-child(5){ order:5; }
+#services .card p{ max-width: 42ch; }
+
+.optional-detail{ display:none !important; }
+
+.mobile-project-cta{ display:none; }
+
+@media (max-width: 880px){
+  section{ padding: 2.8rem 0; }
+  .trust-bar-inner{
+    min-height:0;
+    grid-template-columns:1fr;
+    gap:1rem;
+    padding-top:1.35rem;
+    padding-bottom:1.35rem;
+  }
+  .trust-bar a{ justify-self:start; }
+  .card-grid,.simple-grid{ grid-template-columns:1fr !important; }
+  .service-media,.market-media{ height:190px !important; }
+  .mobile-project-cta{
+    display:inline-flex;
+    position:fixed;
+    right:16px;
+    bottom:16px;
+    z-index:35;
+    box-shadow:0 12px 28px rgba(14,47,79,.30) !important;
+  }
+  body{ padding-bottom:72px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .service-video,.market-video{ display:none !important; }
+  .reveal,.reveal-item{ opacity:1 !important; transform:none !important; transition:none !important; }
+}
+
+/* =========================
+   READABILITY FIX
+   The cinematic video belongs to the hero only. All information sections
+   use opaque, high-contrast surfaces so text never competes with motion.
+   ========================= */
+main > section:not(.hero){
+  background:#FFFFFF !important;
+  color:#0F172A;
+}
+
+main > section:not(.hero) > .container{
+  background:transparent !important;
+  border-radius:0 !important;
+}
+
+.credentials-section,
+#projects,
+#careers{
+  background:#F6F8FB !important;
+}
+
+#services,
+#markets,
+#process,
+#contact{
+  background:#FFFFFF !important;
+}
+
+.section-header{
+  position:relative;
+  z-index:auto;
+  background:transparent !important;
+  border:0 !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+.section-header h2,
+main > section:not(.hero) h2,
+main > section:not(.hero) h3{
+  color:#0F172A !important;
+}
+
+.section-header p,
+main > section:not(.hero) p{
+  color:#475569 !important;
+}
+
+.card,
+.simple-card,
+.team-card,
+.contact-card{
+  background:#FFFFFF !important;
+  color:#0F172A !important;
+}
+
+#careers .careers-inner > div:first-child{
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+@media (max-width:860px){
+  #careers .careers-inner > div:first-child{ padding:0 !important; }
+}
+
+/* =========================
+   VIDEO-VISIBLE SECTION VEILS
+   Final override: preserve contrast without hiding the background video.
+   ========================= */
+main > section:not(.hero),
+.credentials-section,
+#services,
+#markets,
+#projects,
+#process,
+#careers,
+#contact{
+  background:rgba(255,255,255,.58) !important;
+}
+
+main > section:not(.hero)::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+  pointer-events:none;
+  z-index:0;
+}
+
+main > section:not(.hero){ position:relative; }
+main > section:not(.hero) > .container{ position:relative; z-index:1; }
+
+.section-header{
+  width:min(100%, 720px);
+  padding:1.1rem 1.25rem;
+  margin-left:-1.25rem;
+  border-radius:16px !important;
+  background:rgba(255,255,255,.66) !important;
+  box-shadow:0 10px 28px rgba(15,23,42,.08);
+}
+
+.card,
+.simple-card,
+.team-card,
+.contact-card{
+  background:rgba(255,255,255,.86) !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+#careers .careers-inner > div:first-child{
+  background:rgba(255,255,255,.70) !important;
+  border:1px solid rgba(255,255,255,.68) !important;
+  box-shadow:0 14px 34px rgba(15,23,42,.10) !important;
+}
+
+@media (max-width:700px){
+  main > section:not(.hero),
+  .credentials-section,
+  #services,#markets,#projects,#process,#careers,#contact{
+    background:rgba(255,255,255,.68) !important;
+  }
+  .section-header{ margin-left:0; width:100%; }
+}
+
 </style>
 </head>
 
@@ -2169,8 +2374,8 @@ section{
         <nav class="nav-links" aria-label="Primary navigation (desktop)">
           <a href="#services">Services</a>
           <a href="#markets">Markets</a>
-          <a href="#process">Process</a>
           <a href="#projects">Projects</a>
+          <a href="#process">Process</a>
 <a href="#careers">Careers</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -2196,8 +2401,8 @@ section{
         <nav class="nav-links" aria-label="Primary navigation (mobile)">
           <a href="#services">Services</a>
           <a href="#markets">Markets</a>
-          <a href="#process">Process</a>
           <a href="#projects">Projects</a>
+          <a href="#process">Process</a>
 <a href="#careers">Careers</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -2266,14 +2471,22 @@ section{
         </div>
       </section>
 
+      <aside class="trust-bar" aria-label="Professional credentials and service area">
+        <div class="container trust-bar-inner">
+          <span><strong>Licensed engineering</strong><small>P.Eng: BC, AB, SK &amp; ON • PE: NV</small></span>
+          <span><strong>Partner-led</strong><small>Senior oversight on every major assignment</small></span>
+          <span><strong>Cross-border delivery</strong><small>Canada and the United States</small></span>
+          <a href="#projects">See selected experience <span aria-hidden="true">→</span></a>
+        </div>
+      </aside>
+
       <!-- Services -->
       <section id="services" class="reveal">
         <div class="container">
           <header class="section-header">
             <h2>Services</h2>
             <p>
-              Enthalpy Engineering provides a focused scope of services that connects design, delivery and building
-              performance.
+              Integrated engineering services that connect design, code compliance, field verification and long-term performance.
             </p>
           </header>
 
@@ -2287,8 +2500,7 @@ section{
 
               <h3>MECHANICAL DESIGN</h3>
               <p>
-                Mechanical engineering design and design delivery support services from concept through tender and
-                construction, with clear documentation and coordinated delivery.
+                Coordinated HVAC and plumbing design from concept through tender and construction.
               </p>
               <div class="pill-list">
                 <span class="pill">Mechanical design</span>
@@ -2305,10 +2517,9 @@ section{
                 </video>
               </div>
 
-              <h3>Building performance</h3>
+              <h3>Commissioning &amp; Building Performance</h3>
               <p>
-                Building performance services to verify that systems operate as intended, support comfort and meet
-                owner and code requirements.
+                Field verification and commissioning to confirm systems operate as intended.
               </p>
               <div class="pill-list">
                 <span class="pill">Performance plans</span>
@@ -2325,10 +2536,9 @@ section{
                 </video>
               </div>
 
-              <h3>Energy Management</h3>
+              <h3>Energy Modelling &amp; Code Compliance</h3>
               <p>
-                Strategic energy management for existing buildings and new projects, aligning performance targets,
-                utility consumption and decarbonization goals.
+                NECB, SB-10 and performance-path modelling for permits, design decisions and lower energy use.
               </p>
               <div class="pill-list">
                 <span class="pill">Energy audits</span>
@@ -2347,8 +2557,7 @@ section{
 
               <h3>LEED + WELL</h3>
               <p>
-                Support for green building certifications, focusing on energy, comfort and wellness performance
-                requirements in LEED and WELL frameworks.
+                Focused support for energy, comfort, documentation and wellness requirements.
               </p>
               <div class="pill-list">
                 <span class="pill">LEED energy modelling</span>
@@ -2366,8 +2575,7 @@ section{
 
               <h3>Project Management</h3>
               <p>
-                Technical project management with an engineering lens, balancing scope, schedule, cost and risk
-                for building and infrastructure projects.
+                Engineering-led coordination of scope, schedule, cost and delivery risk.
               </p>
               <div class="pill-list">
                 <span class="pill">Owner’s representative</span>
@@ -2375,12 +2583,11 @@ section{
                 <span class="pill">Cost tracking</span>
               </div>
             </article>
-          </div>
-        </div>
+                  </div>
       </section>
 
       <!-- Credentials & affiliations -->
-      <section aria-label="Credentials and affiliations" class="reveal">
+      <section aria-label="Credentials and affiliations" class="credentials-section reveal">
         <div class="container">
           <div class="simple-grid reveal-stagger">
             <article class="simple-card reveal-item">
@@ -2679,9 +2886,8 @@ section{
                     <select id="scope" name="scope">
                       <option value="">Select a scope (optional)</option>
                       <option>MECHANICAL DESIGN</option>
-                      <option>Building Performance / Verification</option>
-                      <option>Energy Management / Optimization</option>
-                      <option>Energy Modelling / Incentives</option>
+                      <option>Commissioning / Building Performance</option>
+                      <option>Energy Modelling / Code Compliance</option>
                       <option>Decarbonization Roadmap</option>
                       <option>LEED / WELL / Fitwel Support</option>
                       <option>Project Management / Owner’s Rep</option>
@@ -2689,7 +2895,7 @@ section{
                     </select>
                   </div>
 
-                  <div>
+                  <div class="optional-detail">
                     <label for="stage">Project stage</label>
                     <select id="stage" name="project_stage">
                       <option value="">Select a stage (optional)</option>
@@ -2707,7 +2913,7 @@ section{
                     <input id="location" name="project_location" type="text" placeholder="City / region" autocomplete="address-level2" />
                   </div>
 
-                  <div>
+                  <div class="optional-detail">
                     <label for="timeline">Target timeline</label>
                     <select id="timeline" name="timeline">
                       <option value="">Select a timeline (optional)</option>
@@ -2729,7 +2935,7 @@ section{
                       required
                     ></textarea>
 
-                    <div class="form-actions-row" aria-label="Form helper actions">
+                    <div class="form-actions-row optional-detail" aria-label="Form helper actions">
                       <button type="button" class="btn btn-ghost btn-sm" id="buildSummaryBtn">Build summary</button>
                       <button type="button" class="btn btn-ghost btn-sm" id="copySummaryBtn">Copy summary</button>
                       <span class="form-helper" id="summaryStatus" role="status" aria-live="polite"></span>
@@ -2820,6 +3026,8 @@ section{
         </div>
       </section>
     </main>
+
+    <a class="btn btn-primary mobile-project-cta" href="#contact">Discuss a Project</a>
 
     <footer>
       <div class="container footer-inner">
@@ -3811,7 +4019,6 @@ section{
 
     /* ============================================================
        ✅ SERVICES: HOVER-PLAY VIDEOS (only one plays at a time)
-       ============================================================ */
     (function () {
       const services = document.getElementById("services");
       if (!services) return;
@@ -3954,6 +4161,33 @@ section{
       });
     })();
     /* ============================================================ */
+
+    /* Ensure every card displays a real video frame before interaction.
+       Hover/focus playback above remains in control of active playback. */
+    (function () {
+      const videos = document.querySelectorAll("video.service-video, video.market-video");
+      if (!videos.length) return;
+
+      videos.forEach(video => {
+        video.preload = "auto";
+        video.muted = true;
+        video.playsInline = true;
+
+        const showPreviewFrame = () => {
+          try {
+            if (video.readyState >= 2 && video.currentTime === 0) video.currentTime = 0.08;
+          } catch {}
+        };
+
+        if (video.readyState >= 2) showPreviewFrame();
+        else video.addEventListener("loadeddata", showPreviewFrame, { once: true });
+
+        video.addEventListener("error", () => {
+          const media = video.closest(".service-media, .market-media");
+          if (media) media.classList.add("media-load-error");
+        }, { once: true });
+      });
+    })();
   </script>
 
   <script type="module">
@@ -4152,6 +4386,15 @@ section{
   // Initialize with Step 01
   setBg(0);
 })();
+
+/* Put proof before process without duplicating either section. */
+(function(){
+  const main = document.getElementById("main");
+  const projects = document.getElementById("projects");
+  const process = document.getElementById("process");
+  if (main && projects && process) main.insertBefore(projects, process);
+})();
+
 </script>
 </body>
 </html>
