@@ -138,17 +138,34 @@
     }
 
     .logo-mark {
-      width: 52px;
-      height: 52px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.10);
-      background: #ffffff;
-      flex: 0 0 52px;
-      border: 1px solid rgba(11, 60, 93, 0.10);
+      width: 72px;
+      height: 64px;
+      flex: 0 0 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+      overflow: visible;
+      box-shadow: none;
+      background: transparent;
     }
 
-    .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
+    .logo-mark img {
+      width: 72px;
+      height: 64px;
+      max-width: none;
+      object-fit: contain;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: transparent;
+      mix-blend-mode: multiply;
+    }
 
     .logo-text-main {
       font-weight: 600;
@@ -383,6 +400,15 @@
       .cookie-banner-inner { flex-direction: column; align-items: flex-start; }
       .cookie-actions { width: 100%; justify-content: flex-start; }
       .logo-text-sub, .eyebrow { letter-spacing: 0.18em; }
+      .logo-mark {
+        width: 56px;
+        height: 52px;
+        flex-basis: 56px;
+      }
+      .logo-mark img {
+        width: 56px;
+        height: 52px;
+      }
     }
   </style>
 </head>
@@ -396,7 +422,7 @@
         <div class="nav-left">
           <a href="/" class="nav-left-link" aria-label="Enthalpy Engineering home">
             <div class="logo-mark">
-              <img src="/enthalpy-logo.png" alt="Enthalpy Engineering Incorporated logo" width="52" height="52" decoding="async" />
+              <img src="/enthalpy-logo.svg" alt="Enthalpy Engineering Incorporated logo" width="72" height="64" decoding="async" />
             </div>
             <div>
               <div class="logo-text-main">ENTHALPY ENGINEERING</div>
