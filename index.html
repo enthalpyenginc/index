@@ -4220,32 +4220,6 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
     })();
     /* ============================================================ */
 
-    /* Ensure every card displays a real video frame before interaction.
-       Hover/focus playback above remains in control of active playback. */
-    (function () {
-      const videos = document.querySelectorAll("video.service-video, video.market-video");
-      if (!videos.length) return;
-
-      videos.forEach(video => {
-        video.preload = "metadata";
-        video.muted = true;
-        video.playsInline = true;
-
-        const showPreviewFrame = () => {
-          try {
-            if (video.readyState >= 2 && video.currentTime === 0) video.currentTime = 0.08;
-          } catch {}
-        };
-
-        if (video.readyState >= 2) showPreviewFrame();
-        else video.addEventListener("loadeddata", showPreviewFrame, { once: true });
-
-        video.addEventListener("error", () => {
-          const media = video.closest(".service-media, .market-media");
-          if (media) media.classList.add("media-load-error");
-        }, { once: true });
-      });
-    })();
   </script>
 
   <script type="module">
