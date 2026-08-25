@@ -2382,6 +2382,165 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
   }
 }
 
+/* Portfolio discovery — large-firm inspired, Enthalpy branded */
+#projects { background:#f5f7f9; color:var(--gray-100); padding:clamp(5rem,9vw,9rem) 0; }
+#projects .project-intro { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(18rem,.65fr); gap:clamp(2rem,7vw,7rem); align-items:end; margin-bottom:3rem; }
+#projects .project-intro h2 { font-size:clamp(2.35rem,5vw,5.3rem); line-height:.98; letter-spacing:-.055em; max-width:900px; margin-top:1rem; }
+#projects .project-intro p { font-size:clamp(1rem,1.4vw,1.15rem); color:#475569; max-width:42rem; }
+.project-toolbar { position:sticky; top:76px; z-index:8; display:grid; grid-template-columns:minmax(16rem,2fr) repeat(4,minmax(9rem,1fr)); gap:1px; background:#cbd5e1; border:1px solid #cbd5e1; box-shadow:0 14px 38px rgba(15,47,79,.08); }
+.project-toolbar input,.project-toolbar select { appearance:none; width:100%; min-height:62px; padding:0 2.75rem 0 1.1rem; border:0; border-radius:0; background:#fff; color:#0f172a; font:600 .75rem/1.2 Montserrat,sans-serif; letter-spacing:.035em; outline:0; }
+.project-toolbar select { background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230e2f4f' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 1rem center; }
+.project-toolbar input:focus,.project-toolbar select:focus { box-shadow:inset 0 -3px 0 var(--accent); }
+.project-search { position:relative; background:#fff; }
+.project-search svg { position:absolute; left:1.1rem; top:50%; width:19px; transform:translateY(-50%); fill:none; stroke:#0e2f4f; stroke-width:1.8; z-index:1; }
+.project-search input { padding-left:3rem; font-weight:500; }
+.project-results-row { display:flex; align-items:center; justify-content:space-between; min-height:66px; border-bottom:1px solid #cbd5e1; color:#475569; font-size:.8rem; letter-spacing:.07em; text-transform:uppercase; }
+.project-clear { border:0; background:none; color:#0e2f4f; font:700 .75rem Montserrat,sans-serif; text-decoration:underline; text-underline-offset:4px; cursor:pointer; }
+#projects .simple-grid { grid-template-columns:repeat(12,1fr); gap:clamp(1.25rem,2.5vw,2.4rem); padding-top:2.5rem; }
+#projects .simple-card { grid-column:span 4; background:transparent; border:0; border-radius:0; box-shadow:none; padding:0 0 2rem; overflow:hidden; }
+#projects .simple-card:nth-child(7n+1),#projects .simple-card:nth-child(7n+5) { grid-column:span 8; }
+#projects .simple-card .image-frame { aspect-ratio:4/3; border-radius:0; overflow:hidden; background:#dce3e8; margin-bottom:1.4rem; }
+#projects .simple-card:nth-child(7n+1) .image-frame,#projects .simple-card:nth-child(7n+5) .image-frame { aspect-ratio:16/8.5; }
+#projects .simple-card img { width:100%; height:100%; object-fit:cover; transition:transform .65s cubic-bezier(.2,.7,.2,1); }
+#projects .simple-card:hover img { transform:scale(1.035); }
+.project-kicker { display:flex; flex-wrap:wrap; gap:.4rem .8rem; margin-bottom:.6rem; color:#5d6b78; font-size:.67rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; }
+#projects .simple-card h3 { color:#0e2f4f; font-size:clamp(1.25rem,2vw,1.75rem); line-height:1.15; letter-spacing:-.025em; margin:.45rem 0 .8rem; }
+#projects .simple-card p { color:#475569; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+#projects .simple-card > span:not(.project-kicker) { display:none; }
+.project-arrow { display:inline-grid; place-items:center; width:38px; height:38px; margin-top:1rem; border:1px solid #0e2f4f; border-radius:50%; color:#0e2f4f; transition:.25s ease; }
+#projects .simple-card:hover .project-arrow { background:#0e2f4f; color:#fff; transform:translateX(4px); }
+.project-empty { text-align:center; padding:5rem 1rem; }
+.project-empty h3 { color:#0e2f4f; font-size:1.6rem; }
+.project-empty p { color:#64748b; margin:.5rem 0 1.5rem; }
+.project-list-actions { margin-top:1.5rem; text-align:center; }
+@media(max-width:980px){.project-toolbar{position:relative;top:auto;grid-template-columns:1fr 1fr}.project-search{grid-column:1/-1}#projects .simple-card,#projects .simple-card:nth-child(n){grid-column:span 6}#projects .simple-card:nth-child(n) .image-frame{aspect-ratio:4/3}}
+@media(max-width:680px){#projects .project-intro{grid-template-columns:1fr}.project-toolbar{grid-template-columns:1fr}.project-search{grid-column:auto}#projects .simple-card,#projects .simple-card:nth-child(n){grid-column:1/-1}.project-results-row{align-items:flex-start;padding:1rem 0;gap:1rem}.project-toolbar input,.project-toolbar select{min-height:56px}}
+/* ============================================================
+   V11 CORPORATE SYSTEM — coherent scale across the whole website
+   ============================================================ */
+:root{
+  --max-width:1280px;
+  --corp-navy:#082946;
+  --corp-ink:#102233;
+  --corp-muted:#536575;
+  --corp-line:#d8e0e6;
+  --corp-paper:#f4f6f7;
+  --corp-green:#67b62f;
+}
+.container{width:min(calc(100% - clamp(2rem,6vw,6rem)),var(--max-width));margin-inline:auto}
+section{scroll-margin-top:96px}
+.site-header{height:auto;background:rgba(255,255,255,.94);border-bottom:1px solid rgba(8,41,70,.13);backdrop-filter:blur(18px);box-shadow:none}
+.nav{min-height:86px;gap:2rem}
+.logo-mark{width:64px;height:64px;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:0!important}
+.logo-mark img{width:64px;height:64px;object-fit:contain}
+.logo-text-main{font-size:.88rem;letter-spacing:.115em;color:var(--corp-navy)}
+.logo-text-sub{font-size:.63rem;letter-spacing:.23em;color:#516576}
+.logo-text-tagline{font-size:.55rem;letter-spacing:.04em;color:#738393}
+.nav-links{gap:clamp(1rem,2vw,2rem)}
+.nav-links a{color:#263c50;font-size:.72rem;font-weight:650;letter-spacing:.055em}
+.nav-cta .btn{min-height:44px;padding:.75rem 1.1rem}
+.hero{min-height:calc(100svh - 86px);display:flex;align-items:center;padding:clamp(5rem,10vh,9rem) 0;isolation:isolate}
+.hero::before{inset:0;background:linear-gradient(90deg,rgba(3,24,43,.91) 0%,rgba(5,34,59,.78) 47%,rgba(5,28,48,.38) 100%)}
+.hero-inner{grid-template-columns:minmax(0,1.45fr) minmax(19rem,.55fr);gap:clamp(3rem,7vw,7rem)}
+.hero .eyebrow{max-width:780px;color:#dbe7ed;font-size:.69rem;letter-spacing:.14em;line-height:1.7}
+.hero h1{max-width:920px;font-size:clamp(3.25rem,6.5vw,6.75rem);line-height:.92;letter-spacing:-.057em;margin:1.25rem 0 1.7rem;text-wrap:balance}
+.hero-lede{max-width:770px;color:#e1e8ed;font-size:clamp(1rem,1.45vw,1.2rem);line-height:1.75}
+.hero-actions{margin:2rem 0 2.5rem;gap:1rem}
+.hero-actions .btn{min-height:54px;padding:1rem 1.5rem}
+.hero-meta{max-width:760px;grid-template-columns:1fr 1fr;gap:2rem;border-top:1px solid rgba(255,255,255,.3);padding-top:1.35rem}
+.hero-meta div{font-size:.75rem;color:#d3dce3}
+.hero-meta strong{color:#fff;font-size:.72rem}
+.hero-panel{align-self:end;background:rgba(255,255,255,.94);border:0;border-radius:0;padding:clamp(1.6rem,3vw,2.4rem);box-shadow:0 26px 65px rgba(0,0,0,.22);color:var(--corp-ink)}
+.hero-panel h2{color:var(--corp-navy);font-size:.72rem;letter-spacing:.13em;border-bottom:1px solid var(--corp-line);padding-bottom:1rem}
+.hero-metric-grid{gap:0}
+.metric{padding:1.15rem 0;border-bottom:1px solid var(--corp-line);color:#526575}
+.metric strong{color:var(--corp-navy);font-size:clamp(1.65rem,3vw,2.35rem)}
+.hero-panel-note{padding-top:1.15rem;color:#61717e}
+.trust-bar{background:var(--corp-navy);border:0}
+.trust-bar-inner{min-height:104px;grid-template-columns:repeat(3,1fr) auto;gap:0}
+.trust-bar-inner>span,.trust-bar-inner>a{padding:1.2rem clamp(1rem,2vw,2rem);border-left:1px solid rgba(255,255,255,.13)}
+.trust-bar-inner>span:first-child{border-left:0;padding-left:0}
+.trust-bar strong{color:#fff}.trust-bar small{color:#b9c9d5}.trust-bar a{color:#fff;font-size:.75rem;font-weight:700}
+#services,#markets,#process,#careers,#contact,.credentials-section{padding:clamp(5rem,9vw,9rem) 0}
+#services,#process,#contact{background:#fff;color:var(--corp-ink)}
+#markets,.credentials-section{background:var(--corp-paper);color:var(--corp-ink)}
+.section-header{display:grid;grid-template-columns:minmax(15rem,.72fr) minmax(20rem,1.28fr);gap:clamp(2rem,7vw,7rem);align-items:end;margin-bottom:clamp(2.5rem,5vw,4.5rem);padding-bottom:1.6rem;border-bottom:1px solid var(--corp-line)}
+.section-header h2{color:var(--corp-navy);font-size:clamp(2.6rem,5vw,5.2rem);line-height:.95;letter-spacing:-.052em}
+.section-header p{color:var(--corp-muted);font-size:clamp(1rem,1.4vw,1.16rem);line-height:1.75;max-width:750px}
+.card-grid{grid-template-columns:repeat(12,1fr);gap:1px;background:var(--corp-line);border:1px solid var(--corp-line)}
+.card{grid-column:span 4;min-height:520px;padding:0;background:#fff;border:0;border-radius:0;box-shadow:none;display:flex;flex-direction:column;transform:none!important}
+.card:nth-child(4),.card:nth-child(5){grid-column:span 6}
+.card .service-media{height:250px;margin:0;border:0;border-radius:0}
+.card h3,.card p,.card .pill-list{margin-left:clamp(1.35rem,2.3vw,2rem);margin-right:clamp(1.35rem,2.3vw,2rem)}
+.card h3{color:var(--corp-navy);font-size:clamp(1.2rem,1.8vw,1.55rem);line-height:1.18;margin-top:1.6rem;text-transform:none;letter-spacing:-.025em}
+.card p{color:var(--corp-muted);font-size:.88rem;line-height:1.65}
+.card .pill-list{margin-top:auto;margin-bottom:1.8rem;padding-top:1.3rem;border-top:1px solid var(--corp-line)}
+.pill{border:0;border-radius:0;padding:.25rem 0;background:transparent;color:#627482;font-size:.66rem}
+.card:hover{background:#f8fafb}.card:hover .service-media video{transform:scale(1.045)}
+.credentials-section .simple-grid{grid-template-columns:1fr 1fr;gap:1px;background:var(--corp-line);border:1px solid var(--corp-line)}
+.credentials-section .simple-card{min-height:270px;border:0;border-radius:0;background:#fff;padding:clamp(1.6rem,3vw,2.7rem);box-shadow:none}
+.credentials-section .simple-card h3{color:var(--corp-navy);font-size:1.35rem}
+.credentials-section .simple-card p{color:var(--corp-muted)}
+#markets .simple-grid{grid-template-columns:repeat(12,1fr);gap:1px;background:var(--corp-line);border:1px solid var(--corp-line)}
+#markets .simple-card{grid-column:span 4;padding:0 0 2rem;border:0;border-radius:0;background:#fff;box-shadow:none;overflow:hidden}
+#markets .simple-card:nth-child(4),#markets .simple-card:nth-child(5){grid-column:span 6}
+.market-media{height:250px;border-radius:0!important;margin:0 0 1.6rem!important}
+#markets .simple-card h3,#markets .simple-card p,#markets .simple-card>span{margin-left:clamp(1.35rem,2.3vw,2rem);margin-right:clamp(1.35rem,2.3vw,2rem)}
+#markets .simple-card h3{color:var(--corp-navy);font-size:1.4rem;line-height:1.2}
+#markets .simple-card p{color:var(--corp-muted)}
+#markets .simple-card>span{margin-top:auto;color:#647785}
+#projects{padding:clamp(5rem,9vw,9rem) 0}
+#projects .project-intro{grid-template-columns:minmax(0,.9fr) minmax(20rem,1.1fr);align-items:end}
+#projects .project-intro h2{font-size:clamp(2.8rem,5vw,5.2rem)}
+.project-toolbar{top:86px;grid-template-columns:minmax(17rem,1.7fr) repeat(4,minmax(8.5rem,1fr));box-shadow:0 12px 30px rgba(8,41,70,.08)}
+#projects .simple-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1.5rem,2.5vw,2.6rem)}
+#projects .simple-card,#projects .simple-card:nth-child(n){grid-column:auto;display:flex;flex-direction:column;padding-bottom:2.5rem}
+#projects .simple-card:nth-child(n) .image-frame{aspect-ratio:4/3}
+#projects .simple-card h3{font-size:clamp(1.25rem,1.7vw,1.65rem);min-height:2.35em}
+#projects .simple-card p{-webkit-line-clamp:4}
+.process-shell{grid-template-columns:minmax(15rem,.72fr) minmax(0,1.28fr);border:1px solid var(--corp-line);border-radius:0;background:#fff;box-shadow:none}
+.process-tabs{gap:0;background:var(--corp-paper)}
+.process-tab{border:0;border-bottom:1px solid var(--corp-line);border-radius:0;padding:1.25rem 1.4rem;background:transparent}
+.process-tab.is-active{background:var(--corp-navy);color:#fff;border-left:5px solid var(--corp-green)}
+.process-tab.is-active .process-stepnum,.process-tab.is-active .process-stepsub{color:#c8d7e1}
+.process-panel{min-height:620px;border-radius:0;padding:clamp(2rem,5vw,4.5rem)}
+.process-panel h3{font-size:clamp(2.5rem,5vw,4.7rem);letter-spacing:-.05em}
+.process-box{border-radius:0;background:rgba(255,255,255,.94)}
+.careers{background:var(--corp-navy);color:#fff}
+.careers-inner{grid-template-columns:1.05fr .95fr;gap:clamp(3rem,8vw,8rem)}
+.careers h2{font-size:clamp(2.7rem,5vw,5.2rem);line-height:.98;letter-spacing:-.05em;color:#fff}
+.careers p,.careers-list{color:#d4e0e7}
+.careers .contact-card{border:1px solid rgba(255,255,255,.18);border-radius:0;background:rgba(255,255,255,.08);box-shadow:none;padding:clamp(2rem,4vw,3.5rem)}
+.careers .contact-card h3,.careers .contact-card a{color:#fff}
+.careers .contact-card p{color:#d5e1e8}
+#contact .contact-grid{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(2rem,7vw,7rem);align-items:start}
+#contact .contact-card{border:1px solid var(--corp-line);border-radius:0;background:var(--corp-paper);box-shadow:none;padding:clamp(1.7rem,3vw,2.7rem)}
+#contact .contact-card h3{color:var(--corp-navy)}
+footer{background:#061f35;border-top:0}
+@media(max-width:1080px){
+  .nav-links{display:none}.nav-toggle{display:flex}.nav-cta{margin-left:auto}
+  .hero-inner{grid-template-columns:1fr}.hero-panel{max-width:640px}
+  .card{grid-column:span 6}.card:nth-child(n){grid-column:span 6}
+  #markets .simple-card:nth-child(n){grid-column:span 6}
+  .project-toolbar{position:relative;top:auto;grid-template-columns:1fr 1fr}.project-search{grid-column:1/-1}
+  #projects .simple-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:720px){
+  .nav{min-height:74px}.logo-mark,.logo-mark img{width:54px;height:54px}.logo-text-tagline{display:none}.nav>.nav-cta{display:none}
+  .hero{min-height:auto;padding:5.5rem 0}.hero h1{font-size:clamp(3rem,15vw,4.8rem)}.hero-panel{display:block}
+  .hero-meta,.trust-bar-inner,.section-header,.credentials-section .simple-grid,.careers-inner,#contact .contact-grid{grid-template-columns:1fr}
+  .trust-bar-inner{padding:1rem 0}.trust-bar-inner>span,.trust-bar-inner>a{border-left:0;border-bottom:1px solid rgba(255,255,255,.12);padding:1rem 0}
+  .section-header{gap:1.4rem}.section-header h2{font-size:clamp(2.6rem,13vw,4rem)}
+  .card-grid,#markets .simple-grid{display:grid;grid-template-columns:1fr;background:transparent;border:0;gap:1.25rem}
+  .card,.card:nth-child(n),#markets .simple-card:nth-child(n){grid-column:auto;min-height:0;border:1px solid var(--corp-line)}
+  .card .service-media,.market-media{height:220px}
+  #projects .project-intro{grid-template-columns:1fr}
+  .project-toolbar{grid-template-columns:1fr}.project-search{grid-column:auto}
+  #projects .simple-grid{grid-template-columns:1fr}
+  #projects .simple-card h3{min-height:0}
+  .process-shell{grid-template-columns:1fr}.process-tabs{display:grid;grid-template-columns:1fr 1fr}.process-panel{min-height:560px}
+}
+@media(prefers-reduced-motion:reduce){.hero,.card,.simple-card,.project-arrow{transition:none!important}}
 </style>
 </head>
 
@@ -2826,16 +2985,42 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
       <!-- Projects -->
       <section id="projects" class="reveal">
         <div class="container">
-          <header class="section-header">
-            <h2>Selected experience</h2>
-            <p>
-              Representative projects from the founding partners’ combined experience. Client names can be added
-              once public references are confirmed.
-            </p>
+          <header class="section-header project-intro">
+            <div>
+              <div class="tag">Our work</div>
+              <h2>Engineering experience,<br>built around performance.</h2>
+            </div>
+            <p>Explore representative work delivered by Enthalpy and the founding partners across Canada and the United States. Filter by sector, service or location.</p>
           </header>
+
+          <div class="project-toolbar" aria-label="Project filters">
+            <label class="project-search">
+              <span class="sr-only">Search projects</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+              <input id="projectSearch" type="search" placeholder="Search projects, services or locations" autocomplete="off">
+            </label>
+            <select id="projectSector" aria-label="Filter by sector"><option value="all">All sectors</option></select>
+            <select id="projectService" aria-label="Filter by service"><option value="all">All services</option></select>
+            <select id="projectLocation" aria-label="Filter by location"><option value="all">All locations</option></select>
+            <select id="projectSort" aria-label="Sort projects">
+              <option value="newest">Newest first</option>
+              <option value="az">Project A–Z</option>
+              <option value="za">Project Z–A</option>
+            </select>
+          </div>
+          <div class="project-results-row">
+            <p id="projectResultCount" aria-live="polite"></p>
+            <button id="projectClear" class="project-clear" type="button" hidden>Clear all filters</button>
+          </div>
 
           <!-- Project cards are generated from the PROJECTS list below. -->
           <div class="simple-grid reveal-stagger" id="projectGrid" aria-live="polite"></div>
+
+          <div class="project-empty" id="projectEmpty" hidden>
+            <h3>No matching projects</h3>
+            <p>Try broadening your search or clearing the filters.</p>
+            <button type="button" class="btn btn-primary" id="projectEmptyReset">Clear filters</button>
+          </div>
 
           <div class="project-list-actions" id="projectListActions" hidden>
             <button
@@ -3294,11 +3479,16 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
       const INITIAL_PROJECT_COUNT = 6;
       const PROJECT_BATCH_SIZE = 6;
-
-      // Maintenance rule: append every new project to the BOTTOM of PROJECTS.
-      // The website reverses the array for display, so the last item added is shown first.
-      const newestFirst = [...PROJECTS].reverse();
-      let visibleCount = Math.min(INITIAL_PROJECT_COUNT, newestFirst.length);
+      const search = document.getElementById("projectSearch");
+      const sector = document.getElementById("projectSector");
+      const service = document.getElementById("projectService");
+      const location = document.getElementById("projectLocation");
+      const sort = document.getElementById("projectSort");
+      const count = document.getElementById("projectResultCount");
+      const clear = document.getElementById("projectClear");
+      const empty = document.getElementById("projectEmpty");
+      const emptyReset = document.getElementById("projectEmptyReset");
+      let visibleCount = INITIAL_PROJECT_COUNT;
 
       const escapeHTML = value => String(value ?? "").replace(/[&<>'"]/g, char => ({
         "&": "&amp;",
@@ -3308,10 +3498,37 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
         '"': "&quot;"
       })[char]);
 
-      // Render all cards once so existing image-pan, reveal, and accessibility
-      // handlers can attach normally. Older cards are simply hidden until requested.
-      grid.innerHTML = newestFirst.map((project, index) => `
-        <article class="simple-card reveal-item${index >= visibleCount ? " project-card-hidden" : ""}" data-project-index="${index}">
+      const classify = (project, index) => {
+        const haystack = `${project.title} ${project.description} ${project.scope}`.toLowerCase();
+        const sectorName = /defen|army|reserve|secure/.test(haystack) ? "Federal & Defense" : /bank|retail|commercial/.test(haystack) ? "Commercial & Retail" : /apartment|multi-family|residential|lido/.test(haystack) ? "Residential" : /daycare|lodge|campus/.test(haystack) ? "Community & Institutional" : /warehouse|industrial/.test(haystack) ? "Industrial" : "Buildings";
+        const serviceName = /commission|verification|performance testing/.test(haystack) ? "Commissioning & Performance" : /energy model|sb-10|necb|decarbon/.test(haystack) ? "Energy & Sustainability" : /owner|project management|quantity/.test(haystack) ? "Project Delivery" : "Mechanical Engineering";
+        const place = project.title.match(/(?:–|—)\s*([^,]+),\s*([^–—]+)$/);
+        const locationName = place ? place[2].trim().replace(/^(British Columbia|Ontario|Alberta|Saskatchewan|California).*$/i,"$1") : /canada/i.test(haystack) ? "Canada" : "Multiple locations";
+        return {...project, sector:project.sector || sectorName, service:project.service || serviceName, location:project.location || locationName, order:index};
+      };
+      const portfolio = PROJECTS.map(classify);
+      const unique = key => [...new Set(portfolio.map(item => item[key]))].sort((a,b)=>a.localeCompare(b));
+      const fill = (el, values) => values.forEach(value => el?.insertAdjacentHTML("beforeend", `<option value="${escapeHTML(value)}">${escapeHTML(value)}</option>`));
+      fill(sector, unique("sector")); fill(service, unique("service")); fill(location, unique("location"));
+
+      function activeFilters(){ return Boolean(search?.value.trim() || sector?.value !== "all" || service?.value !== "all" || location?.value !== "all"); }
+      function filteredProjects(){
+        const term = search?.value.trim().toLowerCase() || "";
+        const result = portfolio.filter(project => {
+          const text = `${project.title} ${project.description} ${project.scope} ${project.outcome} ${project.sector} ${project.service} ${project.location}`.toLowerCase();
+          return (!term || text.includes(term)) && (sector?.value === "all" || project.sector === sector.value) && (service?.value === "all" || project.service === service.value) && (location?.value === "all" || project.location === location.value);
+        });
+        if(sort?.value === "az") result.sort((a,b)=>a.title.localeCompare(b.title));
+        else if(sort?.value === "za") result.sort((a,b)=>b.title.localeCompare(a.title));
+        else result.sort((a,b)=>b.order-a.order);
+        return result;
+      }
+
+      function draw(){
+        const matches = filteredProjects();
+        const shown = matches.slice(0, visibleCount);
+        grid.innerHTML = shown.map((project, index) => `
+        <article class="simple-card reveal-item is-visible" data-project-index="${index}">
           <div class="image-frame" data-pan tabindex="0" aria-label="Project image (drag to pan). Press R to reset.">
             <img
               src="${escapeHTML(project.image)}"
@@ -3328,59 +3545,30 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
             </button>
             <div class="pan-hint" aria-hidden="true">Drag to pan</div>
           </div>
+          <div class="project-kicker"><span>${escapeHTML(project.sector)}</span><span>${escapeHTML(project.location)}</span></div>
           <h3>${escapeHTML(project.title)}</h3>
           <p>${escapeHTML(project.description)}</p>
           <span>Scope: ${escapeHTML(project.scope)}</span>
           <span class="project-outcome">Outcome: ${escapeHTML(project.outcome)}</span>
+          <span class="project-arrow" aria-hidden="true">→</span>
         </article>
       `).join("");
-
-      const cards = Array.from(grid.querySelectorAll("[data-project-index]"));
-
-      function updateProjectVisibility() {
-        cards.forEach((card, index) => {
-          card.classList.toggle("project-card-hidden", index >= visibleCount);
-        });
-
+        if(count) count.textContent = `${matches.length} project${matches.length === 1 ? "" : "s"} found`;
+        if(empty) empty.hidden = matches.length > 0;
+        grid.hidden = matches.length === 0;
+        if(clear) clear.hidden = !activeFilters();
         if (!actions || !toggle) return;
-
-        if (newestFirst.length <= INITIAL_PROJECT_COUNT) {
-          actions.hidden = true;
-          return;
-        }
-
-        actions.hidden = false;
-        const allVisible = visibleCount >= newestFirst.length;
+        actions.hidden = matches.length <= INITIAL_PROJECT_COUNT;
+        const allVisible = visibleCount >= matches.length;
         toggle.textContent = allVisible ? "Show Less" : "View More Projects";
         toggle.setAttribute("aria-expanded", allVisible ? "true" : "false");
       }
-
-      if (toggle) {
-        toggle.addEventListener("click", () => {
-          const allVisible = visibleCount >= newestFirst.length;
-
-          if (allVisible) {
-            visibleCount = Math.min(INITIAL_PROJECT_COUNT, newestFirst.length);
-            updateProjectVisibility();
-
-            // Return the visitor to the start of the portfolio after collapsing.
-            const projectsSection = document.getElementById("projects");
-            if (projectsSection) {
-              projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
-            return;
-          }
-
-          visibleCount = Math.min(visibleCount + PROJECT_BATCH_SIZE, newestFirst.length);
-          updateProjectVisibility();
-
-          // Newly revealed cards may have been skipped by the initial intersection
-          // animation while display:none, so make them visible immediately.
-          cards.slice(0, visibleCount).forEach(card => card.classList.add("is-visible"));
-        });
-      }
-
-      updateProjectVisibility();
+      function reset(){ if(search) search.value=""; if(sector) sector.value="all"; if(service) service.value="all"; if(location) location.value="all"; if(sort) sort.value="newest"; visibleCount=INITIAL_PROJECT_COUNT; draw(); }
+      [sector,service,location,sort].forEach(el=>el?.addEventListener("change",()=>{visibleCount=INITIAL_PROJECT_COUNT;draw();}));
+      search?.addEventListener("input",()=>{visibleCount=INITIAL_PROJECT_COUNT;draw();});
+      clear?.addEventListener("click",reset); emptyReset?.addEventListener("click",reset);
+      toggle?.addEventListener("click",()=>{ const total=filteredProjects().length; const allVisible=visibleCount>=total; visibleCount=allVisible?INITIAL_PROJECT_COUNT:Math.min(visibleCount+PROJECT_BATCH_SIZE,total); draw(); if(allVisible) document.getElementById("projects")?.scrollIntoView({behavior:"smooth",block:"start"}); });
+      draw();
     })();
 
     function trapFocus(container, onDeactivate) {
