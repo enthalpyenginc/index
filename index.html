@@ -2442,6 +2442,23 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 #projects .simple-card.project-featured {
   grid-column: 1 / -1 !important;
 }
+
+/* Show the full featured photo without cropping or manual panning. */
+#projects .project-featured .image-frame {
+  height: auto;
+  touch-action: auto;
+}
+#projects .project-featured img.project-image {
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  transform: none !important;
+  cursor: default;
+}
+#projects .project-featured .pan-reset,
+#projects .project-featured .pan-hint {
+  display: none;
+}
 </style>
 </head>
 
@@ -3475,11 +3492,11 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
         const visibleProjects = matches.slice(0, visibleCount);
         grid.innerHTML = visibleProjects.map((project, index) => `
         <article class="simple-card reveal-item is-visible${project.featured ? ' project-featured' : ''}" data-project-index="${index}">
-          <div class="image-frame" data-pan tabindex="0" aria-label="Project image (drag to pan). Press R to reset.">
+          <div class="image-frame" ${project.featured ? '' : 'data-pan tabindex="0" aria-label="Project image (drag to pan). Press R to reset."'}>
             <img
               src="${escapeHTML(project.image)}"
               alt="${escapeHTML(project.alt)}"
-              class="project-image parallax-layer"
+              class="project-image${project.featured ? '' : ' parallax-layer'}"
               loading="lazy"
               decoding="async"
             />
