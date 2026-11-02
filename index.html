@@ -2440,6 +2440,9 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
   .project-control { min-height: 50px; }
 }
 </style>
+  #projects .simple-card.project-featured {
+  grid-column: 1 / -1 !important;
+}
 </head>
 
 <body>
@@ -3471,7 +3474,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
         const matches = getMatches();
         const visibleProjects = matches.slice(0, visibleCount);
         grid.innerHTML = visibleProjects.map((project, index) => `
-        <article class="simple-card reveal-item is-visible" data-project-index="${index}">
+        <article class="simple-card reveal-item is-visible${project.featured ? ' project-featured' : ''}" data-project-index="${index}">
           <div class="image-frame" data-pan tabindex="0" aria-label="Project image (drag to pan). Press R to reset.">
             <img
               src="${escapeHTML(project.image)}"
