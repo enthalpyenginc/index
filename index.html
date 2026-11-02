@@ -3471,8 +3471,8 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
       }
 
       function drawProjects() {
-        <article class="simple-card reveal-item is-visible${project.featured ? ' project-featured' : ''}" data-project-index="${index}">;
         const matches = getMatches();
+        const visibleProjects = matches.slice(0, visibleCount);
         grid.innerHTML = visibleProjects.map((project, index) => `
         <article class="simple-card reveal-item is-visible${project.featured ? ' project-featured' : ''}" data-project-index="${index}">
           <div class="image-frame" data-pan tabindex="0" aria-label="Project image (drag to pan). Press R to reset.">
