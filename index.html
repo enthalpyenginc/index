@@ -2443,6 +2443,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
   #projects .simple-card.project-featured {
   grid-column: 1 / -1 !important;
 }
+}
 </head>
 
 <body>
@@ -3471,7 +3472,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
       }
 
       function drawProjects() {
-        const matches = getMatches();
+        <article class="simple-card reveal-item is-visible${project.featured ? ' project-featured' : ''}" data-project-index="${index}">;
         const visibleProjects = matches.slice(0, visibleCount);
         grid.innerHTML = visibleProjects.map((project, index) => `
         <article class="simple-card reveal-item is-visible${project.featured ? ' project-featured' : ''}" data-project-index="${index}">
