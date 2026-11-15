@@ -335,6 +335,7 @@
     .nav-links a:hover::after { width: 100%; }
 
     .nav-cta { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-cta .staff-login { white-space: nowrap; letter-spacing: 0.08em; }
 
     .btn {
       border-radius: 999px;
@@ -400,7 +401,7 @@
 
     .mobile-menu { display: none; }
 
-    @media (max-width: 880px) {
+    @media (max-width: 1180px) {
       .nav-links, .nav-cta { display: none; }
       .nav-toggle { display: flex; }
 
@@ -2491,6 +2492,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
         <div class="nav-cta">
           <a class="btn btn-ghost" href="#projects">Portfolio</a>
+          <a class="btn btn-ghost btn-sm staff-login" href="https://erp.enthalpyinc.com/" aria-label="Staff Login to Enthalpy ERP">Staff Login</a>
           <a class="btn btn-primary" href="#contact">Let’s Talk</a>
         </div>
 
@@ -2518,6 +2520,7 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
         <div class="nav-cta" aria-label="Primary actions">
           <a class="btn btn-ghost" href="#projects">Portfolio</a>
+          <a class="btn btn-ghost btn-sm staff-login" href="https://erp.enthalpyinc.com/" aria-label="Staff Login to Enthalpy ERP">Staff Login</a>
           <a class="btn btn-primary" href="#contact">Let’s Talk</a>
         </div>
       </div>
