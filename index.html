@@ -2608,7 +2608,7 @@ html, body { max-width: 100%; }
   pointer-events: none;
   overflow: hidden;
   background: radial-gradient(circle at center,rgba(8,67,108,.35),rgba(7,15,32,.08) 65%,transparent);
-  animation: staff-party-backdrop 1.03s ease-out both;
+  animation: staff-party-backdrop 2.65s ease-out both;
 }
 .staff-party-message {
   position: relative;
@@ -2621,7 +2621,7 @@ html, body { max-width: 100%; }
   box-shadow: 0 18px 75px rgba(0,0,0,.28),0 0 0 3px rgba(255,230,135,.35);
   color: white;
   font: 800 clamp(1.15rem,4.5vw,1.9rem)/1.32 "Montserrat",system-ui,sans-serif;
-  animation: staff-party-pop .95s cubic-bezier(.18,.82,.26,1.18) both;
+  animation: staff-party-pop 2.65s cubic-bezier(.18,.82,.26,1.18) both;
 }
 .staff-party-message small {display:block;font-size:.54em;font-weight:600;margin-top:.5rem;letter-spacing:.04em;color:#e2f9f2}
 .staff-party-piece {
@@ -2633,14 +2633,14 @@ html, body { max-width: 100%; }
   background:var(--piece-color);
   transform:translate(-50%,-50%);
   opacity:0;
-  animation: staff-party-burst 1.05s cubic-bezier(.15,.64,.25,1) both;
+  animation: staff-party-burst 2.25s cubic-bezier(.15,.64,.25,1) both;
   animation-delay:var(--piece-delay);
 }
-@keyframes staff-party-backdrop { 0% {opacity:0} 20%,80% {opacity:1} 100% {opacity:0} }
+@keyframes staff-party-backdrop { 0% {opacity:0} 10%,88% {opacity:1} 100% {opacity:0} }
 @keyframes staff-party-pop {
   0%{opacity:0;transform:scale(.3) rotate(-6deg)}
-  35%,77%{opacity:1;transform:scale(1.02) rotate(0)}
-  100%{opacity:0;transform:scale(1.12)}
+  14%,88%{opacity:1;transform:scale(1.02) rotate(0)}
+  100%{opacity:0;transform:scale(1.06)}
 }
 @keyframes staff-party-burst {
   0% {opacity:0;transform:translate(-50%,-50%) rotate(0) scale(.3)}
@@ -4859,7 +4859,7 @@ html, body { max-width: 100%; }
         layer.appendChild(piece);
       }
       document.body.appendChild(layer);
-      window.setTimeout(function(){ window.location.assign(destination); }, 1050);
+      window.setTimeout(function(){ window.location.assign(destination); }, 2650);
     });
   });
 })();
