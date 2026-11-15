@@ -2243,7 +2243,6 @@ section{
     z-index:35;
     box-shadow:0 12px 28px rgba(14,47,79,.30) !important;
   }
-  body{ padding-bottom:72px; }
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -2690,6 +2689,8 @@ html, body { max-width: 100%; }
   }
 }
 
+/* No duplicate floating project action: the hero contact button remains available. */
+.mobile-project-cta { display: none !important; }
 </style>
 </head>
 
@@ -3408,8 +3409,6 @@ html, body { max-width: 100%; }
         </div>
       </section>
     </main>
-
-    <a class="btn btn-primary mobile-project-cta" href="#contact">Discuss a Project</a>
 
     <footer>
       <div class="container footer-inner">
