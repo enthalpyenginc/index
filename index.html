@@ -336,25 +336,50 @@
 
     .nav-cta { display: flex; align-items: center; gap: 0.75rem; }
     .nav-cta .staff-login { white-space: nowrap; letter-spacing: 0.08em; }
-    /* Keep primary actions inside the header and center desktop navigation. */
-    @media (min-width: 1181px) {
+    /* Single-row site header: brand left, centered links, actions right. */
+    @media (min-width: 1381px) {
       .site-header .container.nav {
+        max-width: none;
+        width: 100%;
+        padding: 0.75rem clamp(1rem, 1.5vw, 2rem);
         display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        column-gap: 1.25rem;
-        row-gap: 0.45rem;
+        grid-template-columns: minmax(260px, 1fr) auto minmax(300px, 1fr);
         align-items: center;
+        column-gap: clamp(0.5rem, 1.2vw, 1.25rem);
       }
-      .site-header .nav-left { grid-column: 1; grid-row: 1; min-width: 0; }
-      .site-header .nav-cta { grid-column: 2; grid-row: 1; justify-self: end; flex-wrap: nowrap; }
+      .site-header .nav-left {
+        grid-column: 1;
+        grid-row: 1;
+        min-width: 0;
+      }
+      .site-header .nav-left-link { gap: 0.55rem; }
+      .site-header .logo-text-main { font-size: 0.73rem; letter-spacing: 0.12em; }
+      .site-header .logo-text-sub { font-size: 0.62rem; }
+      .site-header .logo-text-tagline { font-size: 0.52rem; }
       .site-header > .container.nav > .nav-links {
-        grid-column: 1 / -1;
-        grid-row: 2;
+        grid-column: 2;
+        grid-row: 1;
+        display: flex;
         justify-content: center;
-        gap: clamp(0.85rem, 2vw, 1.5rem);
+        gap: clamp(0.5rem, 0.95vw, 0.95rem);
+        font-size: 0.72rem;
+        letter-spacing: 0.075em;
         white-space: nowrap;
       }
-      .site-header .nav-cta .btn { white-space: nowrap; }
+      .site-header .nav-cta {
+        grid-column: 3;
+        grid-row: 1;
+        justify-self: end;
+        flex-wrap: nowrap;
+        gap: 0.45rem;
+      }
+      .site-header .nav-cta .btn {
+        padding: 0.52rem 0.85rem;
+        font-size: 0.69rem;
+        letter-spacing: 0.045em;
+        white-space: nowrap;
+      }
+      .site-header .nav-cta .staff-login { letter-spacing: 0.045em; }
     }
 
     .btn {
@@ -421,7 +446,7 @@
 
     .mobile-menu { display: none; }
 
-    @media (max-width: 1180px) {
+    @media (max-width: 1380px) {
       .nav-links, .nav-cta { display: none; }
       .nav-toggle { display: flex; }
 
@@ -2512,8 +2537,8 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
         <div class="nav-cta">
           <a class="btn btn-ghost" href="#projects">Portfolio</a>
-          <a class="btn btn-ghost btn-sm staff-login" href="https://erp.enthalpyinc.com/" aria-label="Staff Login to Enthalpy ERP">Staff Login</a>
           <a class="btn btn-primary" href="#contact">Let’s Talk</a>
+          <a class="btn btn-ghost btn-sm staff-login" href="https://erp.enthalpyinc.com/" aria-label="Staff Login to Enthalpy ERP">Staff Login</a>
         </div>
 
         <button
@@ -2540,8 +2565,8 @@ main > section:not(.hero) > .container{ position:relative; z-index:1; }
 
         <div class="nav-cta" aria-label="Primary actions">
           <a class="btn btn-ghost" href="#projects">Portfolio</a>
-          <a class="btn btn-ghost btn-sm staff-login" href="https://erp.enthalpyinc.com/" aria-label="Staff Login to Enthalpy ERP">Staff Login</a>
           <a class="btn btn-primary" href="#contact">Let’s Talk</a>
+          <a class="btn btn-ghost btn-sm staff-login" href="https://erp.enthalpyinc.com/" aria-label="Staff Login to Enthalpy ERP">Staff Login</a>
         </div>
       </div>
     </header>
