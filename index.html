@@ -2566,6 +2566,97 @@ html, body { max-width: 100%; }
   .hero h1 { font-size: clamp(1.6rem, 7.4vw, 1.85rem); }
 }
 
+
+/* Celebratory Staff Login — welcoming but separate from ERP authentication. */
+.site-header .nav-cta .staff-login {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  color: #fff !important;
+  border: 1px solid #128b7e !important;
+  background: linear-gradient(120deg,#09685f,#087e75 50%,#1459a1) !important;
+  box-shadow: 0 3px 12px rgba(9,104,95,.26),inset 0 1px rgba(255,255,255,.2);
+  font-weight: 800;
+  letter-spacing: .045em !important;
+  text-shadow: 0 1px rgba(0,0,0,.12);
+  transition: transform .23s ease,box-shadow .23s ease,filter .23s ease;
+}
+.site-header .nav-cta .staff-login::before {
+  content: "✦";
+  color: #ffe27b;
+  font-size: 1.12em;
+  display: inline-block;
+  margin-right: .1rem;
+  transition: transform .35s ease;
+}
+.site-header .nav-cta .staff-login:hover,
+.site-header .nav-cta .staff-login:focus-visible {
+  transform: translateY(-2px) scale(1.045);
+  background: linear-gradient(120deg,#087e75,#1557a5 45%,#7b3fc8) !important;
+  box-shadow: 0 0 0 3px rgba(255,211,91,.25),0 8px 22px rgba(14,102,141,.32);
+  filter: saturate(1.22);
+}
+.site-header .nav-cta .staff-login:hover::before,
+.site-header .nav-cta .staff-login:focus-visible::before {
+  transform: rotate(135deg) scale(1.28);
+}
+.staff-party-layer {
+  position: fixed;
+  z-index: 99999;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  overflow: hidden;
+  background: radial-gradient(circle at center,rgba(8,67,108,.35),rgba(7,15,32,.08) 65%,transparent);
+  animation: staff-party-backdrop 1.03s ease-out both;
+}
+.staff-party-message {
+  position: relative;
+  z-index: 2;
+  width: min(92vw,540px);
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  border-radius: 22px;
+  background: linear-gradient(135deg,#124d7b,#0c796d);
+  box-shadow: 0 18px 75px rgba(0,0,0,.28),0 0 0 3px rgba(255,230,135,.35);
+  color: white;
+  font: 800 clamp(1.15rem,4.5vw,1.9rem)/1.32 "Montserrat",system-ui,sans-serif;
+  animation: staff-party-pop .95s cubic-bezier(.18,.82,.26,1.18) both;
+}
+.staff-party-message small {display:block;font-size:.54em;font-weight:600;margin-top:.5rem;letter-spacing:.04em;color:#e2f9f2}
+.staff-party-piece {
+  position:absolute;
+  left:50%;top:50%;
+  width:var(--piece-size);
+  height:calc(var(--piece-size) * .55);
+  border-radius:2px;
+  background:var(--piece-color);
+  transform:translate(-50%,-50%);
+  opacity:0;
+  animation: staff-party-burst 1.05s cubic-bezier(.15,.64,.25,1) both;
+  animation-delay:var(--piece-delay);
+}
+@keyframes staff-party-backdrop { 0% {opacity:0} 20%,80% {opacity:1} 100% {opacity:0} }
+@keyframes staff-party-pop {
+  0%{opacity:0;transform:scale(.3) rotate(-6deg)}
+  35%,77%{opacity:1;transform:scale(1.02) rotate(0)}
+  100%{opacity:0;transform:scale(1.12)}
+}
+@keyframes staff-party-burst {
+  0% {opacity:0;transform:translate(-50%,-50%) rotate(0) scale(.3)}
+  17%{opacity:1}
+  75%{opacity:1}
+  100%{opacity:0;transform:translate(calc(-50% + var(--piece-x)),calc(-50% + var(--piece-y))) rotate(var(--piece-rotation)) scale(.8)}
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header .nav-cta .staff-login,
+  .site-header .nav-cta .staff-login::before {transition:none!important;animation:none!important;}
+  .site-header .nav-cta .staff-login:hover,
+  .site-header .nav-cta .staff-login:focus-visible {transform:none;}
+  .staff-party-layer {display:none;}
+}
+
 </style>
 </head>
 
@@ -4702,5 +4793,45 @@ html, body { max-width: 100%; }
 })();
 
 </script>
+
+<script>
+/* Short, accessible celebration on ordinary Staff Login activation. */
+(function () {
+  const destination = "https://erp.enthalpyinc.com/";
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let navigating = false;
+  document.querySelectorAll('a.staff-login[href="' + destination + '"]').forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || reducedMotion.matches || navigating) return;
+      event.preventDefault();
+      navigating = true;
+      const layer = document.createElement("div");
+      layer.className = "staff-party-layer";
+      layer.setAttribute("aria-hidden", "true");
+      const message = document.createElement("div");
+      message.className = "staff-party-message";
+      message.innerHTML = "✨ You make Enthalpy shine! ✨<small>Thank you for all you do. Welcome back!</small>";
+      layer.appendChild(message);
+      const colors = ["#ffcf51","#71e2ba","#83c8ff","#f799d7","#fff","#ff9875"];
+      for (let i=0;i<56;i++) {
+        const piece=document.createElement("span");
+        const angle=(i/56)*Math.PI*2;
+        const distance=130+Math.random()*Math.max(140,Math.min(window.innerWidth,window.innerHeight)*.36);
+        piece.className="staff-party-piece";
+        piece.style.setProperty("--piece-x", Math.cos(angle)*distance+"px");
+        piece.style.setProperty("--piece-y", Math.sin(angle)*distance+"px");
+        piece.style.setProperty("--piece-rotation",Math.round(Math.random()*1000)+"deg");
+        piece.style.setProperty("--piece-size",(5+Math.round(Math.random()*7))+"px");
+        piece.style.setProperty("--piece-delay",(Math.random()*.12)+"s");
+        piece.style.setProperty("--piece-color",colors[i%colors.length]);
+        layer.appendChild(piece);
+      }
+      document.body.appendChild(layer);
+      window.setTimeout(function(){ window.location.assign(destination); }, 1050);
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
