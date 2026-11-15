@@ -2537,7 +2537,28 @@ html, body { max-width: 100%; }
   .hero-actions .btn { width: 100%; max-width: 100%; white-space: normal; text-align: center; font-size: 0.7rem; letter-spacing: 0.075em; line-height: 1.35; min-height: 46px; padding: 0.8rem 0.7rem; }
   .hero-meta { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.1rem; }
   .hero-panel { width: 100%; }
-  .mobile-project-cta { max-width: calc(100vw - 32px); white-space: normal; text-align: center; line-height: 1.3; font-size: 0.72rem; letter-spacing: 0.06em; }
+  .mobile-project-cta {
+    position: fixed !important;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: max(12px, env(safe-area-inset-bottom)) !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    transform: none !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    min-height: 46px;
+    padding: 0.65rem 0.85rem;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-align: center;
+    line-height: 1.3;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    z-index: 45;
+  }
 }
 @media (max-width: 380px) {
   .site-header .logo-text-main { font-size: 0.58rem; }
